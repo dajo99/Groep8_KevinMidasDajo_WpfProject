@@ -1,6 +1,7 @@
 ﻿using Artmin_DAL;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -22,18 +23,19 @@ namespace Artmin_WPF.Pages
     /// </summary>
     public partial class EventsPage : Page
     {
-        public EventsPage(Event evt)
+        public List<Event> Events { get; set; }
+        public EventsPage()
         {
+            DataContext = this;
+            Events = DatabaseOperations.GetEvents();
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Event evt = (Event)((Button)sender).DataContext;
+            var evt = (Event)((FrameworkElement)sender).DataContext;
 
-            //var eventDetailsPage = new EventDetailsPage(evt);
-
-            //NavigationService.Navigate(eventDetailsPage);
+            MessageBox.Show("EventID: " + evt.EventID);
         }
     }
 }
