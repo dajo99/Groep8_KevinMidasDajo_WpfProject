@@ -19,7 +19,7 @@ namespace Artmin_DAL
         {
             this.Artists = new HashSet<Artist>();
             this.Notes = new HashSet<Note>();
-            this.ToDos = new HashSet<ToDo>();
+            this.Todos = new HashSet<Todo>();
         }
     
         public int EventID { get; set; }
@@ -39,6 +39,6 @@ namespace Artmin_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Note> Notes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ToDo> ToDos { get; set; }
+        public virtual ICollection<Todo> Todos { get; set; }
     }
 }

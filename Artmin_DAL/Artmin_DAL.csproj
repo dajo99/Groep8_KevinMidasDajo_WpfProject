@@ -74,10 +74,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArtminModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseOperations.cs" />
     <Compile Include="Client.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseOperations.cs" />
     <Compile Include="Event.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>
     </Compile>
@@ -92,9 +92,6 @@
     </Compile>
     <Compile Include="Partials\Event.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToDo.cs">
-      <DependentUpon>ArtminModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

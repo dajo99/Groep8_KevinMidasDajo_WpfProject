@@ -25,12 +25,12 @@ namespace Artmin_DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Artist> Artiest { get; set; }
-        public virtual DbSet<Event> Event { get; set; }
-        public virtual DbSet<EventType> Eventtype { get; set; }
-        public virtual DbSet<Client> Klant { get; set; }
-        public virtual DbSet<Location> Locatie { get; set; }
-        public virtual DbSet<Note> Notitie { get; set; }
-        public virtual DbSet<ToDo> ToDo { get; set; }
+        public virtual DbSet<Artist> Artists { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<EventType> EventTypes { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Note> Notes { get; set; }
+        public virtual DbSet<Todo> Todos { get; set; }
     }
 }
