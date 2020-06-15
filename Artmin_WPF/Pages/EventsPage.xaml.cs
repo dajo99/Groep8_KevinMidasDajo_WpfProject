@@ -35,7 +35,9 @@ namespace Artmin_WPF.Pages
         {
             var evt = (Event)((FrameworkElement)sender).DataContext;
 
-            MessageBox.Show("EventID: " + evt.EventID);
+            //MessageBox.Show("EventID: " + evt.EventID);
+
+            NavigationService.Navigate(new EventDetailsPage());
         }
     }
 }

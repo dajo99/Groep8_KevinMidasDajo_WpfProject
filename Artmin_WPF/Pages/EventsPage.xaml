@@ -14,7 +14,6 @@
       TextOptions.TextFormattingMode="Ideal" 
       TextOptions.TextRenderingMode="Auto"  
       d:DesignHeight="450" d:DesignWidth="800"
-      x:Name="root"
       Title="Events">
     <Page.Resources>
         <converters:DateConverter x:Key="DateConverter" />
@@ -54,17 +53,22 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <materialDesign:ColorZone Mode="PrimaryDark" VerticalAlignment="Stretch">
-            <Grid Margin="10">
-                <Button Style="{StaticResource MaterialDesignIconForegroundButton}" HorizontalAlignment="Left">
-                    <materialDesign:PackIcon Kind="Add" />
-                </Button>
-                <controls:HeaderControl Grid.Row="0" Title="{Binding Path=Title, ElementName=root}" />
-            </Grid>
-        </materialDesign:ColorZone>
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <materialDesign:ColorZone Mode="PrimaryDark" VerticalAlignment="Stretch">
+                <Grid Margin="10">
+                    <Button Style="{StaticResource MaterialDesignIconForegroundButton}" HorizontalAlignment="Left">
+                        <materialDesign:PackIcon Kind="Add" />
+                    </Button>
+                    <controls:HeaderControl Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
+                </Grid>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone Mode="PrimaryLight">
+                <controls:BackButton />
+            </materialDesign:ColorZone>
+        </StackPanel>
         <ListBox Grid.Row="1"
                  ItemsSource="{Binding Events}"
                  ItemTemplate="{StaticResource EventTemplate}"
