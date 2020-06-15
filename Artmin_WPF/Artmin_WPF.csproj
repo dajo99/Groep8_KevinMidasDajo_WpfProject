@@ -91,12 +91,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ArtistOverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EventsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\ArtistOverviewPage.xaml.cs">
+      <DependentUpon>ArtistOverviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EventsPage.xaml.cs">
       <DependentUpon>EventsPage.xaml</DependentUpon>
     </Compile>
