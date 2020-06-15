@@ -1,0 +1,8 @@
+bin
+obj
+.vs
+Thumbs.db
+**/bin
+**/obj
+**/.vs
+**/Thumbs.db
