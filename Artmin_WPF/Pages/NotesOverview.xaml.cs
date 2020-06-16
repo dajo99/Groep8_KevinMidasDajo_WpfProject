@@ -29,7 +29,7 @@ namespace Artmin_WPF.Pages
             DataContext = this;
             Notes = DatabaseOperations.GetNotes(e.EventID);
             InitializeComponent();
-            Subtitle.Text = e.Name;
+            Header.Title = this.Title;
             Header.Subtitle = e.Name;
         }
 
@@ -47,7 +47,7 @@ namespace Artmin_WPF.Pages
         {
             var note = (Note)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new NotesEditPage(note, Subtitle.Text));
+            NavigationService.Navigate(new NotesEditPage(note, Header.Subtitle));
         }
 
         

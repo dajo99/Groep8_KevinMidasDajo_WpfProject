@@ -71,27 +71,8 @@
         </Grid.RowDefinitions>
 
 
-        
-        <StackPanel Orientation="Vertical" Grid.Row="0">
-            <materialDesign:ColorZone Mode="PrimaryDark" VerticalAlignment="Stretch">
-                <Grid Margin="10">
-                    <Button Style="{StaticResource MaterialDesignIconForegroundButton}" HorizontalAlignment="Left">
-                        <materialDesign:PackIcon Kind="Add" />
-                    </Button>
-                    <controls:HeaderControl x:Name="Header" Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" Subtitle="{Binding Path=Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
-                </Grid>
-            </materialDesign:ColorZone>
-            <materialDesign:ColorZone Mode="PrimaryLight" VerticalAlignment="Stretch" Grid.Row="1">
-                <StackPanel  VerticalAlignment="Center">
-                    <Button Style="{StaticResource MaterialDesignFlatLightBgButton}" HorizontalAlignment="Center" >
-                        <StackPanel Orientation="Horizontal" >
-                            <materialDesign:PackIcon Kind="ArrowBack"/>
-                            <TextBlock x:Name="Subtitle" Text=""></TextBlock>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </materialDesign:ColorZone>
-        </StackPanel>
+        <controls:HeaderControl x:Name="Header" />
+
         <ListBox Grid.Row="1"
                  ItemsSource="{Binding Notes}"
                  ItemTemplate="{StaticResource NoteTemplate}"
