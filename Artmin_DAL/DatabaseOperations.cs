@@ -19,5 +19,17 @@ namespace Artmin_DAL
                             .ToList();
             }
         }
+
+        public static List<Note> GetNotes(int id)
+        {
+            using (var entities = new ArtminEntities())
+            {
+                return entities.Notes
+                            .OrderBy(e => e.NoteID)
+                            .Include(e => e.Event)
+                            .Where(e => e.Event.EventID == id)
+                            .ToList();
+            }
+        }
     }
 }

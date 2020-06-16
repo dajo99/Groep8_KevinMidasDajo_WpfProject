@@ -72,6 +72,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\BackButton.cs" />
+    <Compile Include="Pages\NotesOverview.xaml.cs">
+      <DependentUpon>NotesOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utilities.cs" />
     <Page Include="Controls\HeaderControl.xaml">
       <SubType>Designer</SubType>
@@ -102,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\EventsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NotesOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
