@@ -38,6 +38,7 @@ namespace Artmin_WPF.Pages
             var evt = (Event)((FrameworkElement)sender).DataContext;
 
             NavigationService.Navigate(new ArtistOverviewPage(evt));
+
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
