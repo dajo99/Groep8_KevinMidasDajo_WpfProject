@@ -20,6 +20,22 @@ namespace Artmin_DAL
             }
         }
 
+        public static int DeleteEvent(Event e)
+        {
+            try
+            {
+                using (var entities = new ArtminEntities())
+                {
+                    entities.Entry(e).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
 
         public static List<Artist> GetArtists(Event e)
         {

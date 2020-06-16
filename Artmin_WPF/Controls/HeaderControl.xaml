@@ -19,7 +19,6 @@
             <StackPanel Orientation="Vertical">
                 <materialDesign:ColorZone Mode="PrimaryDark" MinHeight="80">
                     <Grid Margin="10">
-                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Border HorizontalAlignment="Center" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="0 0 0 3">
                                 <TextBlock Text="{Binding Title}" Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
@@ -36,6 +35,7 @@
                                 </TextBlock.Style>
                             </TextBlock>
                         </StackPanel>
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
                     </Grid>
                 </materialDesign:ColorZone>
                 <materialDesign:ColorZone Mode="PrimaryLight">

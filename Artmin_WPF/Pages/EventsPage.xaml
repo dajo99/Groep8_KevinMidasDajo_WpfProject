@@ -13,7 +13,7 @@
       TextElement.FontSize="13"
       TextOptions.TextFormattingMode="Ideal" 
       TextOptions.TextRenderingMode="Auto"  
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="568" d:DesignWidth="320"
       Title="Events">
     <Page.Resources>
         <converters:DateConverter x:Key="DateConverter" />
@@ -21,19 +21,41 @@
 
         <DataTemplate x:Key="EventTemplate">
             <DockPanel>
-                <Border DockPanel.Dock="Left" Background="{Binding EventType.ColorName, Converter={StaticResource ColorSwatchConverter}}" Width="20" />
+                <Border DockPanel.Dock="Left"
+                        Background="{Binding EventType.ColorName, Converter={StaticResource ColorSwatchConverter}}"
+                        Width="20" />
                 <StackPanel Orientation="Vertical" Margin="10">
-                    <TextBlock Text="{Binding Name}" />
-                    <TextBlock Text="{Binding EventType}" />
-                    <TextBlock>
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
+                    <TextBlock Text="{Binding EventType}" Style="{StaticResource MaterialDesignCaptionTextBlock}" />
+                    <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}">
                         <Run Text="{Binding Date, Converter={StaticResource DateConverter}}" />
                     </TextBlock>
                     <Button Style="{StaticResource MaterialDesignOutlinedButton}"
-                            Click="Button_Click"
+                            Click="SelectButton_Click"
                             HorizontalAlignment="Left"
                             Margin="0 5 0 0"
                             Content="Select" />
                 </StackPanel>
+                <Grid Margin="10" DockPanel.Dock="Right">
+                    <materialDesign:PackIcon Kind="{Binding EventType.IconName}"
+                                             Width="32" Height="32"
+                                             HorizontalAlignment="Right"
+                                             Foreground="{StaticResource GreyPrimaryHueMidBrush}" />
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource MaterialDesignIconButton}"
+                                Width="32" Height="32"
+                                ToolTip="Edit"
+                                Click="EditButton_Click">
+                            <materialDesign:PackIcon Kind="Edit" />
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignIconButton}"
+                                Width="32" Height="32"
+                                ToolTip="Remove"
+                                Click="RemoveButton_Click">
+                            <materialDesign:PackIcon Kind="Trash" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
             </DockPanel>
         </DataTemplate>
 
@@ -44,9 +66,17 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListBoxItem">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                             <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource GreyPrimaryHueLightBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource GreyPrimaryHueLightBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -59,14 +89,15 @@
         </Grid.RowDefinitions>
 
         <controls:HeaderControl Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
-            <Button Style="{StaticResource MaterialDesignIconForegroundButton}" Click="AddButton_Click">
-                <materialDesign:PackIcon Kind="Add" />
+            <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Click="AddButton_Click" ToolTip="Create Event">
+                <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
             </Button>
         </controls:HeaderControl>
 
         <ListBox Grid.Row="1"
                  ItemsSource="{Binding Events}"
                  ItemTemplate="{StaticResource EventTemplate}"
-                 ItemContainerStyle="{StaticResource EventContainerStyle}" />
+                 ItemContainerStyle="{StaticResource EventContainerStyle}"
+                 ScrollViewer.CanContentScroll="False" />
     </Grid>
 </Page>

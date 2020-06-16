@@ -12,7 +12,7 @@ namespace Artmin_WPF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((DateTime)value).ToString("d MMM yyyy").ToUpper();
+            return ((DateTime)value).ToString("dddd d MMM yyyy").ToUpper();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
