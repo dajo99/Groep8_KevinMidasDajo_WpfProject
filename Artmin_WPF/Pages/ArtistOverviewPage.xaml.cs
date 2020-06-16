@@ -66,12 +66,12 @@ namespace Artmin_WPF.Pages
         {
             var artist = (Artist)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new ManageArtistPage(artist,true));
+            NavigationService.Navigate(new ManageArtistPage(artist));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ManageArtistPage());
         }
     }
 }
