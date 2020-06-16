@@ -1,7 +1,9 @@
 ﻿using Artmin_DAL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +30,7 @@ namespace Artmin_WPF.Pages
             Notes = DatabaseOperations.GetNotes(e.EventID);
             InitializeComponent();
             Subtitle.Text = e.Name;
+            Header.Subtitle = e.Name;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -42,7 +45,11 @@ namespace Artmin_WPF.Pages
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            var note = (Note)((FrameworkElement)sender).DataContext;
 
+            //MessageBox.Show("EventID: " + evt.EventID);
+
+            NavigationService.Navigate(new NotesEditPage(note));
         }
 
         
