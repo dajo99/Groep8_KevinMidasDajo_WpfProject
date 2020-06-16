@@ -15,6 +15,7 @@
       TextOptions.TextRenderingMode="Auto"  
       d:DesignHeight="450" d:DesignWidth="800"
       Title="NotesOverview" Loaded="Page_Loaded">
+    
     <Page.Resources>
         <converters:DateConverter x:Key="DateConverter" />
 
@@ -68,6 +69,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
+
+        <controls:HeaderControl Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
+
+        
         <StackPanel Orientation="Vertical" Grid.Row="0">
             <materialDesign:ColorZone Mode="PrimaryDark" VerticalAlignment="Stretch">
                 <Grid Margin="10">
