@@ -1,0 +1,31 @@
+﻿<Page x:Class="Artmin_WPF.Pages.EventEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Artmin_WPF.Pages"
+      xmlns:controls="clr-namespace:Artmin_WPF.Controls"
+      mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"  
+      d:DesignHeight="568" d:DesignWidth="320"
+      Title="Edit Event">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <controls:HeaderControl Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
+        </controls:HeaderControl>
+
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            Hier is helemaal niets
+        </TextBlock>
+    </Grid>
+</Page>
