@@ -26,7 +26,7 @@ namespace Artmin_WPF.Pages
         {
             note = n;
             InitializeComponent();
-            Subtitle.Text = subtitle;
+            Header.Title = this.Title;
             Header.Subtitle = subtitle;
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
