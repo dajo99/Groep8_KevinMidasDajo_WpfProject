@@ -94,7 +94,7 @@ namespace Artmin_WPF.Controls
         {
             if (Utilities.FindParent<Frame>(this) is Frame frame
                 && frame.BackStack != null
-                && frame.BackStack.Cast<JournalEntry>().LastOrDefault() is JournalEntry journalEntry)
+                && frame.BackStack.Cast<JournalEntry>().FirstOrDefault() is JournalEntry journalEntry)
             {
                 BackButtonText = journalEntry.Name;
             }
