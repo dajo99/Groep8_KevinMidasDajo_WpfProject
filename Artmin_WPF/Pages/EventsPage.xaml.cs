@@ -57,9 +57,9 @@ namespace Artmin_WPF.Pages
         {
             var evt = (Event)((FrameworkElement)sender).DataContext;
 
-            var ret = await DialogHost.Show(new ConfirmDialog("Remove event " + evt.Name + "?"));
+            var ret = (bool)await DialogHost.Show(new ConfirmDialog("Remove event " + evt.Name + "?"));
 
-            if (ret is bool b && b == true && DatabaseOperations.DeleteEvent(evt) > 0)
+            if (ret == true && DatabaseOperations.DeleteEvent(evt) > 0)
             {
                 Events.Remove(evt);
             }
