@@ -29,5 +29,22 @@ namespace Artmin_DAL
                     .ToList();
             }
         }
+
+        public static int DeleteArtist(Artist a)
+        {
+            try
+            {
+                using (ArtminEntities entities = new ArtminEntities())
+                {
+                    entities.Entry(a).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
     }
 }

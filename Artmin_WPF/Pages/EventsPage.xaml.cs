@@ -37,7 +37,7 @@ namespace Artmin_WPF.Pages
 
             //MessageBox.Show("EventID: " + evt.EventID);
 
-            NavigationService.Navigate(new EventDetailsPage());
+            NavigationService.Navigate(new ArtistOverviewPage(evt));
         }
     }
 }

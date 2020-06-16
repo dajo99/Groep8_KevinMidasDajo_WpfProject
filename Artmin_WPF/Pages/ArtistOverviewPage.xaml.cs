@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Artmin_DAL;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -21,42 +23,50 @@ namespace Artmin_WPF.Pages
     /// <summary>
     /// Interaction logic for ArtistOverviewPage.xaml
     /// </summary>
-    public partial class ArtistOverviewPage : Page, INotifyPropertyChanged
+    public partial class ArtistOverviewPage : Page
     {
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        private string _sub = "Hello";
-        public string Sub
-        {
-            get { return _sub; }
-            set { _sub = value;
-                NotifyPropertyChanged(); }
-        } 
+        //Property voor artiestenlijst
+        public ObservableCollection<Artist> Artists { get; set; }
 
-        public ArtistOverviewPage()
+        public ArtistOverviewPage(Event e)
         {
             InitializeComponent();
 
-        }
+            //lijst van artiesten opvullen
+            List<Artist> lijst = DatabaseOperations.GetArtists(e);
 
-        public event PropertyChangedEventHandler PropertyChanged;
+            //lijst maken die met binding update
+            Artists = new ObservableCollection<Artist>(lijst);
+
+            //Subtitle updaten met eventnaam
+            cntrlHeader.Subtitle = e.Name;
+        }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var artist = (Artist)((FrameworkElement)sender).DataContext;
 
+            int ok = DatabaseOperations.DeleteArtist(artist);
+            if (ok > 0)
+            {
+                Artists.Remove(artist);
+            }
+            else
+            {
+                MessageBox.Show("De artiest is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void root_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = this;
-            Sub = "Hello";
+            DataContext = this;            
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            var artist = (Artist)((FrameworkElement)sender).DataContext;
 
+            NavigationService.Navigate(new ManageArtistPage(artist,true));
         }
     }
 }
