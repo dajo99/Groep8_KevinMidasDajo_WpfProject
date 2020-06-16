@@ -73,9 +73,10 @@
 
         <controls:HeaderControl x:Name="Header" />
 
-        <ListBox Grid.Row="1"
+        <ListBox x:Name="ListNotes" Grid.Row="1"
                  ItemsSource="{Binding Notes}"
                  ItemTemplate="{StaticResource NoteTemplate}"
-                 ItemContainerStyle="{StaticResource NoteContainerStyle}" />
+                 ItemContainerStyle="{StaticResource NoteContainerStyle}"
+                 Style="{StaticResource MaterialDesignListBox}"/>
     </Grid>
 </Page>

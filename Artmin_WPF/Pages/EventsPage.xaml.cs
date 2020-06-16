@@ -36,7 +36,7 @@ namespace Artmin_WPF.Pages
             var evt = (Event)((FrameworkElement)sender).DataContext;
 
             //MessageBox.Show("EventID: " + evt.EventID);
-            NavigationService.Navigate(new ArtistOverviewPage(evt));
+            NavigationService.Navigate(new NotesOverview(evt));
 
         }
 
