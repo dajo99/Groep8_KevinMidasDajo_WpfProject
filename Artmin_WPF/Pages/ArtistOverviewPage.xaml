@@ -55,7 +55,11 @@
         </Grid.RowDefinitions>
 
 
-        <controls:HeaderControl x:Name="cntrlHeader" Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
+        <controls:HeaderControl x:Name="cntrlHeader" Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
+            <Button Style="{StaticResource MaterialDesignIconForegroundButton}" Click="Button_Click">
+                <materialDesign:PackIcon Kind="Add" />
+            </Button>
+        </controls:HeaderControl>
         <ListBox x:Name="lbArtists"
                  Grid.Row="1"
                  ItemsSource="{Binding Artists}"
