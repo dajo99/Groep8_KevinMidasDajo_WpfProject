@@ -71,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\ColorSwatchConverter.cs" />
+    <Compile Include="Pages\ManageArtistPage.xaml.cs">
+      <DependentUpon>ManageArtistPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\NotesEditPage.xaml.cs">
       <DependentUpon>NotesEditPage.xaml</DependentUpon>
     </Compile>
@@ -107,6 +111,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\EventsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ManageArtistPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
