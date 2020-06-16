@@ -88,7 +88,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:HeaderControl Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
+        <controls:HeaderControl>
             <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Click="AddButton_Click" ToolTip="Create Event">
                 <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
             </Button>
