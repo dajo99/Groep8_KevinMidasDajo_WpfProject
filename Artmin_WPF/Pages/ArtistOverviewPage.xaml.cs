@@ -37,12 +37,26 @@ namespace Artmin_WPF.Pages
 
         public ArtistOverviewPage()
         {
-            DataContext = this;
-            Sub = "Hello";
             InitializeComponent();
 
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void root_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = this;
+            Sub = "Hello";
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

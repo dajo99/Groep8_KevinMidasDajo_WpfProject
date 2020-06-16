@@ -15,15 +15,54 @@
       TextOptions.TextRenderingMode="Auto" 
       d:DesignHeight="450" d:DesignWidth="800"
       x:Name="root"
-      Title="Artists">
+      Title="Artists" Loaded="root_Loaded">
+    <Page.Resources>
+        <DataTemplate x:Key="ArtistOverviewTemplate">
+            <DockPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="tbArtist" Text="{Binding }" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    
+                    <Button x:Name="btnDelete" 
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,0"
+                            Content="Delete" 
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Click="btnDelete_Click"/>
+                    
+                    <Button x:Name="btnEdit" 
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left"
+                            Margin="10,0,0,0"
+                            Content="Edit" 
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Click="btnEdit_Click"/>
+                </Grid>
+            </DockPanel>
+        </DataTemplate>
+    </Page.Resources>
 
-    <Grid>
+
+            <Grid>
         <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
 
         <controls:HeaderControl Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
-
-        </Grid>
+        <ListBox Grid.Row="1"
+                 ItemsSource="{Binding Artists}"
+                 ItemTemplate="{StaticResource ArtistOverviewTemplate}"
+                  />
+    </Grid>
 </Page>

@@ -19,5 +19,15 @@ namespace Artmin_DAL
                             .ToList();
             }
         }
+
+        public static List<Artist> GetArtists(Event e)
+        {
+            using (var entities = new ArtminEntities())
+            {
+                return entities.Artists
+                    .Where(x => x.EventID == e.EventID)
+                    .ToList();
+            }
+        }
     }
 }

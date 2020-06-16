@@ -90,6 +90,7 @@
     <Compile Include="Note.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partials\Artist.cs" />
     <Compile Include="Partials\Event.cs" />
     <Compile Include="Partials\EventType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
