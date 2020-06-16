@@ -71,7 +71,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\BackButton.cs" />
     <Compile Include="Pages\NotesEditPage.xaml.cs">
       <DependentUpon>NotesEditPage.xaml</DependentUpon>
     </Compile>
@@ -118,10 +117,6 @@
     <Page Include="Pages\NotesOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
