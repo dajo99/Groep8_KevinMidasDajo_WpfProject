@@ -71,9 +71,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\BackButton.cs" />
+
     <Compile Include="Pages\ManageArtistPage.xaml.cs">
       <DependentUpon>ManageArtistPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NotesEditPage.xaml.cs">
+      <DependentUpon>NotesEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NotesOverview.xaml.cs">
+      <DependentUpon>NotesOverview.xaml</DependentUpon>
+
     </Compile>
     <Compile Include="Utilities.cs" />
     <Page Include="Controls\HeaderControl.xaml">
@@ -108,13 +115,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+
     <Page Include="Pages\ManageArtistPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Pages\NotesEditPage.xaml">
       <SubType>Designer</SubType>
+
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NotesOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

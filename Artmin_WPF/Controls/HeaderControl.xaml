@@ -12,39 +12,41 @@
              TextElement.FontSize="13"
              TextOptions.TextFormattingMode="Ideal" 
              TextOptions.TextRenderingMode="Auto" 
+             Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="0">
-            <materialDesign:ColorZone Mode="PrimaryDark" VerticalAlignment="Stretch">
-                <Grid Margin="10">
-                    <Button Style="{StaticResource MaterialDesignIconForegroundButton}" HorizontalAlignment="Left">
-                        <materialDesign:PackIcon Kind="Add" />
+    <UserControl.Template>
+        <ControlTemplate TargetType="{x:Type UserControl}">
+            <StackPanel Orientation="Vertical" Grid.Row="0">
+                <materialDesign:ColorZone Mode="PrimaryDark" VerticalAlignment="Stretch">
+                    <Grid Margin="10">
+                        <ContentPresenter HorizontalAlignment="Left" />
+                        <StackPanel HorizontalAlignment="Center">
+                            <Border HorizontalAlignment="Center" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="0 0 0 3">
+                                <TextBlock Text="{Binding Title}" Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
+                            </Border>
+                            <TextBlock Text="{Binding Subtitle}" Margin="0 5 0 0" HorizontalAlignment="Center">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Subtitle}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Mode="PrimaryLight">
+                    <Button Click="BackButton_Click" Style="{StaticResource MaterialDesignFlatButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ArrowBack" Margin="0 0 4 0" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding BackButtonText}" />
+                        </StackPanel>
                     </Button>
-                    <StackPanel HorizontalAlignment="Center">
-                    <Border HorizontalAlignment="Center" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="0 0 0 3">
-                        <TextBlock Text="{Binding Title}" Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
-                    </Border>
-                        <TextBlock Text="{Binding Subtitle}" Margin="0 5 0 0" HorizontalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Subtitle}" Value="">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    </StackPanel>
-                </Grid>
-            </materialDesign:ColorZone>
-            <materialDesign:ColorZone Mode="PrimaryLight">
-                <controls:BackButton />
-            </materialDesign:ColorZone>
-        </StackPanel>
-        
-        
-
-
-    </StackPanel>
+                </materialDesign:ColorZone>
+            </StackPanel>
+        </ControlTemplate>
+    </UserControl.Template>
 </UserControl>

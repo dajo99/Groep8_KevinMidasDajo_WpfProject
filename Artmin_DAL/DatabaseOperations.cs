@@ -20,6 +20,7 @@ namespace Artmin_DAL
             }
         }
 
+
         public static List<Artist> GetArtists(Event e)
         {
             using (var entities = new ArtminEntities())
@@ -44,6 +45,18 @@ namespace Artmin_DAL
             {
                 FileOperations.Foutloggen(ex);
                 return 0;
+
+            }
+        }
+        public static List<Note> GetNotes(int id)
+        {
+            using (var entities = new ArtminEntities())
+            {
+                return entities.Notes
+                            .OrderBy(e => e.NoteID)
+                            .Include(e => e.Event)
+                            .Where(e => e.Event.EventID == id)
+                            .ToList();
             }
         }
     }

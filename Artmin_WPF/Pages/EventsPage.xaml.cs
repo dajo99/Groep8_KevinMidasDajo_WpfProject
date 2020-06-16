@@ -39,5 +39,10 @@ namespace Artmin_WPF.Pages
 
             NavigationService.Navigate(new ArtistOverviewPage(evt));
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Add button clicked :)");
+        }
     }
 }
