@@ -14,16 +14,36 @@
       TextOptions.TextFormattingMode="Ideal" 
       TextOptions.TextRenderingMode="Auto"  
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="NotesOverview">
+      Title="NotesOverview" Loaded="Page_Loaded">
     <Page.Resources>
         <converters:DateConverter x:Key="DateConverter" />
 
         <DataTemplate x:Key="NoteTemplate">
             <DockPanel>
-                <Border DockPanel.Dock="Left" Background="Yellow" Width="20" />
                 <StackPanel Orientation="Vertical" Margin="10">
                     <TextBlock Text="{Binding Title}" />
+                    <Separator/>
                     <TextBlock Text="{Binding Description}" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                            x:Name="btnDelete"
+                            Click="btnDelete_Click"
+                            HorizontalAlignment="Left"
+                            Margin="0 5 5 0"
+                            Width="80px"
+                            Background="Red"
+                            Foreground="White"
+                            Content="Delete" />
+                        <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                            x:Name="btnEdit"
+                            Click="btnEdit_Click"
+                            HorizontalAlignment="Right"
+                            Margin="5 5 0 0"
+                            Width="80px"
+                            Background="Blue"
+                            Foreground="White"
+                            Content="Edit" />
+                    </StackPanel>
                 </StackPanel>
             </DockPanel>
         </DataTemplate>
@@ -62,7 +82,7 @@
                     <Button Style="{StaticResource MaterialDesignFlatLightBgButton}" HorizontalAlignment="Center" >
                         <StackPanel Orientation="Horizontal" >
                             <materialDesign:PackIcon Kind="ArrowBack"/>
-                            <TextBlock Text="{Binding Event}"></TextBlock>
+                            <TextBlock x:Name="Subtitle" Text=""></TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>

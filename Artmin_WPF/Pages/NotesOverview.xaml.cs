@@ -22,11 +22,29 @@ namespace Artmin_WPF.Pages
     public partial class NotesOverview : Page
     {
         public List<Note> Notes { get; set; }
-        public NotesOverview(int id)
+        public NotesOverview(Event e)
         {
             DataContext = this;
-            Notes = DatabaseOperations.GetNotes(id);
+            Notes = DatabaseOperations.GetNotes(e.EventID);
             InitializeComponent();
+            Subtitle.Text = e.Name;
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        
     }
 }
