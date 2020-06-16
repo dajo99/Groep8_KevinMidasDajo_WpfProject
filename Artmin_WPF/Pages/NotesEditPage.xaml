@@ -16,45 +16,13 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Notes" Loaded="Page_Loaded">
 
-    <Page.Resources>
-        <converters:DateConverter x:Key="DateConverter" />
-
-        <DataTemplate x:Key="NoteTemplate">
-            <StackPanel Orientation="Vertical" Margin="10">
-                    <TextBlock x:Name="TitleNote" Text="" />
-                    <Separator/>
-                    <TextBlock x:Name="DescriptionNote" Text="" />
-                    <StackPanel HorizontalAlignment="Right">
-                        <Button Style="{StaticResource MaterialDesignOutlinedButton}"
-                            x:Name="btnSave"
-                            Click="btnSave_Click"
-                            Margin="0 5 0 0"
-                            Width="80px"
-                            Content="Save" />
-                    </StackPanel>
-                </StackPanel>
-        </DataTemplate>
-
-        <Style x:Key="NoteContainerStyle" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="BorderBrush" Value="{StaticResource MaterialDesignDivider}" />
-            <Setter Property="BorderThickness" Value="0 0 0 1" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
+
+        
 
         <StackPanel Orientation="Vertical" Grid.Row="0">
             <materialDesign:ColorZone Mode="PrimaryDark" VerticalAlignment="Stretch">
@@ -62,7 +30,7 @@
                     <Button Style="{StaticResource MaterialDesignIconForegroundButton}" HorizontalAlignment="Left">
                         <materialDesign:PackIcon Kind="Add" />
                     </Button>
-                    <controls:HeaderControl Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
+                    <controls:HeaderControl x:Name="Header" Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" Subtitle="{Binding Path=Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
                 </Grid>
             </materialDesign:ColorZone>
             <materialDesign:ColorZone Mode="PrimaryLight" VerticalAlignment="Stretch" Grid.Row="1">
@@ -75,6 +43,19 @@
                     </Button>
                 </StackPanel>
             </materialDesign:ColorZone>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="10" Grid.Row="1">
+            <TextBlock x:Name="TitleNote" Text="lol" />
+            <Separator/>
+            <TextBlock x:Name="DescriptionNote" Text="lol" />
+            <StackPanel HorizontalAlignment="Right">
+                <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                            x:Name="btnSave"
+                            Click="btnSave_Click"
+                            Margin="0 5 0 0"
+                            Width="80px"
+                            Content="Save" />
+            </StackPanel>
         </StackPanel>
        
     </Grid>

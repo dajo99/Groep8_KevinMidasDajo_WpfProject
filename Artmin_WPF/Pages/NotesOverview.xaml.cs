@@ -47,9 +47,7 @@ namespace Artmin_WPF.Pages
         {
             var note = (Note)((FrameworkElement)sender).DataContext;
 
-            //MessageBox.Show("EventID: " + evt.EventID);
-
-            NavigationService.Navigate(new NotesEditPage(note));
+            NavigationService.Navigate(new NotesEditPage(note, Subtitle.Text));
         }
 
         

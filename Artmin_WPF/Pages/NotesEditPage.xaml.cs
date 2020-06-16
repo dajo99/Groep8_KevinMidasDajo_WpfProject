@@ -22,14 +22,17 @@ namespace Artmin_WPF.Pages
     public partial class NotesEditPage : Page
     {
         Note note;
-        public NotesEditPage(Note n)
+        public NotesEditPage(Note n, string subtitle)
         {
             note = n;
             InitializeComponent();
+            Subtitle.Text = subtitle;
+            Header.Subtitle = subtitle;
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            TitleNote.Text = note.Title;
+            DescriptionNote.Text = note.Description;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
