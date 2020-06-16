@@ -75,5 +75,23 @@ namespace Artmin_DAL
                             .ToList();
             }
         }
+
+        public static int DeleteNote(Note n)
+        {
+            try
+            {
+                using (ArtminEntities entities = new ArtminEntities())
+                {
+                    entities.Entry(n).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+
+            }
+        }
     }
 }
