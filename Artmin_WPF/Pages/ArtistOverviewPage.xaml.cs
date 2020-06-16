@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,12 +21,28 @@ namespace Artmin_WPF.Pages
     /// <summary>
     /// Interaction logic for ArtistOverviewPage.xaml
     /// </summary>
-    public partial class ArtistOverviewPage : Page
+    public partial class ArtistOverviewPage : Page, INotifyPropertyChanged
     {
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private string _sub = "Hello";
+        public string Sub
+        {
+            get { return _sub; }
+            set { _sub = value;
+                NotifyPropertyChanged(); }
+        } 
+
         public ArtistOverviewPage()
         {
             DataContext = this;
+            Sub = "Hello";
             InitializeComponent();
+
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

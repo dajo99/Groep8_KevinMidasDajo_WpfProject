@@ -4,23 +4,47 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Artmin_WPF.Controls"
+             xmlns:controls="clr-namespace:Artmin_WPF.Controls"
              mc:Ignorable="d" 
-             HorizontalAlignment="Center" VerticalAlignment="Center"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal" 
+             TextOptions.TextRenderingMode="Auto" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <Border HorizontalAlignment="Center" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="0 0 0 3">
-            <TextBlock Text="{Binding Title}" Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
-        </Border>
-        <TextBlock Text="{Binding Subtitle}" Margin="0 5 0 0">
-            <TextBlock.Style>
-                <Style TargetType="TextBlock">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Subtitle}" Value="">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <materialDesign:ColorZone Mode="PrimaryDark" VerticalAlignment="Stretch">
+                <Grid Margin="10">
+                    <Button Style="{StaticResource MaterialDesignIconForegroundButton}" HorizontalAlignment="Left">
+                        <materialDesign:PackIcon Kind="Add" />
+                    </Button>
+                    <StackPanel HorizontalAlignment="Center">
+                    <Border HorizontalAlignment="Center" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="0 0 0 3">
+                        <TextBlock Text="{Binding Title}" Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
+                    </Border>
+                        <TextBlock Text="{Binding Subtitle}" Margin="0 5 0 0" HorizontalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Subtitle}" Value="">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone Mode="PrimaryLight">
+                <controls:BackButton />
+            </materialDesign:ColorZone>
+        </StackPanel>
+        
+        
+
+
     </StackPanel>
 </UserControl>

@@ -56,19 +56,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Row="0">
-            <materialDesign:ColorZone Mode="PrimaryDark" VerticalAlignment="Stretch">
-                <Grid Margin="10">
-                    <Button Style="{StaticResource MaterialDesignIconForegroundButton}" HorizontalAlignment="Left">
-                        <materialDesign:PackIcon Kind="Add" />
-                    </Button>
-                    <controls:HeaderControl Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
-                </Grid>
-            </materialDesign:ColorZone>
-            <materialDesign:ColorZone Mode="PrimaryLight">
-                <controls:BackButton />
-            </materialDesign:ColorZone>
-        </StackPanel>
+        
+        <controls:HeaderControl Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
+          
         <ListBox Grid.Row="1"
                  ItemsSource="{Binding Events}"
                  ItemTemplate="{StaticResource EventTemplate}"
