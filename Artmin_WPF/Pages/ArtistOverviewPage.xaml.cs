@@ -68,5 +68,10 @@ namespace Artmin_WPF.Pages
 
             NavigationService.Navigate(new ManageArtistPage(artist,true));
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
