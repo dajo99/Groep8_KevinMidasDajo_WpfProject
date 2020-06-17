@@ -23,17 +23,17 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Vertical" Margin="10" Grid.Row="1">
-            <TextBox x:Name="TitleNote" Text="lol" />
+            <TextBox x:Name="TitleNote" materialDesign:HintAssist.Hint="Titel" FontWeight="Bold" FontSize="18"/>
             
-            <TextBox x:Name="DescriptionNote" Text="lol"
+            <TextBox x:Name="DescriptionNote"
                      TextWrapping="Wrap"
                      VerticalAlignment="Stretch"
                      MinWidth="280"
                      AcceptsReturn="True"
                      VerticalScrollBarVisibility="Auto"
                      SpellCheck.IsEnabled="True"
-                     materialDesign:HintAssist.Hint="Multiline text"
-                     Height="120"/>
+                     materialDesign:HintAssist.Hint="Omschrijving"
+                     Height="300"/>
             <StackPanel HorizontalAlignment="Right">
                 <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                             x:Name="btnSave"

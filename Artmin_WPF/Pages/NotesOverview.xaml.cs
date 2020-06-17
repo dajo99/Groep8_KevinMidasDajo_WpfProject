@@ -64,11 +64,7 @@ namespace Artmin_WPF.Pages
             NavigationService.Navigate(new NotesEditPage(note, ev, Header.Subtitle));
         }
 
-        private void ListNotes_MouseEnter(object sender, MouseEventArgs e)
-        {
-
-        }
-
+        
 
     }
 }

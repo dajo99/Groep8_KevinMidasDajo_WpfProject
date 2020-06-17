@@ -15,54 +15,34 @@
       TextOptions.TextRenderingMode="Auto"  
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Notes" Loaded="Page_Loaded">
-    
-    <Page.Resources>
-        <converters:DateConverter x:Key="DateConverter" />
 
+    <Page.Resources>
         <DataTemplate x:Key="NoteTemplate">
             <DockPanel>
                 <StackPanel Orientation="Vertical" Margin="10">
-                    <TextBlock Text="{Binding Title}" />
+                    <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="18"/>
                     <Separator/>
-                    <TextBlock Text="{Binding Description}" />
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                        <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
                             x:Name="btnDelete"
                             Click="btnDelete_Click"
                             HorizontalAlignment="Left"
                             Margin="0 5 5 0"
                             Width="80px"
-                            Background="Red"
-                            Foreground="White"
                             Content="Delete" />
-                        <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
                             x:Name="btnEdit"
                             Click="btnEdit_Click"
                             HorizontalAlignment="Right"
                             Margin="5 5 0 0"
                             Width="80px"
-                            Background="Blue"
-                            Foreground="White"
                             Content="Edit" />
                     </StackPanel>
                 </StackPanel>
             </DockPanel>
         </DataTemplate>
-
-        <Style x:Key="NoteContainerStyle" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="BorderBrush" Value="{StaticResource MaterialDesignDivider}" />
-            <Setter Property="BorderThickness" Value="0 0 0 1" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+       
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -76,7 +56,7 @@
         <ListBox x:Name="ListNotes" Grid.Row="1"
                  ItemsSource="{Binding Notes}"
                  ItemTemplate="{StaticResource NoteTemplate}"
-                 ItemContainerStyle="{StaticResource NoteContainerStyle}"
-                 Style="{StaticResource MaterialDesignListBox}"/>
+                 Style="{StaticResource MaterialDesignListBox}"
+                 HorizontalContentAlignment="Center"/>
     </Grid>
 </Page>
