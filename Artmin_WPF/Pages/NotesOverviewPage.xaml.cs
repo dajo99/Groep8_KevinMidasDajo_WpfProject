@@ -27,6 +27,7 @@ namespace Artmin_WPF.Pages
     {
         Event ev;
 
+        //Om telkens de laatste wijzegingen te kunnen zien die in een andere pagina uitgevoerd werden, had ik propertychanged nodig.
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

@@ -19,6 +19,8 @@ namespace Artmin_WPF.Pages
     /// <summary>
     /// Interaction logic for NotesEditPage.xaml
     /// </summary>
+    
+    //AUTHOR Dajo Vandoninck
     public partial class NotesEditPage : Page
     {
         bool newNote = false;
@@ -26,6 +28,8 @@ namespace Artmin_WPF.Pages
         Note NewNote = new Note();
         Event eve;
         List<Note> notes = new List<Note>();
+
+        //constructor voor het opslaan een notitie 
         public NotesEditPage(Note n, Event evt, string subtitle)
         {
             eve = evt;
@@ -35,6 +39,7 @@ namespace Artmin_WPF.Pages
             Header.Subtitle = subtitle;
         }
 
+        //constructor voor het toevoegen van een notitie 
         public NotesEditPage(Event evt)
         {
             InitializeComponent();
@@ -78,6 +83,7 @@ namespace Artmin_WPF.Pages
 
             if (string.IsNullOrWhiteSpace(foutmelding))
             {
+                //Hier gaat men kijken of het al een bestaande notitie is of niet.
                 if (newNote != true)
                 {
                     note.Title = TitleNote.Text;

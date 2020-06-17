@@ -15,7 +15,8 @@
       TextOptions.TextRenderingMode="Auto"  
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Notes" Loaded="Page_Loaded">
-
+    
+    <!-- AUTHOR Dajo Vandoninck -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
