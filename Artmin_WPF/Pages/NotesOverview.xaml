@@ -19,7 +19,7 @@
     <Page.Resources>
         <DataTemplate x:Key="NoteTemplate">
             <DockPanel>
-                <StackPanel Orientation="Vertical" Margin="10">
+                <StackPanel Orientation="Vertical" Width="200">
                     <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="18"/>
                     <Separator/>
                     <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
@@ -58,6 +58,7 @@
         </controls:HeaderControl>
 
         <ListBox x:Name="ListNotes" Grid.Row="1"
+                 ScrollViewer.CanContentScroll="False"
                  ItemsSource="{Binding Notes}"
                  ItemTemplate="{StaticResource NoteTemplate}"
                  Style="{StaticResource MaterialDesignListBox}"

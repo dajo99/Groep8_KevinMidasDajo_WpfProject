@@ -21,14 +21,33 @@ namespace Artmin_WPF.Pages
     /// <summary>
     /// Interaction logic for NotesOverview.xaml
     /// </summary>
-    public partial class NotesOverview : Page
+    public partial class NotesOverview : Page, INotifyPropertyChanged
     {
-        public List<Note> Notes { get; set; }
         Event ev;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private List<Note> _notes;
+
+        public List<Note> Notes
+        {
+            get { return _notes; }
+            set
+            {
+                _notes = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public NotesOverview(Event e)
         {
             DataContext = this;
-            Notes = DatabaseOperations.GetNotes(e.EventID);
+
             InitializeComponent();
             ev = e;
             Header.Title = this.Title;
@@ -37,7 +56,8 @@ namespace Artmin_WPF.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Notes = DatabaseOperations.GetNotes(ev.EventID);
+            ListNotes.Items.Refresh();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -49,7 +69,7 @@ namespace Artmin_WPF.Pages
             {
                 Notes.Remove(note);
                 ListNotes.Items.Refresh();
-                
+
             }
             else
             {
