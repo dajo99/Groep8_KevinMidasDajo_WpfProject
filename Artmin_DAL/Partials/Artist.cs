@@ -11,6 +11,21 @@ namespace Artmin_DAL
 {
     public partial class Artist : BaseClass
     {
+        public Artist(Artist a)
+        {
+            this.Name = a.Name;
+            this.Email = a.Email;
+            this.Phone = a.Phone;
+            this.EventID = a.EventID;
+            this.BankAccountNo = a.BankAccountNo;
+            this.ArtistID = a.ArtistID;
+        }
+
+        public Artist()
+        {
+
+        }
+
         public override string this[string columnName]
         {
             get
@@ -50,10 +65,20 @@ namespace Artmin_DAL
             }
         }
         public override string ToString()
-        {
+        {           
             return this.Name.ToUpper() + Environment.NewLine +
                 this.Email + Environment.NewLine +
-                this.Phone;
+                this.Phone.Insert(3," ").Insert(6," ");
+        }
+
+        public void copyFrom(Artist a)
+        {
+            this.Name = a.Name;
+            this.Phone = a.Phone;
+            this.Email = a.Email;
+            this.ArtistID = a.ArtistID;
+            this.EventID = a.EventID;
+            this.BankAccountNo = a.BankAccountNo;
         }
     }
 }

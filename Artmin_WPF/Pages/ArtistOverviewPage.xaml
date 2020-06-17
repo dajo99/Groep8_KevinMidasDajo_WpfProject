@@ -14,6 +14,7 @@
       TextOptions.TextRenderingMode="Auto" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Artists" Loaded="Page_Loaded">
+      
     <Page.Resources>
         <DataTemplate x:Key="ArtistOverviewTemplate">
             <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -53,8 +54,8 @@
 
         <controls:HeaderControl x:Name="cntrlHeader" Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
                                 Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
-            <Button Style="{StaticResource MaterialDesignIconForegroundButton}" Click="BtnAdd_Click">
-                <materialDesign:PackIcon Kind="Add" />
+            <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Create Artist" Click="BtnAdd_Click">
+                <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
             </Button>
         </controls:HeaderControl>
         

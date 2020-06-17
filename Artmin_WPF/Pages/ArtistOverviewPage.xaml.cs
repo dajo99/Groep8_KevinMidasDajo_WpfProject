@@ -43,7 +43,9 @@ namespace Artmin_WPF.Pages
 
             //Subtitle updaten met eventnaam
             evt = e;
-            
+
+            lbArtists.Items.Refresh();
+
         }
 
         private async void BtnDelete_Click(object sender, RoutedEventArgs e)
@@ -70,6 +72,8 @@ namespace Artmin_WPF.Pages
         {
             DataContext = this;
             cntrlHeader.Subtitle = evt.Name;
+            lbArtists.Items.Refresh();
+
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
