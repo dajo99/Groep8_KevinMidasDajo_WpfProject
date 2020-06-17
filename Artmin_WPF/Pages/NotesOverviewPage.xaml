@@ -52,8 +52,8 @@
 
 
         <controls:HeaderControl x:Name="Header">
-            <Button Style="{StaticResource MaterialDesignIconForegroundButton}" Click="AddButton_Click" ToolTip="Create Event">
-                <materialDesign:PackIcon Kind="Add" />
+            <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Click="AddButton_Click" ToolTip="Create Event">
+                <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
             </Button>
         </controls:HeaderControl>
 

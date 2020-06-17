@@ -21,6 +21,8 @@ namespace Artmin_WPF.Pages
     /// <summary>
     /// Interaction logic for NotesOverview.xaml
     /// </summary>
+
+    //AUTHOR Dajo Vandoninck
     public partial class NotesOverview : Page, INotifyPropertyChanged
     {
         Event ev;
