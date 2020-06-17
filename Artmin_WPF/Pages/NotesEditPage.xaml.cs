@@ -71,7 +71,7 @@ namespace Artmin_WPF.Pages
                     if (ok > 0)
                     {
 
-                        MessageBox.Show("Notitie is opgeslagen!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Notitie is opgeslagen!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.None);
                        
                         NavigationService.Navigate(new NotesOverview(eve));
 
