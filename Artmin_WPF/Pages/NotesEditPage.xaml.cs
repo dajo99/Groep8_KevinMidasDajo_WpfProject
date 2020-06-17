@@ -22,8 +22,11 @@ namespace Artmin_WPF.Pages
     public partial class NotesEditPage : Page
     {
         Note note;
-        public NotesEditPage(Note n, string subtitle)
+        Event eve;
+        List<Note> notes = new List<Note>();
+        public NotesEditPage(Note n, Event evt, string subtitle)
         {
+            eve = evt;
             note = n;
             InitializeComponent();
             Header.Title = this.Title;
@@ -34,10 +37,62 @@ namespace Artmin_WPF.Pages
             TitleNote.Text = note.Title;
             DescriptionNote.Text = note.Description;
         }
+        private string Valideer(string name)
+        {
+            if (name == "Title" && TitleNote.Text == "")
+            {
+                return "Er is geen titel!" + Environment.NewLine;
+            }
+
+            if (name == "Description" && DescriptionNote.Text == "")
+            {
+                return "Er is geen omschrijving!" + Environment.NewLine;
+            }
+
+            
+            return "";
+        }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            string foutmelding = Valideer("Title");
+            foutmelding += Valideer("Description");
 
+            if (string.IsNullOrWhiteSpace(foutmelding))
+            {
+                note.Title = TitleNote.Text;
+                note.Description = DescriptionNote.Text;
+
+                if (note.IsGeldig())
+                {
+                    notes = DatabaseOperations.GetNotes(note.EventID);
+                    
+                    int ok = DatabaseOperations.AanpassenNote(note);
+                    if (ok > 0)
+                    {
+
+                        MessageBox.Show("Notitie is opgeslagen!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.Error);
+                       
+                        NavigationService.Navigate(new NotesOverview(eve));
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Notitie is niet opgeslagen!", "Mislukt!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    
+
+                }
+                else
+                {
+                    MessageBox.Show(note.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show(foutmelding, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
     }
