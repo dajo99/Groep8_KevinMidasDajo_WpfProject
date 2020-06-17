@@ -51,7 +51,11 @@
         </Grid.RowDefinitions>
 
 
-        <controls:HeaderControl x:Name="Header" />
+        <controls:HeaderControl x:Name="Header">
+            <Button Style="{StaticResource MaterialDesignIconForegroundButton}" Click="AddButton_Click" ToolTip="Create Event">
+                <materialDesign:PackIcon Kind="Add" />
+            </Button>
+        </controls:HeaderControl>
 
         <ListBox x:Name="ListNotes" Grid.Row="1"
                  ItemsSource="{Binding Notes}"

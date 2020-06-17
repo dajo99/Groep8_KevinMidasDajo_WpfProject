@@ -32,10 +32,24 @@ namespace Artmin_WPF.Pages
             Header.Title = this.Title;
             Header.Subtitle = subtitle;
         }
+
+        public NotesEditPage(Event evt)
+        {
+            InitializeComponent();
+            note = null;
+        }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            TitleNote.Text = note.Title;
-            DescriptionNote.Text = note.Description;
+            if (note == null)
+            {
+                Header.Title = "New Note";
+                Header.Subtitle = "";
+            }
+            else
+            {
+                TitleNote.Text = note.Title;
+                DescriptionNote.Text = note.Description;
+            }
         }
         private string Valideer(string name)
         {
@@ -72,6 +86,7 @@ namespace Artmin_WPF.Pages
                     {
 
                         MessageBox.Show("Notitie is opgeslagen!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.None);
+
                        
                         NavigationService.Navigate(new NotesOverview(eve));
 

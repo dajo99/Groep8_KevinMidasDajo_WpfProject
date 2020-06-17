@@ -64,7 +64,9 @@ namespace Artmin_WPF.Pages
             NavigationService.Navigate(new NotesEditPage(note, ev, Header.Subtitle));
         }
 
-        
-
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new NotesEditPage(ev));
+        }
     }
 }
