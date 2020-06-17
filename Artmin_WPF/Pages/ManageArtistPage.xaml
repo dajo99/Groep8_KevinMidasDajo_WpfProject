@@ -4,11 +4,87 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Artmin_WPF.Pages"
+      xmlns:controls="clr-namespace:Artmin_WPF.Controls"
       mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ManageArtistPage">
+      Title="ManageArtists" Loaded="Page_Loaded">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <controls:HeaderControl x:Name="cntrlHeader" Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
+                                    Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
+        </controls:HeaderControl>
+        <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Center" Width="250" Margin="0,30,0,0">
+            
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <materialDesign:PackIcon Kind="Person" Margin="0,0,15,-2" VerticalAlignment="Bottom" Foreground="Gray">
+                    <materialDesign:PackIcon.LayoutTransform>
+                        <ScaleTransform CenterX="1.5" CenterY="1.5" ScaleX="1.75" ScaleY="1.75"/>
+                    </materialDesign:PackIcon.LayoutTransform>
+                </materialDesign:PackIcon>
+                <TextBox
+                    x:Name="txtName"
+                    Width="190"
+                    materialDesign:HintAssist.Hint="Artist Name"    
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <materialDesign:PackIcon Kind="Phone" Margin="0,0,15,-2" VerticalAlignment="Bottom" Foreground="Gray">
+                    <materialDesign:PackIcon.LayoutTransform>
+                        <ScaleTransform CenterX="1.5" CenterY="1.5" ScaleX="1.75" ScaleY="1.75"/>
+                    </materialDesign:PackIcon.LayoutTransform>
+                </materialDesign:PackIcon>
+                <TextBox
+                    x:Name="txtPhone"
+                    Width="190"
+                    materialDesign:HintAssist.Hint="Phone"    
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <materialDesign:PackIcon Kind="Email" Margin="0,0,15,-2" VerticalAlignment="Bottom" Foreground="Gray">
+                    <materialDesign:PackIcon.LayoutTransform>
+                        <ScaleTransform CenterX="1.5" CenterY="1.5" ScaleX="1.75" ScaleY="1.75"/>
+                    </materialDesign:PackIcon.LayoutTransform>
+                </materialDesign:PackIcon>
+                <TextBox
+                    x:Name="txtMail"
+                    Width="190"
+                    materialDesign:HintAssist.Hint="Email"    
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,40">
+                <materialDesign:PackIcon Kind="CreditCardAdd" Margin="0,0,15,-2" VerticalAlignment="Bottom" Foreground="Gray">
+                    <materialDesign:PackIcon.LayoutTransform>
+                        <ScaleTransform CenterX="1.5" CenterY="1.5" ScaleX="1.75" ScaleY="1.75"/>
+                    </materialDesign:PackIcon.LayoutTransform>
+                </materialDesign:PackIcon>
+                <TextBox
+                    x:Name="txtCard"
+                    Width="190"
+                    materialDesign:HintAssist.Hint="IBAN"    
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    VerticalAlignment="Center" />
+            </StackPanel>
+            
+            <Button x:Name="btnSave" Content="Save" Width="150" Click="btnSave_Click"/>
+
+        </StackPanel>
     </Grid>
 </Page>
