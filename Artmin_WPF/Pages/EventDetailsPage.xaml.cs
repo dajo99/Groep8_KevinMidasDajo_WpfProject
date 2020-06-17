@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Artmin_DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,42 @@ namespace Artmin_WPF.Pages
     /// </summary>
     public partial class EventDetailsPage : Page
     {
-        public EventDetailsPage()
+        public Event Event { get; private set; }
+        public int NotesCount { get; set; }
+        public int ArtistsCount { get; set; }
+        public EventDetailsPage(Event e)
         {
+            Event = e;
+
+            NotesCount = DatabaseOperations.CountNotes(Event);
+            ArtistsCount = DatabaseOperations.CountArtists(Event);
+
+            DataContext = this;
             InitializeComponent();
+        }
+
+        private void NotesButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new NotesOverview(Event));
+        }
+
+        private void TodoButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void LocationButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClientButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ArtistsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ArtistOverviewPage(Event));
         }
     }
 }

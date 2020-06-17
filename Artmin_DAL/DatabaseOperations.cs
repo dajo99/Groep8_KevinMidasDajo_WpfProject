@@ -9,6 +9,31 @@ namespace Artmin_DAL
 {
     public static class DatabaseOperations
     {
+        public static int CountNotes(Event e)
+        {
+            using (var entities = new ArtminEntities())
+            {
+                return entities.Notes.Where(n => n.EventID == e.EventID).Count();
+            }
+        }
+        public static int CountArtists(Event e)
+        {
+            using (var entities = new ArtminEntities())
+            {
+                return entities.Artists.Where(a => a.EventID == e.EventID).Count();
+            }
+        }
+
+        public static List<EventType> GetEventTypes()
+        {
+            using (var entities = new ArtminEntities())
+            {
+                return entities.EventTypes
+                            .OrderBy(e => e.Name)
+                            .ToList();
+            }
+        }
+
         public static List<Event> GetEvents()
         {
             using (var entities = new ArtminEntities())

@@ -1,22 +1,10 @@
 ﻿using Artmin_DAL;
 using Artmin_WPF.Dialogs;
 using MaterialDesignThemes.Wpf;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Artmin_WPF.Pages
 {
@@ -33,20 +21,17 @@ namespace Artmin_WPF.Pages
             InitializeComponent();
         }
 
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new EventEditPage());
+        }
+
         private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
             var evt = (Event)((FrameworkElement)sender).DataContext;
 
+            NavigationService.Navigate(new EventDetailsPage(evt));
 
-            //MessageBox.Show("EventID: " + evt.EventID);
-
-            NavigationService.Navigate(new NotesOverview(evt));
-
-        }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new EventEditPage());
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)

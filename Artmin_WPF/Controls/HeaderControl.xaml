@@ -11,6 +11,7 @@
              TextOptions.TextFormattingMode="Ideal" 
              TextOptions.TextRenderingMode="Auto" 
              Loaded="UserControl_Loaded"
+             x:Name="root"
              d:DesignHeight="120" d:DesignWidth="320">
     <UserControl.Template>
         <ControlTemplate TargetType="{x:Type UserControl}">
@@ -22,9 +23,9 @@
                                 <TextBlock>
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}">
-                                            <Setter Property="Text" Value="{Binding Title}" />
+                                            <Setter Property="Text" Value="{Binding Title, ElementName=root}" />
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Title}" Value="">
+                                                <DataTrigger Binding="{Binding Title, ElementName=root}" Value="">
                                                     <Setter Property="Text" Value="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -32,11 +33,11 @@
                                     </TextBlock.Style>
                                 </TextBlock>
                             </Border>
-                            <TextBlock Text="{Binding Subtitle}" Margin="0 5 0 0" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding Subtitle, ElementName=root}" Margin="0 5 0 0" HorizontalAlignment="Center">
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Subtitle}" Value="">
+                                            <DataTrigger Binding="{Binding Subtitle, ElementName=root}" Value="">
                                                 <Setter Property="Visibility" Value="Collapsed" />
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -51,12 +52,12 @@
                     <Button Click="BackButton_Click" Height="Auto">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ArrowBack" Margin="-4 0 4 0" VerticalAlignment="Center" />
-                            <TextBlock Text="{Binding BackButtonText}" />
+                            <TextBlock Text="{Binding BackButtonText, ElementName=root}" />
                         </StackPanel>
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding BackButtonText}" Value="">
+                                    <DataTrigger Binding="{Binding BackButtonText, ElementName=root}" Value="">
                                         <Setter Property="Visibility" Value="Collapsed" />
                                     </DataTrigger>
                                 </Style.Triggers>
