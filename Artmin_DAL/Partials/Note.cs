@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Artmin_DAL
 {
-    public partial class Note : Basisklasse
+    //AUTHOR Dajo Vandoninck
+    public partial class Note : BaseClass
     {
         public override string this[string columnName]
         {

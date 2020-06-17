@@ -128,6 +128,7 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Dajo Vandoninck
         public static List<Note> GetNotes(int id)
         {
             using (var entities = new ArtminEntities())
@@ -140,6 +141,7 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Dajo Vandoninck
         public static int DeleteNote(Note n)
         {
             try
@@ -158,6 +160,7 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Dajo Vandoninck
         public static int AanpassenNote(Note n)
         {
             try
@@ -175,6 +178,7 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Dajo Vandoninck
         public static int AddNote(Note n)
         {
             try

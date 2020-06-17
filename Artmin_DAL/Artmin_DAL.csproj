@@ -80,11 +80,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArtminModel.edmx</DependentUpon>
     </Compile>
-
-    <Compile Include="Basisklasse.cs" />
-
     <Compile Include="BaseClass.cs" />
-
     <Compile Include="Client.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>
     </Compile>

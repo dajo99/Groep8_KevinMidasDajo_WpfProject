@@ -21,10 +21,13 @@ namespace Artmin_WPF.Pages
     /// <summary>
     /// Interaction logic for NotesOverview.xaml
     /// </summary>
+
+    //AUTHOR Dajo Vandoninck
     public partial class NotesOverview : Page, INotifyPropertyChanged
     {
         Event ev;
 
+        //Om telkens de laatste wijzegingen te kunnen zien die in een andere pagina uitgevoerd werden, had ik propertychanged nodig.
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

@@ -19,6 +19,8 @@ namespace Artmin_WPF.Pages
     /// <summary>
     /// Interaction logic for NotesEditPage.xaml
     /// </summary>
+    
+    //AUTHOR Dajo Vandoninck
     public partial class NotesEditPage : Page
     {
         bool newNote = false;
@@ -26,6 +28,8 @@ namespace Artmin_WPF.Pages
         Note NewNote = new Note();
         Event eve;
         List<Note> notes = new List<Note>();
+
+        //constructor voor het opslaan een notitie 
         public NotesEditPage(Note n, Event evt, string subtitle)
         {
             eve = evt;
@@ -35,6 +39,7 @@ namespace Artmin_WPF.Pages
             Header.Subtitle = subtitle;
         }
 
+        //constructor voor het toevoegen van een notitie 
         public NotesEditPage(Event evt)
         {
             InitializeComponent();
@@ -78,6 +83,7 @@ namespace Artmin_WPF.Pages
 
             if (string.IsNullOrWhiteSpace(foutmelding))
             {
+                //Hier gaat men kijken of het al een bestaande notitie is of niet.
                 if (newNote != true)
                 {
                     note.Title = TitleNote.Text;
@@ -91,7 +97,7 @@ namespace Artmin_WPF.Pages
                             if (ok > 0)
                             {
 
-                                MessageBox.Show("Notitie is opgeslagen!", "Gelukt!", MessageBoxButton.OK, MessageBoxImage.None);
+                                MessageBox.Show("Note has been saved!", "Successful!", MessageBoxButton.OK, MessageBoxImage.None);
 
 
                                 NavigationService.GoBack();
@@ -99,14 +105,14 @@ namespace Artmin_WPF.Pages
                             }
                             else
                             {
-                                MessageBox.Show("Notitie is niet opgeslagen!", "Mislukt!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show("Note has not been saved!", "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
 
                         
                     }
                     else
                     {
-                        MessageBox.Show(note.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(note.Error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
@@ -120,20 +126,22 @@ namespace Artmin_WPF.Pages
                             int ok = DatabaseOperations.AddNote(NewNote);
                             if (ok > 0)
                             {
-                                NavigationService.GoBack();
+                            MessageBox.Show("Note has been saved!", "Successful!", MessageBoxButton.OK, MessageBoxImage.None);
+                            NavigationService.GoBack();
                             
 
                             }
                             else
                             {
-                                MessageBox.Show("Notitie is niet opgeslagen!", "Mislukt!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                                MessageBox.Show("Note has not been saved!", "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         
 
                     }
                     else
                     {
-                        MessageBox.Show(note.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(note.Error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 
