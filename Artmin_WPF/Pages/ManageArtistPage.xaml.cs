@@ -1,4 +1,5 @@
 ﻿using Artmin_DAL;
+using Artmin_WPF.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,16 +39,49 @@ namespace Artmin_WPF.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if(artist != null)
+            if (artist != null)
             {
                 cntrlHeader.Title = artist.Name;
                 cntrlHeader.Subtitle = "EDIT";
+                txtName.Text = artist.Name;
+                txtMail.Text = artist.Email;
+                txtPhone.Text = artist.Phone;
+                txtCard.Text = artist.BankAccountNo;
+                
             }
             else
             {
                 cntrlHeader.Title = "New Artist";
                 cntrlHeader.Subtitle = "SETUP";
             }
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            bool ok = ValidateInputs.CheckIban("GB94BARC10201530093459");
+            if (ok ==true)
+            {
+                MessageBox.Show("Geldig iban");
+            }
+            
+            if (artist != null)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
+        private void AddArtist()
+        {
+
+        }
+
+        private void EditArtist() 
+        { 
+
         }
     }
 }
