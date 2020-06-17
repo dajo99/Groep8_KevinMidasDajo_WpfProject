@@ -76,7 +76,7 @@ namespace Artmin_WPF.Pages
             }
             else
             {
-                MessageBox.Show("De notitie is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("The note has not been deleted!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
