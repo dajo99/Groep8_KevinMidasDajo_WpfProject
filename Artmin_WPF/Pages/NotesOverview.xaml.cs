@@ -24,12 +24,14 @@ namespace Artmin_WPF.Pages
     public partial class NotesOverview : Page
     {
         public List<Note> Notes { get; set; }
+        Event ev;
         public NotesOverview(Event e)
         {
             DataContext = this;
             Notes = DatabaseOperations.GetNotes(e.EventID);
             InitializeComponent();
-            Subtitle.Text = e.Name;
+            ev = e;
+            Header.Title = this.Title;
             Header.Subtitle = e.Name;
         }
 
@@ -40,16 +42,33 @@ namespace Artmin_WPF.Pages
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var note = (Note)((FrameworkElement)sender).DataContext;
 
+            int ok = DatabaseOperations.DeleteNote(note);
+            if (ok > 0)
+            {
+                Notes.Remove(note);
+                ListNotes.Items.Refresh();
+                
+            }
+            else
+            {
+                MessageBox.Show("De notitie is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             var note = (Note)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new NotesEditPage(note, Subtitle.Text));
+            NavigationService.Navigate(new NotesEditPage(note, Header.Subtitle));
         }
 
-        
+        private void ListNotes_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+
     }
 }

@@ -72,7 +72,7 @@ namespace Artmin_WPF.Controls
             DependencyProperty.Register("Subtitle", typeof(string), typeof(HeaderControl), new PropertyMetadata(string.Empty));
 
         private static readonly DependencyProperty BackButtonTextProperty =
-            DependencyProperty.Register("BackButtonText", typeof(string), typeof(HeaderControl), new PropertyMetadata("Back"));
+            DependencyProperty.Register("BackButtonText", typeof(string), typeof(HeaderControl), new PropertyMetadata(string.Empty));
 
 
         public HeaderControl()
@@ -92,9 +92,10 @@ namespace Artmin_WPF.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Utilities.FindParent<Frame>(this) is Frame frame
+            if (string.IsNullOrWhiteSpace(BackButtonText)
+                && Utilities.FindParent<Frame>(this) is Frame frame
                 && frame.BackStack != null
-                && frame.BackStack.Cast<JournalEntry>().LastOrDefault() is JournalEntry journalEntry)
+                && frame.BackStack.Cast<JournalEntry>().FirstOrDefault() is JournalEntry journalEntry)
             {
                 BackButtonText = journalEntry.Name;
             }

@@ -1,4 +1,6 @@
 ﻿using Artmin_DAL;
+using Artmin_WPF.Dialogs;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,26 +25,47 @@ namespace Artmin_WPF.Pages
     /// </summary>
     public partial class EventsPage : Page
     {
-        public List<Event> Events { get; set; }
+        public ObservableCollection<Event> Events { get; set; }
         public EventsPage()
         {
             DataContext = this;
-            Events = DatabaseOperations.GetEvents();
+            Events = new ObservableCollection<Event>(DatabaseOperations.GetEvents());
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
             var evt = (Event)((FrameworkElement)sender).DataContext;
+
 
             //MessageBox.Show("EventID: " + evt.EventID);
 
             NavigationService.Navigate(new ArtistOverviewPage(evt));
+
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Add button clicked :)");
+            NavigationService.Navigate(new EventEditPage());
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            var evt = (Event)((FrameworkElement)sender).DataContext;
+
+            NavigationService.Navigate(new EventEditPage(evt));
+        }
+
+        private async void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            var evt = (Event)((FrameworkElement)sender).DataContext;
+
+            var ret = (bool)await DialogHost.Show(new ConfirmDialog("Remove event " + evt.Name + "?"));
+
+            if (ret == true && DatabaseOperations.DeleteEvent(evt) > 0)
+            {
+                Events.Remove(evt);
+            }
         }
     }
 }

@@ -20,6 +20,23 @@ namespace Artmin_DAL
             }
         }
 
+        public static int DeleteEvent(Event e)
+        {
+            try
+            {
+                using (var entities = new ArtminEntities())
+                {
+                    entities.Entry(e).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
         //AUTHOR Kevin
         public static List<Artist> GetArtists(Event e)
         {
@@ -95,6 +112,24 @@ namespace Artmin_DAL
                             .Include(e => e.Event)
                             .Where(e => e.Event.EventID == id)
                             .ToList();
+            }
+        }
+
+        public static int DeleteNote(Note n)
+        {
+            try
+            {
+                using (ArtminEntities entities = new ArtminEntities())
+                {
+                    entities.Entry(n).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+
             }
         }
     }

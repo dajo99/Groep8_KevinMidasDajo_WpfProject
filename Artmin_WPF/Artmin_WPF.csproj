@@ -71,7 +71,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-
+    <Compile Include="Converters\ColorSwatchConverter.cs" />
+    <Compile Include="Dialogs\ConfirmDialog.xaml.cs">
+      <DependentUpon>ConfirmDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ErrorDialog.xaml.cs">
+      <DependentUpon>ErrorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EventEditPage.xaml.cs">
+      <DependentUpon>EventEditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ManageArtistPage.xaml.cs">
       <DependentUpon>ManageArtistPage.xaml</DependentUpon>
     </Compile>
@@ -80,12 +89,19 @@
     </Compile>
     <Compile Include="Pages\NotesOverview.xaml.cs">
       <DependentUpon>NotesOverview.xaml</DependentUpon>
-
     </Compile>
     <Compile Include="Utilities.cs" />
     <Page Include="Controls\HeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ConfirmDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ErrorDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -111,18 +127,20 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EventEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EventsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-
     <Page Include="Pages\ManageArtistPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\NotesEditPage.xaml">
       <SubType>Designer</SubType>
-
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\NotesOverview.xaml">
