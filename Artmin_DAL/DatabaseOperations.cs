@@ -174,5 +174,22 @@ namespace Artmin_DAL
                 return 0;
             }
         }
+
+        public static int AddNote(Note n)
+        {
+            try
+            {
+                using (ArtminEntities entities = new ArtminEntities())
+                {
+                    entities.Notes.Add(n);
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
     }
 }
