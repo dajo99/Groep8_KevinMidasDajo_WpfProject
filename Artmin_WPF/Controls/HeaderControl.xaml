@@ -3,24 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Artmin_WPF.Controls"
              mc:Ignorable="d" 
-             HorizontalAlignment="Center" VerticalAlignment="Center"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <Border HorizontalAlignment="Center" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="0 0 0 3">
-            <TextBlock Text="{Binding Title}" Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
-        </Border>
-        <TextBlock Text="{Binding Subtitle}" Margin="0 5 0 0">
-            <TextBlock.Style>
-                <Style TargetType="TextBlock">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Subtitle}" Value="">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
-    </StackPanel>
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal" 
+             TextOptions.TextRenderingMode="Auto" 
+             Loaded="UserControl_Loaded"
+             x:Name="root"
+             d:DesignHeight="120" d:DesignWidth="320">
+    <UserControl.Template>
+        <ControlTemplate TargetType="{x:Type UserControl}">
+            <StackPanel Orientation="Vertical">
+                <materialDesign:ColorZone Mode="PrimaryDark" MinHeight="80">
+                    <Grid Margin="10">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Border HorizontalAlignment="Center" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="0 0 0 3">
+                                <TextBlock>
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}">
+                                            <Setter Property="Text" Value="{Binding Title, ElementName=root}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Title, ElementName=root}" Value="">
+                                                    <Setter Property="Text" Value="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Border>
+                            <TextBlock Text="{Binding Subtitle, ElementName=root}" Margin="0 5 0 0" HorizontalAlignment="Center">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Subtitle, ElementName=root}" Value="">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    </Grid>
+                </materialDesign:ColorZone>
+                <materialDesign:ColorZone Mode="PrimaryLight" MinHeight="30">
+                    <Button Click="BackButton_Click" Height="Auto">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ArrowBack" Margin="-4 0 4 0" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding BackButtonText, ElementName=root}" />
+                        </StackPanel>
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding BackButtonText, ElementName=root}" Value="">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </materialDesign:ColorZone>
+            </StackPanel>
+        </ControlTemplate>
+    </UserControl.Template>
 </UserControl>

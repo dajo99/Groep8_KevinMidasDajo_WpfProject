@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,8 +20,15 @@ namespace Artmin_WPF.Controls
     /// <summary>
     /// Interaction logic for HeaderControl.xaml
     /// </summary>
-    public partial class HeaderControl : UserControl
+    public partial class HeaderControl : UserControl, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public string Title
         {
             get
@@ -43,17 +52,52 @@ namespace Artmin_WPF.Controls
             }
         }
 
+        public string BackButtonText
+        {
+            get
+            {
+                return (string)GetValue(BackButtonTextProperty);
+            }
+            set
+            {
+                SetValue(BackButtonTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(HeaderControl), new PropertyMetadata(string.Empty));
 
         public static readonly DependencyProperty SubtitleProperty =
             DependencyProperty.Register("Subtitle", typeof(string), typeof(HeaderControl), new PropertyMetadata(string.Empty));
 
+        private static readonly DependencyProperty BackButtonTextProperty =
+            DependencyProperty.Register("BackButtonText", typeof(string), typeof(HeaderControl), new PropertyMetadata(string.Empty));
+
 
         public HeaderControl()
         {
-            DataContext = this;
             InitializeComponent();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Utilities.FindParent<Frame>(this) is Frame frame
+                && frame.CanGoBack)
+            {
+                frame.GoBack();
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(BackButtonText)
+                && Utilities.FindParent<Frame>(this) is Frame frame
+                && frame.BackStack != null
+                && frame.BackStack.Cast<JournalEntry>().FirstOrDefault() is JournalEntry journalEntry)
+            {
+                BackButtonText = journalEntry.Name;
+            }
         }
     }
 }

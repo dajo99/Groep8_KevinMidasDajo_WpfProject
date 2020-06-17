@@ -1,0 +1,63 @@
+﻿<Page x:Class="Artmin_WPF.Pages.EventEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Artmin_WPF.Pages"
+      xmlns:controls="clr-namespace:Artmin_WPF.Controls"
+      mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"  
+      d:DesignHeight="568" d:DesignWidth="320"
+      Title="Edit Event">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <controls:HeaderControl />
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="20" MaxWidth="200" VerticalAlignment="Center">
+                <TextBox x:Name="txtName"
+                         Text="{Binding Path=Model.Name, Mode=TwoWay}"
+                         Margin="0 0 0 10"
+                         materialDesign:HintAssist.Hint="Event Name"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                <ComboBox x:Name="cbType"
+                          SelectedItem="{Binding Path=Model.EventType}"
+                      Margin="0 0 0 10"
+                          IsEditable="True"
+                      materialDesign:HintAssist.Hint="Type"
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+
+                <DatePicker x:Name="dpDate"
+                        Margin="0 0 0 10"
+                        materialDesign:HintAssist.Hint="Date"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                <materialDesign:TimePicker x:Name="tpStartTime"
+                                       Margin="0 0 0 10"
+                                       materialDesign:HintAssist.Hint="Start Time"
+                                       Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
+
+                <materialDesign:TimePicker x:Name="tpEndTime"
+                                       Margin="0 0 0 40"
+                                       materialDesign:HintAssist.Hint="End Time"
+                                       Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
+
+                <Button Content="Save"
+                    IsDefault="True"
+                    Click="SaveButton_Click"
+                    Style="{StaticResource MaterialDesignRaisedButton}" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

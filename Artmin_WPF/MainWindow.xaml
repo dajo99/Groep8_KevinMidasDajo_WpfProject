@@ -13,6 +13,9 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{StaticResource MaterialDesignPaper}"
         FontFamily="{StaticResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="568" Width="320">
-    <Frame x:Name="frameMain" Source="Pages\EventsPage.xaml" NavigationUIVisibility="Hidden" />
+    <materialDesign:DialogHost>
+        <Frame x:Name="frameMain" Source="Pages\EventsPage.xaml" NavigationUIVisibility="Hidden" />
+    </materialDesign:DialogHost>
 </Window>

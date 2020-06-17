@@ -1,19 +1,10 @@
 ﻿using Artmin_DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using Artmin_WPF.Dialogs;
+using MaterialDesignThemes.Wpf;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Artmin_WPF.Pages
 {
@@ -22,18 +13,44 @@ namespace Artmin_WPF.Pages
     /// </summary>
     public partial class EventsPage : Page
     {
-        public EventsPage(Event evt)
+        public ObservableCollection<Event> Events { get; set; }
+        public EventsPage()
         {
+            DataContext = this;
+            Events = new ObservableCollection<Event>(DatabaseOperations.GetEvents());
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Event evt = (Event)((Button)sender).DataContext;
+            NavigationService.Navigate(new EventEditPage());
+        }
 
-            //var eventDetailsPage = new EventDetailsPage(evt);
+        private void SelectButton_Click(object sender, RoutedEventArgs e)
+        {
+            var evt = (Event)((FrameworkElement)sender).DataContext;
 
-            //NavigationService.Navigate(eventDetailsPage);
+            NavigationService.Navigate(new EventDetailsPage(evt));
+
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            var evt = (Event)((FrameworkElement)sender).DataContext;
+
+            NavigationService.Navigate(new EventEditPage(evt));
+        }
+
+        private async void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            var evt = (Event)((FrameworkElement)sender).DataContext;
+
+            var ret = (bool)await DialogHost.Show(new ConfirmDialog("Remove event " + evt.Name + "?"));
+
+            if (ret == true && DatabaseOperations.DeleteEvent(evt) > 0)
+            {
+                Events.Remove(evt);
+            }
         }
     }
 }

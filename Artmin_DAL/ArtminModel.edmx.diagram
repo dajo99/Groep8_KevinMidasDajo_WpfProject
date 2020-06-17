@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="ArtminModel.Client" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArtminModel.Location" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ArtminModel.Note" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ArtminModel.ToDo" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArtminModel.Todo" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
         <AssociationConnector Association="ArtminModel.FK_Artiest_Event" ManuallyRouted="false" />
         <AssociationConnector Association="ArtminModel.FK_Event_Klant" ManuallyRouted="false" />
         <AssociationConnector Association="ArtminModel.FK_Event_Locatie" ManuallyRouted="false" />

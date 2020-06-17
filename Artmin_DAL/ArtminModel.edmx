@@ -225,7 +225,7 @@
           <NavigationProperty Name="Location" Relationship="Self.FK_Event_Locatie" FromRole="Event" ToRole="Locatie" />
           <NavigationProperty Name="EventType" Relationship="Self.FK_EventType_Event" FromRole="Event" ToRole="Eventtype" />
           <NavigationProperty Name="Notes" Relationship="Self.FK_Notitie_Event" FromRole="Event" ToRole="Notitie" />
-          <NavigationProperty Name="ToDos" Relationship="Self.FK_ToDo_Event" FromRole="Event" ToRole="ToDo" />
+          <NavigationProperty Name="Todos" Relationship="Self.FK_ToDo_Event" FromRole="Event" ToRole="ToDo" />
         </EntityType>
         <EntityType Name="EventType">
           <Key>
@@ -277,11 +277,11 @@
           <Property Name="EventID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Event" Relationship="Self.FK_Notitie_Event" FromRole="Notitie" ToRole="Event" />
         </EntityType>
-        <EntityType Name="ToDo">
+        <EntityType Name="Todo">
           <Key>
-            <PropertyRef Name="ToDoID" />
+            <PropertyRef Name="TodoID" />
           </Key>
-          <Property Name="ToDoID" Type="Int32" Nullable="false" />
+          <Property Name="TodoID" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Completed" Type="Boolean" Nullable="false" />
@@ -351,7 +351,7 @@
         </Association>
         <Association Name="FK_ToDo_Event">
           <End Role="Event" Type="Self.Event" Multiplicity="1" />
-          <End Role="ToDo" Type="Self.ToDo" Multiplicity="*" />
+          <End Role="ToDo" Type="ArtminModel.Todo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Event">
               <PropertyRef Name="EventID" />
@@ -362,36 +362,36 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ArtminEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Artiest" EntityType="ArtminModel.Artist" />
-          <EntitySet Name="Event" EntityType="Self.Event" />
-          <EntitySet Name="Eventtype" EntityType="ArtminModel.EventType" />
-          <EntitySet Name="Klant" EntityType="ArtminModel.Client" />
-          <EntitySet Name="Locatie" EntityType="ArtminModel.Location" />
-          <EntitySet Name="Notitie" EntityType="ArtminModel.Note" />
-          <EntitySet Name="ToDo" EntityType="Self.ToDo" />
+          <EntitySet Name="Artists" EntityType="ArtminModel.Artist" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="EventTypes" EntityType="ArtminModel.EventType" />
+          <EntitySet Name="Clients" EntityType="ArtminModel.Client" />
+          <EntitySet Name="Locations" EntityType="ArtminModel.Location" />
+          <EntitySet Name="Notes" EntityType="ArtminModel.Note" />
+          <EntitySet Name="Todos" EntityType="ArtminModel.Todo" />
           <AssociationSet Name="FK_Artiest_Event" Association="Self.FK_Artiest_Event">
-            <End Role="Event" EntitySet="Event" />
-            <End Role="Artiest" EntitySet="Artiest" />
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Artiest" EntitySet="Artists" />
           </AssociationSet>
           <AssociationSet Name="FK_Event_Klant" Association="Self.FK_Event_Klant">
-            <End Role="Klant" EntitySet="Klant" />
-            <End Role="Event" EntitySet="Event" />
+            <End Role="Klant" EntitySet="Clients" />
+            <End Role="Event" EntitySet="Events" />
           </AssociationSet>
           <AssociationSet Name="FK_Event_Locatie" Association="Self.FK_Event_Locatie">
-            <End Role="Locatie" EntitySet="Locatie" />
-            <End Role="Event" EntitySet="Event" />
+            <End Role="Locatie" EntitySet="Locations" />
+            <End Role="Event" EntitySet="Events" />
           </AssociationSet>
           <AssociationSet Name="FK_EventType_Event" Association="Self.FK_EventType_Event">
-            <End Role="Eventtype" EntitySet="Eventtype" />
-            <End Role="Event" EntitySet="Event" />
+            <End Role="Eventtype" EntitySet="EventTypes" />
+            <End Role="Event" EntitySet="Events" />
           </AssociationSet>
           <AssociationSet Name="FK_Notitie_Event" Association="Self.FK_Notitie_Event">
-            <End Role="Event" EntitySet="Event" />
-            <End Role="Notitie" EntitySet="Notitie" />
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Notitie" EntitySet="Notes" />
           </AssociationSet>
           <AssociationSet Name="FK_ToDo_Event" Association="Self.FK_ToDo_Event">
-            <End Role="Event" EntitySet="Event" />
-            <End Role="ToDo" EntitySet="ToDo" />
+            <End Role="Event" EntitySet="Events" />
+            <End Role="ToDo" EntitySet="Todos" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -400,7 +400,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ArtminModelStoreContainer" CdmEntityContainer="ArtminEntities">
-          <EntitySetMapping Name="Artiest">
+          <EntitySetMapping Name="Artists">
             <EntityTypeMapping TypeName="ArtminModel.Artist">
               <MappingFragment StoreEntitySet="Artiest">
                 <ScalarProperty Name="ArtistID" ColumnName="ArtiestID" />
@@ -412,7 +412,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Event">
+          <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="ArtminModel.Event">
               <MappingFragment StoreEntitySet="Event">
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
@@ -426,7 +426,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Eventtype">
+          <EntitySetMapping Name="EventTypes">
             <EntityTypeMapping TypeName="ArtminModel.EventType">
               <MappingFragment StoreEntitySet="Eventtype">
                 <ScalarProperty Name="EventTypeID" ColumnName="EventtypeID" />
@@ -435,7 +435,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Klant">
+          <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="ArtminModel.Client">
               <MappingFragment StoreEntitySet="Klant">
                 <ScalarProperty Name="ClientID" ColumnName="KlantID" />
@@ -451,7 +451,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Locatie">
+          <EntitySetMapping Name="Locations">
             <EntityTypeMapping TypeName="ArtminModel.Location">
               <MappingFragment StoreEntitySet="Locatie">
                 <ScalarProperty Name="LocationID" ColumnName="LocatieID" />
@@ -466,7 +466,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Notitie">
+          <EntitySetMapping Name="Notes">
             <EntityTypeMapping TypeName="ArtminModel.Note">
               <MappingFragment StoreEntitySet="Notitie">
                 <ScalarProperty Name="NoteID" ColumnName="NotitieID" />
@@ -476,10 +476,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ToDo">
-            <EntityTypeMapping TypeName="ArtminModel.ToDo">
+          <EntitySetMapping Name="Todos">
+            <EntityTypeMapping TypeName="ArtminModel.Todo">
               <MappingFragment StoreEntitySet="ToDo">
-                <ScalarProperty Name="ToDoID" ColumnName="ToDoID" />
+                <ScalarProperty Name="TodoID" ColumnName="ToDoID" />
                 <ScalarProperty Name="Title" ColumnName="Titel" />
                 <ScalarProperty Name="Description" ColumnName="Omschrijving" />
                 <ScalarProperty Name="Completed" ColumnName="Afgewerkt" />

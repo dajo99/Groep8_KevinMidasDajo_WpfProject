@@ -1,0 +1,70 @@
+﻿<Page x:Class="Artmin_WPF.Pages.ArtistOverviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Artmin_WPF.Pages"
+      xmlns:controls="clr-namespace:Artmin_WPF.Controls"
+      mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Artists" Loaded="Page_Loaded">
+    <Page.Resources>
+        <DataTemplate x:Key="ArtistOverviewTemplate">
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <TextBlock x:Name="tbArtist" Text="{Binding}"  TextAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="btnDelete" 
+                            HorizontalAlignment="Right"
+                            Margin="0,8,0,0"
+                            Content="Delete" 
+                            Background="Red"
+                            Foreground="White"
+                            Width="100"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Click="btnDelete_Click"/>
+
+                    <Button x:Name="btnEdit" 
+                            HorizontalAlignment="Left"
+                            Margin="15,8,0,0"
+                            Width="100"
+                            Background="Blue"
+                            Foreground="White"
+                            Content="Edit" 
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Click="btnEdit_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+
+            <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <controls:HeaderControl x:Name="cntrlHeader" Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
+                                Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
+            <Button Style="{StaticResource MaterialDesignIconForegroundButton}" Click="Button_Click">
+                <materialDesign:PackIcon Kind="Add" />
+            </Button>
+        </controls:HeaderControl>
+        <ListBox x:Name="lbArtists"
+                 Grid.Row="1"
+                 ItemsSource="{Binding Artists}"
+                 ItemTemplate="{StaticResource ArtistOverviewTemplate}"
+                 Style="{StaticResource MaterialDesignListBox}"
+                 HorizontalContentAlignment="Center"
+                  />
+    </Grid>
+</Page>
