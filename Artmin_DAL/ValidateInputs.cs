@@ -30,7 +30,7 @@ namespace Artmin_DAL
             try
             {
                 LookupClientOptions options = new LookupClientOptions { Timeout = TimeSpan.FromSeconds(5) };
-                var lookup = new LookupClient();
+                var lookup = new LookupClient(options);
               
                 var result = await lookup.QueryAsync(domain, QueryType.ANY).ConfigureAwait(false);
 
