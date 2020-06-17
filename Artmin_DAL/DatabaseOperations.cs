@@ -37,6 +37,7 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Kevin
         public static List<Artist> GetArtists(Event e)
         {
             using (var entities = new ArtminEntities())
@@ -47,6 +48,7 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Kevin
         public static int DeleteArtist(Artist a)
         {
             try
@@ -64,6 +66,43 @@ namespace Artmin_DAL
 
             }
         }
+
+        //AUTHOR Kevin
+        public static int UpdateArtist(Artist a)
+        {
+            try
+            {
+                using (ArtminEntities entities = new ArtminEntities())
+                {
+                    entities.Entry(a).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
+        //AUTHOR Kevin
+        public static int AddArtist(Artist a)
+        {
+            try
+            {
+                using (ArtminEntities entities = new ArtminEntities())
+                {
+                    entities.Artists.Add(a);
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
         public static List<Note> GetNotes(int id)
         {
             using (var entities = new ArtminEntities())

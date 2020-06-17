@@ -30,7 +30,9 @@ namespace Artmin_WPF.Pages
 
         public ArtistOverviewPage(Event e)
         {
+
             InitializeComponent();
+
 
             //lijst van artiesten opvullen
             List<Artist> lijst = DatabaseOperations.GetArtists(e);
@@ -40,6 +42,8 @@ namespace Artmin_WPF.Pages
 
             //Subtitle updaten met eventnaam
             cntrlHeader.Subtitle = e.Name;
+
+            
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -66,12 +70,12 @@ namespace Artmin_WPF.Pages
         {
             var artist = (Artist)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new ManageArtistPage(artist,true));
+            NavigationService.Navigate(new ManageArtistPage(artist));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ManageArtistPage());
         }
     }
 }
