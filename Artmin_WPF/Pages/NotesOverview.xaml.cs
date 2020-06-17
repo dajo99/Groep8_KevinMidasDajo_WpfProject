@@ -61,7 +61,7 @@ namespace Artmin_WPF.Pages
         {
             var note = (Note)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new NotesEditPage(note, Header.Subtitle));
+            NavigationService.Navigate(new NotesEditPage(note, ev, Header.Subtitle));
         }
 
         private void ListNotes_MouseEnter(object sender, MouseEventArgs e)

@@ -29,8 +29,9 @@ namespace Artmin_DAL
         {
             try
             {
-                var lookup = new LookupClient();
-                lookup.Timeout = TimeSpan.FromSeconds(5);
+                LookupClientOptions options = new LookupClientOptions { Timeout = TimeSpan.FromSeconds(5) };
+                var lookup = new LookupClient(options);
+              
                 var result = await lookup.QueryAsync(domain, QueryType.ANY).ConfigureAwait(false);
 
                 var records = result.Answers.Where(record => record.RecordType == DnsClient.Protocol.ResourceRecordType.A ||
