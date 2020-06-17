@@ -23,9 +23,17 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Vertical" Margin="10" Grid.Row="1">
-            <TextBlock x:Name="TitleNote" Text="lol" />
-            <Separator/>
-            <TextBlock x:Name="DescriptionNote" Text="lol" />
+            <TextBox x:Name="TitleNote" Text="lol" />
+            
+            <TextBox x:Name="DescriptionNote" Text="lol"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Stretch"
+                     MinWidth="280"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     SpellCheck.IsEnabled="True"
+                     materialDesign:HintAssist.Hint="Multiline text"
+                     Height="120"/>
             <StackPanel HorizontalAlignment="Right">
                 <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                             x:Name="btnSave"

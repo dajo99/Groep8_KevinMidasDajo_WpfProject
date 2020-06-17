@@ -74,6 +74,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArtminModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Basisklasse.cs" />
     <Compile Include="Client.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>
     </Compile>
@@ -94,6 +95,7 @@
     <Compile Include="Partials\Artist.cs" />
     <Compile Include="Partials\Event.cs" />
     <Compile Include="Partials\EventType.cs" />
+    <Compile Include="Partials\Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Todo.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>

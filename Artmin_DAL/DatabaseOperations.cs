@@ -93,5 +93,22 @@ namespace Artmin_DAL
 
             }
         }
+
+        public static int AanpassenNote(Note n)
+        {
+            try
+            {
+                using (ArtminEntities entities = new ArtminEntities())
+                {
+                    entities.Entry(n).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
     }
 }
