@@ -7,9 +7,10 @@ namespace Artmin_WPF.Dialogs
     /// </summary>
     public partial class ErrorDialog : UserControl
     {
-        public ErrorDialog()
+        public ErrorDialog(string messageText = "")
         {
             InitializeComponent();
+            MessageText = messageText;
         }
         public string MessageText
         {

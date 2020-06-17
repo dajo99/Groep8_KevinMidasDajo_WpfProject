@@ -1,4 +1,6 @@
 ﻿using Artmin_DAL;
+using Artmin_WPF.Dialogs;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,12 +29,11 @@ namespace Artmin_WPF.Pages
     {
         //Property voor artiestenlijst
         public ObservableCollection<Artist> Artists { get; set; }
+        public Event evt { get; set; }
 
         public ArtistOverviewPage(Event e)
         {
-
             InitializeComponent();
-
 
             //lijst van artiesten opvullen
             List<Artist> lijst = DatabaseOperations.GetArtists(e);
@@ -41,41 +42,46 @@ namespace Artmin_WPF.Pages
             Artists = new ObservableCollection<Artist>(lijst);
 
             //Subtitle updaten met eventnaam
-            cntrlHeader.Subtitle = e.Name;
-
+            evt = e;
             
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             var artist = (Artist)((FrameworkElement)sender).DataContext;
 
-            int ok = DatabaseOperations.DeleteArtist(artist);
-            if (ok > 0)
+            var ret = (bool)await DialogHost.Show(new ConfirmDialog("Remove Artist " + artist.Name + "?"));
+
+            if (ret == true)
             {
-                Artists.Remove(artist);
+                if (DatabaseOperations.DeleteArtist(artist) > 0)
+                {
+                    Artists.Remove(artist);
+                }
+                else
+                {
+                    await DialogHost.Show(new ErrorDialog("De artiest is niet verwijderd!"));
+                }
             }
-            else
-            {
-                MessageBox.Show("De artiest is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = this;            
+            DataContext = this;
+            cntrlHeader.Subtitle = evt.Name;
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             var artist = (Artist)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new ManageArtistPage(artist));
+            NavigationService.Navigate(new ManageArtistPage(artist,evt));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ManageArtistPage());
+            NavigationService.Navigate(new ManageArtistPage(evt));
         }
     }
 }

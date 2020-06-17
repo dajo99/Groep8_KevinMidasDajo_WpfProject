@@ -14,6 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IbanNet;
+using Artmin_WPF.Dialogs;
+using MaterialDesignThemes.Wpf;
 
 namespace Artmin_WPF.Pages
 {
@@ -23,17 +26,20 @@ namespace Artmin_WPF.Pages
     public partial class ManageArtistPage : Page
     {
         Artist artist;
+        Event evt;
 
         //Constructors page
-        public ManageArtistPage(Artist a)
+        public ManageArtistPage(Artist a, Event e)
         {
             InitializeComponent();
             artist = a;
+            evt = e;
         }
-        public ManageArtistPage()
+        public ManageArtistPage(Event e)
         {
             InitializeComponent();
             artist = null;
+            evt = e;
         }
 
 
@@ -56,27 +62,44 @@ namespace Artmin_WPF.Pages
             }
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            bool ok = ValidateInputs.CheckIban("GB94BARC10201530093459");
-            if (ok ==true)
-            {
-                MessageBox.Show("Geldig iban");
-            }
-            
             if (artist != null)
             {
 
             }
             else
             {
-
+                AddArtist();
             }
         }
 
-        private void AddArtist()
+        private async void AddArtist()
         {
+            //aanmaken en opvullen nieuwe artiest
+            Artist artist = new Artist();
+            artist.Name = txtName.Text;
+            artist.Phone = txtPhone.Text;
+            artist.Email = txtMail.Text;
+            artist.BankAccountNo = txtCard.Text;
+            artist.EventID = evt.EventID;
 
+            if (artist.IsGeldig())
+            {
+                int ok = DatabaseOperations.AddArtist(artist);
+                if (ok > 0)
+                {
+                    NavigationService.Navigate(new ArtistOverviewPage(evt));
+                }
+                else
+                {
+                    await DialogHost.Show("Artiest is niet toegevoegd!");
+                }
+            }
+            else
+            {
+                await DialogHost.Show(new ErrorDialog(artist.Error));
+            }
         }
 
         private void EditArtist() 

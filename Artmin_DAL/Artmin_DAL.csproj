@@ -43,6 +43,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="IbanNet, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IbanNet.4.0.1\lib\net47\IbanNet.dll</HintPath>
+    </Reference>
     <Reference Include="PropertyChanged, Version=3.2.8.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.3.2.8\lib\net40\PropertyChanged.dll</HintPath>
     </Reference>
@@ -80,11 +83,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArtminModel.edmx</DependentUpon>
     </Compile>
-
     <Compile Include="Basisklasse.cs" />
-
     <Compile Include="BaseClass.cs" />
-
     <Compile Include="Client.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>
     </Compile>
@@ -99,7 +99,7 @@
     <Compile Include="Location.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ValidateInputs.cs" />
+    <Compile Include="ValidateMail.cs" />
     <Compile Include="Note.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>
     </Compile>
