@@ -14,7 +14,6 @@
       TextOptions.TextFormattingMode="Ideal" 
       TextOptions.TextRenderingMode="Auto"  
       d:DesignHeight="568" d:DesignWidth="320"
-      
       Title="Events">
     <Page.Resources>
         <converters:DateConverter x:Key="DateConverter" />
@@ -65,29 +64,6 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
-
-        <Style x:Key="EventContainerStyle" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="BorderBrush" Value="{StaticResource MaterialDesignDivider}" />
-            <Setter Property="BorderThickness" Value="0 0 0 1" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="{StaticResource GreyPrimaryHueLightBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="{StaticResource GreyPrimaryHueLightBrush}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -104,7 +80,7 @@
         <ListBox Grid.Row="1"
                  ItemsSource="{Binding Events}"
                  ItemTemplate="{StaticResource EventTemplate}"
-                 ItemContainerStyle="{StaticResource EventContainerStyle}"
+                 ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"
                  ScrollViewer.CanContentScroll="False" />
     </Grid>
 </Page>

@@ -19,56 +19,31 @@
     <Page.Resources>
         <DataTemplate x:Key="ArtistOverviewTemplate">
             <Grid>
-            <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                <TextBlock  Text="{Binding Name}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" TextAlignment="Center" Typography.Capitals="AllSmallCaps"/>
-                <TextBlock Text="{Binding}" Style="{StaticResource MaterialDesignCaptionTextBlock}" TextAlignment="Center"></TextBlock>
+                <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                    <TextBlock  Text="{Binding Name}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" TextAlignment="Center" Typography.Capitals="AllSmallCaps"/>
+                    <TextBlock Text="{Binding}" Style="{StaticResource MaterialDesignCaptionTextBlock}" TextAlignment="Center"></TextBlock>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="BtnDelete" 
+                        <Button x:Name="BtnDelete" 
                             HorizontalAlignment="Right"
                             Margin="0,8,0,0"
-                            BorderBrush="{StaticResource RedPrimaryHueMidBrush}"
                             Foreground="{StaticResource RedPrimaryHueMidBrush}"
                             Content="Delete" 
                             Width="100"
                             Style="{StaticResource MaterialDesignOutlinedButton}"
                             Click="BtnDelete_Click"/>
 
-                    <Button x:Name="BtnEdit" 
+                        <Button x:Name="BtnEdit" 
                             HorizontalAlignment="Left"
                             Margin="15,8,0,0"
                             Width="100"
                             Content="Edit" 
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Click="BtnEdit_Click"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-                </Grid>
+            </Grid>
         </DataTemplate>
-
-        <Style x:Key="ArtistContainerStyle" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="BorderBrush" Value="{StaticResource MaterialDesignDivider}" />
-            <Setter Property="BorderThickness" Value="0 0 0 1" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="{StaticResource GreyPrimaryHueLightBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="{StaticResource GreyPrimaryHueLightBrush}" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        
     </Page.Resources>
 
    <Grid>
@@ -77,9 +52,7 @@
         <RowDefinition />
       </Grid.RowDefinitions>
 
-
-      <controls:HeaderControl x:Name="cntrlHeader" Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
-                              Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
+      <controls:HeaderControl x:Name="cntrlHeader">
         <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Add Artist" Click="BtnAdd_Click">
             <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
         </Button>
@@ -89,7 +62,7 @@
                Grid.Row="1"
                ItemsSource="{Binding Artists}"
                ItemTemplate="{StaticResource ArtistOverviewTemplate}"
-               ItemContainerStyle="{StaticResource ArtistContainerStyle}"
+               ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"
                HorizontalContentAlignment="Center"
                ScrollViewer.CanContentScroll="False"/>
     </Grid>
