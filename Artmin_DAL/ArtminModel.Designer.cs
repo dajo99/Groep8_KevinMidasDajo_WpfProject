@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Midas\source\repos\Groep8_KevinMidasDajo_WpfProject\Artmin_DAL\ArtminModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\alain\Desktop\Project_WPF\Artmin_DAL\ArtminModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

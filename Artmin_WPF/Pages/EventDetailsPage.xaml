@@ -6,13 +6,14 @@
       xmlns:local="clr-namespace:Artmin_WPF.Pages"
       xmlns:controls="clr-namespace:Artmin_WPF.Controls"
       mc:Ignorable="d" 
-            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       TextElement.FontWeight="Regular"
       TextElement.FontSize="13"
       TextOptions.TextFormattingMode="Ideal" 
       TextOptions.TextRenderingMode="Auto"  
       d:DesignHeight="568" d:DesignWidth="320"
+      Loaded="Page_Loaded"
       Title="Event Details">
     <Page.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
@@ -42,7 +43,7 @@
                         <StackPanel VerticalAlignment="Center" Margin="15 0">
                             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">NOTES</TextBlock>
                             <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}">
-                                <Run Text="{Binding NotesCount, FallbackValue=0}" /> Notes
+                                <Run x:Name="runNotesCount" Text="0" /> Notes
                             </TextBlock>
                         </StackPanel>
                     </DockPanel>
@@ -81,7 +82,7 @@
                         <StackPanel VerticalAlignment="Center" Margin="15 0">
                             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">ARTISTS</TextBlock>
                             <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}">
-                                <Run Text="{Binding ArtistsCount, FallbackValue=0}" /> Artists
+                                <Run x:Name="runArtistsCount" Text="0" /> Artists
                             </TextBlock>
                         </StackPanel>
                     </DockPanel>

@@ -10,12 +10,16 @@ namespace Artmin_WPF.Dialogs
         public ErrorDialog(string messageText = "")
         {
             InitializeComponent();
-            MessageText = messageText;
+            if (messageText != "") MessageText = messageText;
         }
         public string MessageText
         {
             get { return textMessage.Text; }
             set { textMessage.Text = value; }
+        }
+        public TextBlock TextBlock
+        {
+            get { return textMessage; }
         }
     }
 }

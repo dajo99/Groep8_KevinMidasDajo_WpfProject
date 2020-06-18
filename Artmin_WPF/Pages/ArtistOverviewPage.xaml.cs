@@ -25,10 +25,30 @@ namespace Artmin_WPF.Pages
     /// <summary>
     /// Interaction logic for ArtistOverviewPage.xaml
     /// </summary>
-    public partial class ArtistOverviewPage : Page
+    public partial class ArtistOverviewPage : Page, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         //Property voor artiestenlijst
-        public ObservableCollection<Artist> Artists { get; set; }
+        private ObservableCollection<Artist> artists;
+        public ObservableCollection<Artist> Artists
+        {
+            get
+            {
+                return artists;
+            }
+            set
+            {
+                artists = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public Event Evt { get; set; }
 
         public ArtistOverviewPage(Event e)
@@ -84,7 +104,7 @@ namespace Artmin_WPF.Pages
             //lijst maken die met binding update
             Artists = new ObservableCollection<Artist>(lijst);
 
-            lbArtists.Items.Refresh();
+            //lbArtists.Items.Refresh();
 
         }
 
@@ -92,7 +112,7 @@ namespace Artmin_WPF.Pages
         {
             var artist = (Artist)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new ManageArtistPage(artist,Evt));
+            NavigationService.Navigate(new ManageArtistPage(artist, Evt));
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
