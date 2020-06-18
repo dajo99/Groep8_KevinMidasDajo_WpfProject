@@ -9,6 +9,31 @@ namespace Artmin_DAL
 {
     public static class DatabaseOperations
     {
+        public static int CountNotes(Event e)
+        {
+            using (var entities = new ArtminEntities())
+            {
+                return entities.Notes.Where(n => n.EventID == e.EventID).Count();
+            }
+        }
+        public static int CountArtists(Event e)
+        {
+            using (var entities = new ArtminEntities())
+            {
+                return entities.Artists.Where(a => a.EventID == e.EventID).Count();
+            }
+        }
+
+        public static List<EventType> GetEventTypes()
+        {
+            using (var entities = new ArtminEntities())
+            {
+                return entities.EventTypes
+                            .OrderBy(e => e.Name)
+                            .ToList();
+            }
+        }
+
         public static List<Event> GetEvents()
         {
             using (var entities = new ArtminEntities())
@@ -103,6 +128,7 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Dajo Vandoninck
         public static List<Note> GetNotes(int id)
         {
             using (var entities = new ArtminEntities())
@@ -115,6 +141,7 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Dajo Vandoninck
         public static int DeleteNote(Note n)
         {
             try
@@ -133,6 +160,7 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Dajo Vandoninck
         public static int AanpassenNote(Note n)
         {
             try
@@ -140,6 +168,24 @@ namespace Artmin_DAL
                 using (ArtminEntities entities = new ArtminEntities())
                 {
                     entities.Entry(n).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
+        //AUTHOR Dajo Vandoninck
+        public static int AddNote(Note n)
+        {
+            try
+            {
+                using (ArtminEntities entities = new ArtminEntities())
+                {
+                    entities.Notes.Add(n);
                     return entities.SaveChanges();
                 }
             }

@@ -77,7 +77,6 @@ namespace Artmin_WPF.Controls
 
         public HeaderControl()
         {
-            DataContext = this;
             InitializeComponent();
         }
 

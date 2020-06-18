@@ -21,11 +21,43 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:HeaderControl Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
-        </controls:HeaderControl>
+        <controls:HeaderControl />
 
-        <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            Hier is helemaal niets
-        </TextBlock>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical" Margin="20" MaxWidth="200" VerticalAlignment="Center">
+                <TextBox x:Name="txtName"
+                         Text="{Binding Path=Model.Name, Mode=TwoWay}"
+                         Margin="0 0 0 10"
+                         materialDesign:HintAssist.Hint="Event Name"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                <ComboBox x:Name="cbType"
+                          SelectedItem="{Binding Path=Model.EventType}"
+                      Margin="0 0 0 10"
+                          IsEditable="True"
+                      materialDesign:HintAssist.Hint="Type"
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+
+                <DatePicker x:Name="dpDate"
+                        Margin="0 0 0 10"
+                        materialDesign:HintAssist.Hint="Date"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                <materialDesign:TimePicker x:Name="tpStartTime"
+                                       Margin="0 0 0 10"
+                                       materialDesign:HintAssist.Hint="Start Time"
+                                       Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
+
+                <materialDesign:TimePicker x:Name="tpEndTime"
+                                       Margin="0 0 0 40"
+                                       materialDesign:HintAssist.Hint="End Time"
+                                       Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
+
+                <Button Content="Save"
+                    IsDefault="True"
+                    Click="SaveButton_Click"
+                    Style="{StaticResource MaterialDesignRaisedButton}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

@@ -39,6 +39,17 @@ namespace Artmin_DAL
             }
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is EventType type &&
+                   EventTypeID == type.EventTypeID;
+        }
+
+        public override int GetHashCode()
+        {
+            return 2039722746 + EventTypeID.GetHashCode();
+        }
+
         public override string ToString()
         {
             return Name;
