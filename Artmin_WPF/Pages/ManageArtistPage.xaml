@@ -24,25 +24,27 @@
 
 
         <controls:HeaderControl x:Name="cntrlHeader" Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
-                                    Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
+                                Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
         </controls:HeaderControl>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" MaxWidth="220" Margin="0,30,0,0">
             
-            <DockPanel  Margin="0,0,0,20" HorizontalAlignment="Stretch">
-                <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Person" Margin="0,0,15,-2" VerticalAlignment="Bottom" Foreground="Gray">
-                    <materialDesign:PackIcon.LayoutTransform>
-                        <ScaleTransform CenterX="1.5" CenterY="1.5" ScaleX="1.75" ScaleY="1.75"/>
-                    </materialDesign:PackIcon.LayoutTransform>
-                </materialDesign:PackIcon>
-                <TextBox
-                    x:Name="txtName"
-                    materialDesign:HintAssist.Hint="Artist Name"    
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    VerticalAlignment="Center" />
-            </DockPanel>
+                <DockPanel  Margin="0,0,0,20" HorizontalAlignment="Stretch">
+                    <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Person" Margin="0,0,15,-2" VerticalAlignment="Bottom" Foreground="Gray">
+                        <materialDesign:PackIcon.LayoutTransform>
+                            <ScaleTransform CenterX="1.5" CenterY="1.5" ScaleX="1.75" ScaleY="1.75"/>
+                        </materialDesign:PackIcon.LayoutTransform>
+                    </materialDesign:PackIcon>
+                    <TextBox
+                        x:Name="txtName"
+                        materialDesign:HintAssist.Hint="Artist Name"    
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        VerticalAlignment="Center" />
+                </DockPanel>
 
+                
+                
                 <DockPanel Margin="0,0,0,20" HorizontalAlignment="Stretch">
                     <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Phone" Margin="0,0,15,-2" VerticalAlignment="Bottom" Foreground="Gray">
                         <materialDesign:PackIcon.LayoutTransform>
@@ -53,10 +55,10 @@
                         SelectedValuePath="Key" 
                         x:Name="cmbPhone"
                         Margin="0,0,10,0"
-                      MinWidth="60"
-                      VerticalAlignment="Bottom"
-                      IsEditable="False"
-                      >
+                        MinWidth="60"
+                        VerticalAlignment="Bottom"
+                        IsEditable="False">
+                        
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -67,7 +69,6 @@
                         </ComboBox.ItemTemplate>
 
                         <ComboBox.ItemsPanel>
-
                             <ItemsPanelTemplate>
                                 <VirtualizingStackPanel />
                             </ItemsPanelTemplate>
@@ -80,7 +81,9 @@
                     materialDesign:TransitionAssist.DisableTransitions="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     VerticalAlignment="Center" />
-            </DockPanel>
+                </DockPanel>
+                
+                
 
                 <DockPanel  Margin="0,0,0,20" HorizontalAlignment="Stretch">
                     <materialDesign:PackIcon DockPanel.Dock="Left" Kind="Email" Margin="0,0,15,-2" VerticalAlignment="Bottom" Foreground="Gray">
@@ -93,7 +96,7 @@
                     materialDesign:HintAssist.Hint="Email"    
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     VerticalAlignment="Center" />
-            </DockPanel>
+                </DockPanel>
 
                 <DockPanel Margin="0,0,0,40" HorizontalAlignment="Stretch">
                     <materialDesign:PackIcon DockPanel.Dock="Left" Kind="CreditCardAdd" Margin="0,0,15,-2" VerticalAlignment="Bottom" Foreground="Gray">
@@ -107,11 +110,11 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     VerticalAlignment="Center" 
                     HorizontalAlignment="Stretch"/>
-            </DockPanel>
+                </DockPanel>
             
-            <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Stretch" Click="BtnSave_Click"/>
+                <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Stretch" Click="BtnSave_Click"/>
 
-        </StackPanel>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>
