@@ -7,6 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using IbanNet;
 
+/*----------------------------
+ * AUTHOR: Kevin Beliën
+ * --------------------------*/
+
 namespace Artmin_DAL
 {
     public partial class Artist : BaseClass

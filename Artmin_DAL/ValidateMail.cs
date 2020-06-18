@@ -8,6 +8,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+/*----------------------------
+ * AUTHOR: Kevin Beliën
+ * --------------------------*/
+
 namespace Artmin_DAL
 {
     public static class ValidateMail

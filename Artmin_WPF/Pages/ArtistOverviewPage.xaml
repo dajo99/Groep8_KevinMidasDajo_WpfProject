@@ -18,9 +18,10 @@
       
     <Page.Resources>
         <DataTemplate x:Key="ArtistOverviewTemplate">
-            <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock  Text="{Binding Name}" FontSize="15" FontWeight="Bold" Margin="0,5,0,1" TextAlignment="Center" Typography.Capitals="AllSmallCaps"/>
-                <TextBlock Text="{Binding}" TextAlignment="Center" Margin="0,0,0,5"></TextBlock>
+            <Grid>
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                <TextBlock  Text="{Binding Name}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" TextAlignment="Center" Typography.Capitals="AllSmallCaps"/>
+                <TextBlock Text="{Binding}" Style="{StaticResource MaterialDesignCaptionTextBlock}" TextAlignment="Center"></TextBlock>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button x:Name="BtnDelete" 
@@ -42,7 +43,32 @@
                             Click="BtnEdit_Click"/>
                 </StackPanel>
             </StackPanel>
+                </Grid>
         </DataTemplate>
+
+        <Style x:Key="ArtistContainerStyle" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BorderBrush" Value="{StaticResource MaterialDesignDivider}" />
+            <Setter Property="BorderThickness" Value="0 0 0 1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource GreyPrimaryHueLightBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource GreyPrimaryHueLightBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
     </Page.Resources>
 
    <Grid>
@@ -54,7 +80,7 @@
 
       <controls:HeaderControl x:Name="cntrlHeader" Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
                               Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
-        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Create Artist" Click="BtnAdd_Click">
+        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Add Artist" Click="BtnAdd_Click">
             <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
         </Button>
       </controls:HeaderControl>
@@ -63,7 +89,8 @@
                Grid.Row="1"
                ItemsSource="{Binding Artists}"
                ItemTemplate="{StaticResource ArtistOverviewTemplate}"
-               Style="{StaticResource MaterialDesignListBox}"
-               HorizontalContentAlignment="Center"/>
+               ItemContainerStyle="{StaticResource ArtistContainerStyle}"
+               HorizontalContentAlignment="Center"
+               ScrollViewer.CanContentScroll="False"/>
     </Grid>
 </Page>
