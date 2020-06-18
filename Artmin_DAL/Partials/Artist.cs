@@ -36,7 +36,7 @@ namespace Artmin_DAL
                 }
                 if (columnName == "Phone" && (Phone.Length < 8 || !new PhoneAttribute().IsValid(Phone)))
                 {
-                    return "Telefoonnumer is niet correct ingevuld!";
+                    return "Telefoonnummer is niet correct ingevuld!";
                 }
                 if (columnName == "Email")
                 {
