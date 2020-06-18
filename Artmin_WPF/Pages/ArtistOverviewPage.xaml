@@ -65,7 +65,7 @@
                ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"
                HorizontalContentAlignment="Center"
                ScrollViewer.CanContentScroll="False"/>
-       
-        <Label x:Name="lblNoArtist" Content="Er zijn geen artiesten om weer te geven" HorizontalContentAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Visibility="Hidden"></Label>
+
+        <Label x:Name="lblNoArtist" Content="There are no artists to display" HorizontalContentAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Visibility="Hidden"></Label>
     </Grid>
 </Page>

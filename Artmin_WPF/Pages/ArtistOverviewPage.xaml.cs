@@ -36,7 +36,7 @@ namespace Artmin_WPF.Pages
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        //Property voor artiestenlijst
+        //Property voor artiestenlijst die automatisch update
         private ObservableCollection<Artist> artists;
         public ObservableCollection<Artist> Artists
         {
@@ -51,15 +51,13 @@ namespace Artmin_WPF.Pages
             }
         }
 
-        public Event Evt { get; set; }
+        public Event Evt { get; private set; }
 
         public ArtistOverviewPage(Event e)
         {
             InitializeComponent();
 
             Evt = e;
-
-            lbArtists.Items.Refresh();
         }
 
         private async void BtnDelete_Click(object sender, RoutedEventArgs e)
@@ -77,7 +75,7 @@ namespace Artmin_WPF.Pages
                 }
                 else
                 {
-                    await DialogHost.Show(new ErrorDialog("De artiest is niet verwijderd!"));
+                    await DialogHost.Show(new ErrorDialog("The artist has not been removed!"));
                 }
             }
 
