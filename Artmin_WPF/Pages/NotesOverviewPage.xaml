@@ -21,6 +21,9 @@
             <DockPanel>
                 <StackPanel Orientation="Vertical" Width="200">
                     <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="18"/>
+                    <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}">
+                        <Run Text="{Binding creationdate, StringFormat={}{0:dd/MM/yyyy}}" />
+                    </TextBlock>
                     <Separator/>
                     <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
