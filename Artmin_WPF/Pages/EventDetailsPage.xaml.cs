@@ -19,6 +19,7 @@ namespace Artmin_WPF.Pages
 {
     /// <summary>
     /// Interaction logic for EventDetailsPage.xaml
+    /// Author: Midas
     /// </summary>
     public partial class EventDetailsPage : Page
     {

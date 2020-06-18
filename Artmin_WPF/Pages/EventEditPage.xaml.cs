@@ -10,6 +10,7 @@ namespace Artmin_WPF.Pages
 {
     /// <summary>
     /// Interaction logic for EventEditPage.xaml
+    /// Author: Midas
     /// </summary>
     public partial class EventEditPage : Page
     {
@@ -47,6 +48,7 @@ namespace Artmin_WPF.Pages
                     Event.Date = ViewModel.Date;
                     Event.BeginTime = ViewModel.BeginTime;
                     Event.EndTime = ViewModel.EndTime;
+                    Event.EventType = null;
                 }
 
                 if (!(Event != null && DatabaseOperations.UpdateEvent(Event) > 0)

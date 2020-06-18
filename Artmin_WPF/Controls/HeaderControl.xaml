@@ -33,7 +33,7 @@
                                     </TextBlock.Style>
                                 </TextBlock>
                             </Border>
-                            <TextBlock Text="{Binding Subtitle, ElementName=root}" Margin="0 5 0 0" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding Subtitle, ElementName=root, TargetNullValue='', FallbackValue=''}" Margin="0 5 0 0" HorizontalAlignment="Center">
                                 <TextBlock.Style>
                                     <Style TargetType="TextBlock">
                                         <Style.Triggers>

@@ -21,23 +21,8 @@
         <converters:ColorSwatchConverter x:Key="ColorSwatchConverter" />
 
         <DataTemplate x:Key="EventTemplate">
-            <DockPanel>
-                <Border DockPanel.Dock="Left"
-                        Background="{Binding EventType.ColorName, Converter={StaticResource ColorSwatchConverter}}"
-                        Width="20" />
-                <StackPanel Orientation="Vertical" Margin="10">
-                    <TextBlock Text="{Binding Name}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
-                    <TextBlock Text="{Binding EventType}" Style="{StaticResource MaterialDesignCaptionTextBlock}" />
-                    <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}">
-                        <Run Text="{Binding Date, Converter={StaticResource DateConverter}}" />
-                    </TextBlock>
-                    <Button Style="{StaticResource MaterialDesignOutlinedButton}"
-                            Click="SelectButton_Click"
-                            HorizontalAlignment="Left"
-                            Margin="0 5 0 0"
-                            Content="Select" />
-                </StackPanel>
-                <Grid Margin="10" DockPanel.Dock="Right">
+            <Grid>
+                <Grid Margin="10" HorizontalAlignment="Right">
                     <materialDesign:PackIcon Kind="{Binding EventType.IconName}"
                                              Width="32" Height="32"
                                              HorizontalAlignment="Right"
@@ -57,7 +42,28 @@
                         </Button>
                     </StackPanel>
                 </Grid>
-            </DockPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="{Binding EventType.ColorName, Converter={StaticResource ColorSwatchConverter}}"
+                            Width="20" />
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" />
+                        <TextBlock Text="{Binding EventType}" Style="{StaticResource MaterialDesignCaptionTextBlock}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0 0 10 0"
+                                       Style="{StaticResource MaterialDesignOverlineTextBlock}"
+                                       Text="{Binding Date, Converter={StaticResource DateConverter}}" />
+                            <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}">
+                                <Run Text="{Binding BeginTime}" /> - <Run Text="{Binding EndTime}" />
+                            </TextBlock>
+                        </StackPanel>
+                        <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Click="SelectButton_Click"
+                            HorizontalAlignment="Left"
+                            Margin="0 5 0 0"
+                            Content="Select" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
         </DataTemplate>
 
         <Style x:Key="EventContainerStyle" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">

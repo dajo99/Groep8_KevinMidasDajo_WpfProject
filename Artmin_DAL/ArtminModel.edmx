@@ -213,7 +213,7 @@
             <PropertyRef Name="EventID" />
           </Key>
           <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
           <Property Name="EventTypeID" Type="Int32" Nullable="false" DefaultValue="-1" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" DefaultValue="0001-01-01 00:00:00.000Z" />
           <Property Name="BeginTime" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />

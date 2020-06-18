@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 using MaterialDesignColors.Recommended;
 
 namespace Artmin_WPF.Converters
 {
+    /// <summary>
+    /// IValueConverter to convert color names into brushes using Material Design recommended color swatches
+    /// Author: Midas
+    /// </summary>
     public class ColorSwatchConverter : IValueConverter
     {
         private static readonly Dictionary<string, SolidColorBrush> Brushes = new Dictionary<string, SolidColorBrush>

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Artmin_DAL
 {
+    /// <summary>
+    /// Author: Midas
+    /// </summary>
     public partial class EventType
     {
         private static readonly Dictionary<string, string> EventColors = new Dictionary<string, string>

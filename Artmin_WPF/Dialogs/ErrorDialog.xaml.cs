@@ -17,5 +17,9 @@ namespace Artmin_WPF.Dialogs
             get { return textMessage.Text; }
             set { textMessage.Text = value; }
         }
+        public TextBlock TextBlock
+        {
+            get { return textMessage; }
+        }
     }
 }

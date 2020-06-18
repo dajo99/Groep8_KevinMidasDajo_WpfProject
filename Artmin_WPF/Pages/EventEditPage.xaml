@@ -21,7 +21,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:HeaderControl />
+        <controls:HeaderControl Subtitle="{Binding ViewModel.Name}" />
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical" Margin="20" MaxWidth="200" VerticalAlignment="Center">
