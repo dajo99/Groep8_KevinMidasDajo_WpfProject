@@ -92,17 +92,18 @@ namespace Artmin_WPF.Pages
         private async void AddArtist()
         {
             //aanmaken en opvullen nieuwe artiest
-            Artist artist = new Artist
-            {
-                Name = txtName.Text,
-                Phone = CountryCodes.ElementAt(cmbPhone.SelectedIndex).Key + Regex.Replace(txtPhone.Text, @"[^0-9]", ""),
-                Email = txtMail.Text,
-                BankAccountNo = txtCard.Text,
-                EventID = Evt.EventID
-            };
+            Artist artist = new Artist();
+
+            FillingArtist(artist);
 
             if (artist.IsGeldig())
             {
+                //Zorgen dat Nummer overzichtelijk in database komt en het zo teruggehaald kan worden
+                for (int i = 4; i < artist.BankAccountNo.Length; i += 5)
+                {
+                    artist.BankAccountNo = artist.BankAccountNo.Insert(i, " ");
+                }
+
                 if (DatabaseOperations.AddArtist(artist) > 0)
                 {
                     NavigationService.GoBack();
@@ -120,13 +121,7 @@ namespace Artmin_WPF.Pages
 
         private async void EditArtist()
         {
-            ViewModel.Name = txtName.Text;
-            ////Samenstellen telefoonnummer en verwijderen van alle tekens behalve de cijfers
-            ViewModel.Phone = CountryCodes.ElementAt(cmbPhone.SelectedIndex).Key + Regex.Replace(txtPhone.Text, @"[^0-9]", "");
-            ViewModel.Email = txtMail.Text;
-            //verwijderen van spaties of andere tekens zoals koppeltekens die gebruikt werden om iban-nummers af te scheiden
-            ViewModel.BankAccountNo = Regex.Replace(txtCard.Text, @"[^a-zA-Z0-9]", "");
-            ViewModel.EventID = Evt.EventID;
+            FillingArtist(ViewModel);
 
             if (ViewModel.IsGeldig())
             {
@@ -152,6 +147,17 @@ namespace Artmin_WPF.Pages
             {
                 await DialogHost.Show(new ErrorDialog(ViewModel.Error));
             }
+        }
+        private void FillingArtist(Artist a)
+        {
+            a.Name = txtName.Text;
+            //Samenstellen telefoonnummer en verwijderen van alle tekens behalve de cijfers
+            a.Phone = CountryCodes.ElementAt(cmbPhone.SelectedIndex).Key + Regex.Replace(txtPhone.Text, @"[^0-9]", "");
+            a.Email = txtMail.Text.Substring(0, txtMail.Text.IndexOf('@') + 1)
+                    + txtMail.Text.Substring(txtMail.Text.IndexOf('@') + 1).ToLower();
+            //verwijderen van spaties of andere tekens zoals koppeltekens die gebruikt werden om iban-nummers af te scheiden
+            a.BankAccountNo = Regex.Replace(txtCard.Text, @"[^a-zA-Z0-9]", "");
+            a.EventID = Evt.EventID;
         }
     }
 }

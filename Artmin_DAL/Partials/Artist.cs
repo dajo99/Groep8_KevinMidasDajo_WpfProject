@@ -73,7 +73,7 @@ namespace Artmin_DAL
         }
         public override string ToString()
         {           
-            return this.Name.ToUpper() + Environment.NewLine +
+            return 
                 this.Email + Environment.NewLine +
                 this.Phone.Insert(3," ").Insert(6," ");
         }
