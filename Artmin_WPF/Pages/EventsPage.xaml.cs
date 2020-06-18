@@ -1,10 +1,10 @@
-﻿using Artmin_DAL;
-using Artmin_WPF.Dialogs;
+﻿using Artmin_WPF.Dialogs;
 using MaterialDesignThemes.Wpf;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using Artmin_DAL;
 
 namespace Artmin_WPF.Pages
 {
@@ -31,7 +31,6 @@ namespace Artmin_WPF.Pages
             var evt = (Event)((FrameworkElement)sender).DataContext;
 
             NavigationService.Navigate(new EventDetailsPage(evt));
-
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)

@@ -1,14 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IbanNet;
 
 namespace Artmin_DAL
 {
     public partial class Artist : BaseClass
     {
+        public Artist(Artist a)
+        {
+            this.Name = a.Name;
+            this.Email = a.Email;
+            this.Phone = a.Phone;
+            this.EventID = a.EventID;
+            this.BankAccountNo = a.BankAccountNo;
+            this.ArtistID = a.ArtistID;
+        }
+
+        public Artist()
+        {
+
+        }
+
         public override string this[string columnName]
         {
             get
@@ -19,7 +36,7 @@ namespace Artmin_DAL
                 }
                 if (columnName == "Phone" && !new PhoneAttribute().IsValid(Phone))
                 {
-                    return "Gelieve het telefoonnummer in te vullen!";
+                    return "Telefoonnumer is niet correct ingevuld!";
                 }
                 /*if (columnName == "Email" && !new EmailAddressAttribute().IsValid(Email))
                 {
@@ -27,26 +44,41 @@ namespace Artmin_DAL
                 }*/
                 if (columnName == "Email")
                 {
-                    var task = ValidateInputs.MailIsValidAsync(Email);
+                    var task = ValidateMail.MailIsValidAsync(Email);
                     task.Wait();
 
-                    if (task.Result == false)
+                    if (!task.Result)
                     {
-                        return "Email is niet correct!";
+                        return "Email is niet correct ingevuld!";
                     }          
                 }
-                if (columnName == "BankAccountNo" && ValidateInputs.CheckIban(BankAccountNo))
+                if (columnName == "BankAccountNo")
                 {
-                    return "De opgegeven IBAN-nummer bestaat niet!";
+                    IIbanValidator validator = new IbanValidator();
+                    IbanNet.ValidationResult validationResult = validator.Validate(BankAccountNo);
+                    if (!validationResult.IsValid)
+                    {
+                        return "De opgegeven IBAN-nummer bestaat niet!";
+                    }           
                 }
                 return "";
             }
         }
         public override string ToString()
-        {
+        {           
             return this.Name.ToUpper() + Environment.NewLine +
                 this.Email + Environment.NewLine +
-                this.Phone;
+                this.Phone.Insert(3," ").Insert(6," ");
+        }
+
+        public void copyFrom(Artist a)
+        {
+            this.Name = a.Name;
+            this.Phone = a.Phone;
+            this.Email = a.Email;
+            this.ArtistID = a.ArtistID;
+            this.EventID = a.EventID;
+            this.BankAccountNo = a.BankAccountNo;
         }
     }
 }
