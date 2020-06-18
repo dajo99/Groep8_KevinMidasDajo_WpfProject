@@ -77,7 +77,7 @@
                     
                     <TextBox
                     x:Name="txtPhone"
-                    materialDesign:HintAssist.Hint="Phone"    
+                    materialDesign:HintAssist.Hint=""    
                     materialDesign:TransitionAssist.DisableTransitions="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                     VerticalAlignment="Center" />

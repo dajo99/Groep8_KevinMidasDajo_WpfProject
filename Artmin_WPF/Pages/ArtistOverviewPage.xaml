@@ -13,6 +13,7 @@
       TextOptions.TextFormattingMode="Ideal" 
       TextOptions.TextRenderingMode="Auto" 
       d:DesignHeight="450" d:DesignWidth="800"
+      
       Title="Artists" Loaded="Page_Loaded">
       
     <Page.Resources>

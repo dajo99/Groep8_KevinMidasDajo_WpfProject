@@ -16,16 +16,9 @@ namespace Artmin_DAL
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(email))
-                {
-                    var mailAddress = new MailAddress(email);
-                    var host = mailAddress.Host;
-                    return CheckDnsEntriesAsync(host);
-                }
-                else 
-                {
-                    return Task.FromResult(false);
-                }
+                var mailAddress = new MailAddress(email);
+                var host = mailAddress.Host;
+                return CheckDnsEntriesAsync(host);
             }
             catch (FormatException)
             {

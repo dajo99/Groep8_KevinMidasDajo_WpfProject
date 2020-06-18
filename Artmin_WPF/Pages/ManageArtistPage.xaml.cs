@@ -9,7 +9,6 @@ using Artmin_WPF.Dialogs;
 using MaterialDesignThemes.Wpf;
 using System.Text.RegularExpressions;
 
-
 namespace Artmin_WPF.Pages
 {
     /// <summary>
@@ -46,6 +45,7 @@ namespace Artmin_WPF.Pages
             Artist = null;
             Evt = e;
         }
+
 
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -92,18 +92,20 @@ namespace Artmin_WPF.Pages
         private async void AddArtist()
         {
             //aanmaken en opvullen nieuwe artiest
-            Artist artist = new Artist();
-            artist.Name = txtName.Text;
-            artist.Phone = CountryCodes.ElementAt(cmbPhone.SelectedIndex).Key + Regex.Replace(txtPhone.Text, @"[^0-9]", "");
-            artist.Email = txtMail.Text;
-            artist.BankAccountNo = txtCard.Text;
-            artist.EventID = Evt.EventID;
+            Artist artist = new Artist
+            {
+                Name = txtName.Text,
+                Phone = CountryCodes.ElementAt(cmbPhone.SelectedIndex).Key + Regex.Replace(txtPhone.Text, @"[^0-9]", ""),
+                Email = txtMail.Text,
+                BankAccountNo = txtCard.Text,
+                EventID = Evt.EventID
+            };
 
             if (artist.IsGeldig())
             {
                 if (DatabaseOperations.AddArtist(artist) > 0)
                 {
-                    NavigationService.Navigate(new ArtistOverviewPage(Evt));
+                    NavigationService.GoBack();
                 }
                 else
                 {
@@ -137,7 +139,7 @@ namespace Artmin_WPF.Pages
                 if (DatabaseOperations.UpdateArtist(ViewModel) > 0)
                 {
                     //Zorgen dat artiest terug geupdate wordt 
-                    Artist.copyFrom(ViewModel);
+                    Artist.CopyFrom(ViewModel);
 
                     NavigationService.GoBack();
                 }
