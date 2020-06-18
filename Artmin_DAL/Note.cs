@@ -18,6 +18,7 @@ namespace Artmin_DAL
         public string Title { get; set; }
         public string Description { get; set; }
         public int EventID { get; set; }
+        public Nullable<System.DateTime> creationdate { get; set; }
     
         public virtual Event Event { get; set; }
     }
