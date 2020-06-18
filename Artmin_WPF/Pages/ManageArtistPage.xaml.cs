@@ -27,10 +27,10 @@ namespace Artmin_WPF.Pages
     /// </summary>
     public partial class ManageArtistPage : Page
     {
-        Artist ViewModel;
-        Artist artist;
-        Event evt;
-       
+        Artist ViewModel { get; }
+        Artist artist { get; }
+        Event evt { get; }
+
 
         private static readonly Dictionary<string, string> CountryCodes = new Dictionary<string, string>
         {
@@ -38,7 +38,7 @@ namespace Artmin_WPF.Pages
             { "+31", "/Images/netherlands-flag-icon-16.png"},
             { "+33", "/Images/france-flag-icon-16.png"},
             { "+49", "/Images/germany-flag-icon-16.png"},
-            { "+44", "/Images/united-kingdom-flag-icon-16.png"}  
+            { "+44", "/Images/united-kingdom-flag-icon-16.png"}
         };
 
         //Constructors page
@@ -62,7 +62,7 @@ namespace Artmin_WPF.Pages
             cmbPhone.ItemsSource = CountryCodes;
             cmbPhone.SelectedIndex = 0;
 
-            
+
 
             if (artist != null)
             {
@@ -73,7 +73,7 @@ namespace Artmin_WPF.Pages
                 txtPhone.Text = artist.Phone.Substring(3);
                 txtCard.Text = artist.BankAccountNo;
                 cmbPhone.SelectedItem = artist.Phone.Substring(0, 3);
-                string phone = artist.Phone.Substring(0,3);
+                string phone = artist.Phone.Substring(0, 3);
                 int termIndex = Array.IndexOf(CountryCodes.Keys.ToArray(), phone);
                 cmbPhone.SelectedIndex = termIndex;
             }
@@ -101,7 +101,7 @@ namespace Artmin_WPF.Pages
             //aanmaken en opvullen nieuwe artiest
             Artist artist = new Artist();
             artist.Name = txtName.Text;
-            ViewModel.Phone = CountryCodes.ElementAt(cmbPhone.SelectedIndex).Key + Regex.Replace(txtPhone.Text, @"[^0-9]+", "");
+            artist.Phone = CountryCodes.ElementAt(cmbPhone.SelectedIndex).Key + Regex.Replace(txtPhone.Text, @"[^0-9]+", "");
             artist.Email = txtMail.Text;
             artist.BankAccountNo = txtCard.Text;
             artist.EventID = evt.EventID;
@@ -123,7 +123,7 @@ namespace Artmin_WPF.Pages
             }
         }
 
-        private async void EditArtist() 
+        private async void EditArtist()
         {
             ViewModel.Name = txtName.Text;
             ViewModel.Phone = CountryCodes.ElementAt(cmbPhone.SelectedIndex).Key + Regex.Replace(txtPhone.Text, @"[^0-9]+", "");
