@@ -36,9 +36,11 @@ namespace Artmin_WPF.Converters
             { "BlueGrey",   new SolidColorBrush { Color = BlueGreySwatch.BlueGrey500 } }
         };
 
+        public static string DefaultColor = "Grey";
+
         public static SolidColorBrush GetBrush(string name)
         {
-            return Brushes.TryGetValue(name, out SolidColorBrush brush) ? brush : Brushes["Grey"];
+            return Brushes.TryGetValue(name, out SolidColorBrush brush) ? brush : Brushes[DefaultColor];
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
