@@ -73,6 +73,7 @@ namespace Artmin_WPF.Pages
                 if (DatabaseOperations.DeleteArtist(artist) > 0)
                 {
                     Artists.Remove(artist);
+                    ToggleVisibility();
                 }
                 else
                 {
@@ -82,19 +83,6 @@ namespace Artmin_WPF.Pages
 
         }
 
-
-        /*protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            //lijst van artiesten opvullen
-            List<Artist> lijst = DatabaseOperations.GetArtists(Evt);
-
-            //lijst maken die met binding update
-            Artists = new ObservableCollection<Artist>(lijst);
-
-            lbArtists.Items.Refresh();
-
-        }*/
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = this;
@@ -106,7 +94,7 @@ namespace Artmin_WPF.Pages
             //lijst maken die met binding update
             Artists = new ObservableCollection<Artist>(lijst);
 
-            //lbArtists.Items.Refresh();
+            ToggleVisibility();
 
         }
 
@@ -120,6 +108,22 @@ namespace Artmin_WPF.Pages
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ArtistEditPage(Evt));
+
+
+        }
+
+        private void ToggleVisibility()
+        {
+            if (Artists.Count == 0)
+            {
+                lbArtists.Visibility = Visibility.Hidden;
+                lblNoArtist.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                lbArtists.Visibility = Visibility.Visible;
+                lblNoArtist.Visibility = Visibility.Hidden;
+            }
         }
 
     }
