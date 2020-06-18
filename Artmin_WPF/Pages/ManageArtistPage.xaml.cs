@@ -148,7 +148,7 @@ namespace Artmin_WPF.Pages
             }
             else
             {
-                await DialogHost.Show(new ErrorDialog(Artist.Error));
+                await DialogHost.Show(new ErrorDialog(ViewModel.Error));
             }
         }
     }
