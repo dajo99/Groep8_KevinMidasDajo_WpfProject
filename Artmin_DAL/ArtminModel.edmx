@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ArtminModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ArtminModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Artiest">
           <Key>
             <PropertyRef Name="ArtiestID" />
@@ -74,6 +74,7 @@
           <Property Name="Titel" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Omschrijving" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="creationdate" Type="date" />
         </EntityType>
         <EntityType Name="ToDo">
           <Key>
@@ -191,8 +192,7 @@
             <End Role="ToDo" EntitySet="ToDo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ArtminModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -276,6 +276,7 @@
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EventID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Event" Relationship="Self.FK_Notitie_Event" FromRole="Notitie" ToRole="Event" />
+          <Property Name="creationdate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Todo">
           <Key>
@@ -469,6 +470,7 @@
           <EntitySetMapping Name="Notes">
             <EntityTypeMapping TypeName="ArtminModel.Note">
               <MappingFragment StoreEntitySet="Notitie">
+                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
                 <ScalarProperty Name="NoteID" ColumnName="NotitieID" />
                 <ScalarProperty Name="Title" ColumnName="Titel" />
                 <ScalarProperty Name="Description" ColumnName="Omschrijving" />
