@@ -1,4 +1,6 @@
 ﻿using Artmin_DAL;
+using Artmin_WPF.Dialogs;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,7 @@ namespace Artmin_WPF.Pages
     /// <summary>
     /// Interaction logic for NotesEditPage.xaml
     /// </summary>
-    
+
     //AUTHOR Dajo Vandoninck
     public partial class NotesEditPage : Page
     {
@@ -72,11 +74,11 @@ namespace Artmin_WPF.Pages
                 return "Er is geen omschrijving!" + Environment.NewLine;
             }
 
-            
+
             return "";
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
             string foutmelding = Valideer("Title");
             foutmelding += Valideer("Description");
@@ -92,68 +94,67 @@ namespace Artmin_WPF.Pages
 
                     if (note.IsGeldig())
                     {
-                        
-                        
-                            int ok = DatabaseOperations.AanpassenNote(note);
-                            if (ok > 0)
-                            {
-
-                                MessageBox.Show("Note has been saved!", "Successful!", MessageBoxButton.OK, MessageBoxImage.None);
 
 
-                                NavigationService.GoBack();
+                        int ok = DatabaseOperations.AanpassenNote(note);
+                        if (ok > 0)
+                        {
+                            await DialogHost.Show(new ErrorDialog("Note has been saved!"));
 
-                            }
-                            else
-                            {
-                                MessageBox.Show("Note has not been saved!", "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
-                            }
+                            NavigationService.GoBack();
 
-                        
+                        }
+                        else
+                        {
+                            await DialogHost.Show(new ErrorDialog("Note has not been saved!"));
+                        }
+
+
                     }
                     else
                     {
-                        MessageBox.Show(note.Error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        await DialogHost.Show(new ErrorDialog(note.Error));
+                        
                     }
                 }
                 else
                 {
-                    
+
                     NewNote.Title = TitleNote.Text;
                     NewNote.Description = DescriptionNote.Text;
                     NewNote.creationdate = DateTime.Today;
                     if (NewNote.IsGeldig())
                     {
-                      
-                            int ok = DatabaseOperations.AddNote(NewNote);
-                            if (ok > 0)
-                            {
-                            MessageBox.Show("Note has been saved!", "Successful!", MessageBoxButton.OK, MessageBoxImage.None);
+
+                        int ok = DatabaseOperations.AddNote(NewNote);
+                        if (ok > 0)
+                        {
+                            await DialogHost.Show(new ErrorDialog("Note has been saved!"));
                             NavigationService.GoBack();
-                            
 
-                            }
-                            else
-                            {
 
-                                MessageBox.Show("Note has not been saved!", "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
-                            }
-                        
+                        }
+                        else
+                        {
+
+                            await DialogHost.Show(new ErrorDialog("Note has not been saved!"));
+                        }
+
 
                     }
                     else
                     {
-                        MessageBox.Show(note.Error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        await DialogHost.Show(new ErrorDialog(NewNote.Error));
                     }
                 }
-                
 
-                
+
+
 
             }
             else
             {
-                MessageBox.Show(foutmelding, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                await DialogHost.Show(new ErrorDialog(foutmelding));
             }
         }
 

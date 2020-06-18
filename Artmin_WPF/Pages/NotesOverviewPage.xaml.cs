@@ -1,4 +1,6 @@
 ﻿using Artmin_DAL;
+using Artmin_WPF.Dialogs;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,7 +65,7 @@ namespace Artmin_WPF.Pages
             ListNotes.Items.Refresh();
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var note = (Note)((FrameworkElement)sender).DataContext;
 
@@ -72,11 +74,12 @@ namespace Artmin_WPF.Pages
             {
                 Notes.Remove(note);
                 ListNotes.Items.Refresh();
-
+                await DialogHost.Show(new ErrorDialog("The note has been deleted!"));
             }
             else
             {
-                MessageBox.Show("The note has not been deleted!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                await DialogHost.Show(new ErrorDialog("The note has not been deleted!"));
+                
             }
         }
 
