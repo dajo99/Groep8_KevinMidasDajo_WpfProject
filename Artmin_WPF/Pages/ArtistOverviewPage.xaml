@@ -14,6 +14,7 @@
       TextOptions.TextRenderingMode="Auto" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Artists" Loaded="Page_Loaded">
+      
     <Page.Resources>
         <DataTemplate x:Key="ArtistOverviewTemplate">
             <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -21,50 +22,47 @@
                 <TextBlock x:Name="tbArtist" Text="{Binding}"  TextAlignment="Center"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="btnDelete" 
+                    <Button x:Name="BtnDelete" 
                             HorizontalAlignment="Right"
                             Margin="0,8,0,0"
+                            BorderBrush="{StaticResource RedPrimaryHueMidBrush}"
+                            Foreground="{StaticResource RedPrimaryHueMidBrush}"
                             Content="Delete" 
-                            Background="Red"
-                            Foreground="White"
                             Width="100"
                             Style="{StaticResource MaterialDesignOutlinedButton}"
-                            Click="btnDelete_Click"/>
+                            Click="BtnDelete_Click"/>
 
-                    <Button x:Name="btnEdit" 
+                    <Button x:Name="BtnEdit" 
                             HorizontalAlignment="Left"
                             Margin="15,8,0,0"
                             Width="100"
-                            Background="Blue"
-                            Foreground="White"
                             Content="Edit" 
-                            Style="{StaticResource MaterialDesignOutlinedButton}"
-                            Click="btnEdit_Click"/>
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Click="BtnEdit_Click"/>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
 
+   <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition />
+      </Grid.RowDefinitions>
 
-            <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
 
-
-        <controls:HeaderControl x:Name="cntrlHeader" Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
-                                Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
-            <Button Style="{StaticResource MaterialDesignIconForegroundButton}" Click="Button_Click">
-                <materialDesign:PackIcon Kind="Add" />
-            </Button>
-        </controls:HeaderControl>
-        <ListBox x:Name="lbArtists"
-                 Grid.Row="1"
-                 ItemsSource="{Binding Artists}"
-                 ItemTemplate="{StaticResource ArtistOverviewTemplate}"
-                 Style="{StaticResource MaterialDesignListBox}"
-                 HorizontalContentAlignment="Center"
-                  />
+      <controls:HeaderControl x:Name="cntrlHeader" Subtitle="{Binding DataContext.Sub, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" 
+                              Title="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}">
+        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Create Artist" Click="BtnAdd_Click">
+            <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
+        </Button>
+      </controls:HeaderControl>
+        
+      <ListBox x:Name="lbArtists"
+               Grid.Row="1"
+               ItemsSource="{Binding Artists}"
+               ItemTemplate="{StaticResource ArtistOverviewTemplate}"
+               Style="{StaticResource MaterialDesignListBox}"
+               HorizontalContentAlignment="Center"/>
     </Grid>
 </Page>
