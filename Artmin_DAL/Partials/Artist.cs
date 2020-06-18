@@ -32,31 +32,38 @@ namespace Artmin_DAL
             {
                 if (columnName == "Name" && string.IsNullOrWhiteSpace(Name))
                 {
-                    return "Gelieve de artiestennaam in te vullen!";
+                    return "Gelieve de artiestennaam in te geven!";
                 }
-                if (columnName == "Phone" && !new PhoneAttribute().IsValid(Phone))
+                if (columnName == "Phone" && (Phone.Length < 8 || !new PhoneAttribute().IsValid(Phone)))
                 {
                     return "Telefoonnumer is niet correct ingevuld!";
                 }
-                /*if (columnName == "Email" && !new EmailAddressAttribute().IsValid(Email))
-                {
-                    return "Email is niet correct!";
-                }*/
                 if (columnName == "Email")
                 {
-                    var task = ValidateMail.MailIsValidAsync(Email);
-                    task.Wait();
-
-                    if (!task.Result)
+                    if (string.IsNullOrWhiteSpace(Email))
                     {
-                        return "Email is niet correct ingevuld!";
-                    }          
+                        return "Gelieve uw e-mailadres in te geven!";
+                    }
+                    else
+                    {
+                        var task = ValidateMail.MailIsValidAsync(Email);
+                        task.Wait();
+                        if (!task.Result)
+                        {
+                            return "Email is niet correct ingevuld!";
+                        }
+                    }
                 }
                 if (columnName == "BankAccountNo")
                 {
                     IIbanValidator validator = new IbanValidator();
                     IbanNet.ValidationResult validationResult = validator.Validate(BankAccountNo);
-                    if (!validationResult.IsValid)
+
+                    if (string.IsNullOrWhiteSpace(BankAccountNo))
+                    {
+                        return "Gelieve het Iban-nummer in te geven!";
+                    }
+                    else if (!validationResult.IsValid)
                     {
                         return "De opgegeven IBAN-nummer bestaat niet!";
                     }           
@@ -71,7 +78,7 @@ namespace Artmin_DAL
                 this.Phone.Insert(3," ").Insert(6," ");
         }
 
-        public void copyFrom(Artist a)
+        public void CopyFrom(Artist a)
         {
             this.Name = a.Name;
             this.Phone = a.Phone;

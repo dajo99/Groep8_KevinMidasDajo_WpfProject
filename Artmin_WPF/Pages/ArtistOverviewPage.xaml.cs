@@ -29,23 +29,15 @@ namespace Artmin_WPF.Pages
     {
         //Property voor artiestenlijst
         public ObservableCollection<Artist> Artists { get; set; }
-        public Event evt { get; set; }
+        public Event Evt { get; set; }
 
         public ArtistOverviewPage(Event e)
         {
             InitializeComponent();
 
-            //lijst van artiesten opvullen
-            List<Artist> lijst = DatabaseOperations.GetArtists(e);
-
-            //lijst maken die met binding update
-            Artists = new ObservableCollection<Artist>(lijst);
-
-            //Subtitle updaten met eventnaam
-            evt = e;
+            Evt = e;
 
             lbArtists.Items.Refresh();
-
         }
 
         private async void BtnDelete_Click(object sender, RoutedEventArgs e)
@@ -68,10 +60,30 @@ namespace Artmin_WPF.Pages
 
         }
 
+
+        /*protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            //lijst van artiesten opvullen
+            List<Artist> lijst = DatabaseOperations.GetArtists(Evt);
+
+            //lijst maken die met binding update
+            Artists = new ObservableCollection<Artist>(lijst);
+
+            lbArtists.Items.Refresh();
+
+        }*/
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = this;
-            cntrlHeader.Subtitle = evt.Name;
+            cntrlHeader.Subtitle = Evt.Name;
+
+            //lijst van artiesten opvullen
+            List<Artist> lijst = DatabaseOperations.GetArtists(Evt);
+
+            //lijst maken die met binding update
+            Artists = new ObservableCollection<Artist>(lijst);
+
             lbArtists.Items.Refresh();
 
         }
@@ -80,12 +92,13 @@ namespace Artmin_WPF.Pages
         {
             var artist = (Artist)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new ManageArtistPage(artist,evt));
+            NavigationService.Navigate(new ManageArtistPage(artist,Evt));
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ManageArtistPage(evt));
+            NavigationService.Navigate(new ManageArtistPage(Evt));
         }
+
     }
 }
