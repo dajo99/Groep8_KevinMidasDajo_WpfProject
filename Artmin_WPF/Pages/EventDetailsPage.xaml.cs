@@ -21,9 +21,10 @@ namespace Artmin_WPF.Pages
     /// Interaction logic for EventDetailsPage.xaml
     /// Author: Midas
     /// </summary>
-    public partial class EventDetailsPage : Page
+    public partial class EventDetailsPage : Page, INotifyPropertyChanged
     {
         public Event Event { get; private set; }
+        public EventDetailsVM EventDetails { get; private set; }
         public EventDetailsPage(Event e)
         {
             Event = e;
@@ -31,10 +32,12 @@ namespace Artmin_WPF.Pages
             InitializeComponent();
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            runNotesCount.Text = DatabaseOperations.CountNotes(Event).ToString();
-            runArtistsCount.Text = DatabaseOperations.CountArtists(Event).ToString();
+            EventDetails = DatabaseOperations.GetEventDetails(Event);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EventDetails"));
         }
 
         private void NotesButton_Click(object sender, RoutedEventArgs e)
@@ -48,12 +51,10 @@ namespace Artmin_WPF.Pages
 
         private void LocationButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ClientButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ArtistsButton_Click(object sender, RoutedEventArgs e)

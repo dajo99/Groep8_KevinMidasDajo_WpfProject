@@ -10,20 +10,15 @@ namespace Artmin_DAL
     public static class DatabaseOperations
     {
         //AUTHOR Midas
-        public static int CountNotes(Event e)
+        public static EventDetailsVM GetEventDetails(Event e)
         {
             using (var entities = new ArtminEntities())
             {
-                return entities.Notes.Where(n => n.EventID == e.EventID).Count();
-            }
-        }
-
-        //AUTHOR Midas
-        public static int CountArtists(Event e)
-        {
-            using (var entities = new ArtminEntities())
-            {
-                return entities.Artists.Where(a => a.EventID == e.EventID).Count();
+                return new EventDetailsVM
+                {
+                    NotesCount   = entities.Notes  .Where(n => n.EventID == e.EventID).Count(),
+                    ArtistsCount = entities.Artists.Where(a => a.EventID == e.EventID).Count()
+                };
             }
         }
 
@@ -71,7 +66,7 @@ namespace Artmin_DAL
         //AUTHOR Midas
         public static int UpdateEvent(Event e)
         {
-            //try
+            try
             {
                 using (var entities = new ArtminEntities())
                 {
@@ -79,11 +74,11 @@ namespace Artmin_DAL
                     return entities.SaveChanges();
                 }
             }
-            //catch (Exception ex)
-            //{
-            //    FileOperations.Foutloggen(ex);
-            //    return 0;
-            //}
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
         }
 
         //AUTHOR Midas
