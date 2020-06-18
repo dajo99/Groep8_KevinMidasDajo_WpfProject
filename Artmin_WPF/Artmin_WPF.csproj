@@ -87,8 +87,8 @@
     <Compile Include="Pages\EventEditPage.xaml.cs">
       <DependentUpon>EventEditPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ManageArtistPage.xaml.cs">
-      <DependentUpon>ManageArtistPage.xaml</DependentUpon>
+    <Compile Include="Pages\ArtistEditPage.xaml.cs">
+      <DependentUpon>ArtistEditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\NotesEditPage.xaml.cs">
       <DependentUpon>NotesEditPage.xaml</DependentUpon>
@@ -141,7 +141,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ManageArtistPage.xaml">
+    <Page Include="Pages\ArtistEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

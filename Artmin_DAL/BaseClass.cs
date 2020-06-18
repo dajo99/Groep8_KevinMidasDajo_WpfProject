@@ -6,8 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Artmin_DAL
-{
-    //AUTHOR Kevin en Dajo 
+{ 
     public abstract class BaseClass : IDataErrorInfo
     {
         public abstract string this[string columnName] { get; }

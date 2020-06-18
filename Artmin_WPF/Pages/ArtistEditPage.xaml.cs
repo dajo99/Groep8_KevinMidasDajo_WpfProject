@@ -9,12 +9,15 @@ using Artmin_WPF.Dialogs;
 using MaterialDesignThemes.Wpf;
 using System.Text.RegularExpressions;
 
+/*----------------------------
+ * AUTHOR: Kevin Beliën
+ * --------------------------*/
 namespace Artmin_WPF.Pages
 {
     /// <summary>
     /// Interaction logic for ManageArtistPage.xaml
     /// </summary>
-    public partial class ManageArtistPage : Page
+    public partial class ArtistEditPage : Page
     {
         //read-only Properties
         Artist ViewModel { get; }
@@ -32,14 +35,14 @@ namespace Artmin_WPF.Pages
         };
 
         //Constructors page
-        public ManageArtistPage(Artist a, Event e)
+        public ArtistEditPage(Artist a, Event e)
         {
             InitializeComponent();
             Artist = a;
             ViewModel = new Artist(a);
             Evt = e;
         }
-        public ManageArtistPage(Event e)
+        public ArtistEditPage(Event e)
         {
             InitializeComponent();
             Artist = null;

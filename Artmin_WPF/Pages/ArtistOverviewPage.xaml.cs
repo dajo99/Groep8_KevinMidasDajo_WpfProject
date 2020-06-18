@@ -19,7 +19,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+/*----------------------------
+ * AUTHOR: Kevin Beliën
+ * --------------------------*/
 namespace Artmin_WPF.Pages
 {
     /// <summary>
@@ -112,12 +114,12 @@ namespace Artmin_WPF.Pages
         {
             var artist = (Artist)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new ManageArtistPage(artist, Evt));
+            NavigationService.Navigate(new ArtistEditPage(artist, Evt));
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ManageArtistPage(Evt));
+            NavigationService.Navigate(new ArtistEditPage(Evt));
         }
 
     }
