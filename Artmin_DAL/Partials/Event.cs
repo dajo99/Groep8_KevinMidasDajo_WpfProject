@@ -25,7 +25,7 @@ namespace Artmin_DAL
             {
                 if (columnName == "Name" && string.IsNullOrWhiteSpace(Name))
                 {
-                    return "Event name is required";
+                    return "Event Name is required";
                 }
                 else if (columnName == "EventTypeID" && EventTypeID < 0)
                 {

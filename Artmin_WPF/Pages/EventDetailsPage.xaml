@@ -87,7 +87,6 @@
                         </StackPanel>
                     </DockPanel>
                 </Button>
-                <Separator Style="{StaticResource SeparatorStyle}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

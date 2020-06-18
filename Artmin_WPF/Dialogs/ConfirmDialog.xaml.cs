@@ -15,7 +15,7 @@ namespace Artmin_WPF.Dialogs
         public string MessageText
         {
             get => textMessage.Text;
-            set => textMessage.Text = value;
+            set => textMessage.Text = value.Trim();
         }
         public TextBlock TextBlock
         {

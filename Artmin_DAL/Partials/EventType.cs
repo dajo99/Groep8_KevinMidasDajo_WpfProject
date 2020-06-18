@@ -10,8 +10,8 @@ namespace Artmin_DAL
         private static readonly Dictionary<string, string> EventColors = new Dictionary<string, string>
         {
             { "Fuif",       "Green" },
-            { "Trouwfeest", "Yellow" },
-            { "VAT",        "Red" },
+            { "Trouwfeest", "Pink" },
+            { "VAT",        "Yellow" },
             { "DJ SET",     "Blue" }
         };
 
