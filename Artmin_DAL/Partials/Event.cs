@@ -19,7 +19,6 @@ namespace Artmin_DAL
             EndTime = e.EndTime;
             LocationID = e.LocationID;
             ClientID = e.ClientID;
-            EventType = e.EventType;
         }
 
         public override string this[string columnName]
