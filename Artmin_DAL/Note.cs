@@ -20,6 +20,5 @@ namespace Artmin_DAL
         public int EventID { get; set; }
     
         public virtual Event Event { get; set; }
-
     }
 }

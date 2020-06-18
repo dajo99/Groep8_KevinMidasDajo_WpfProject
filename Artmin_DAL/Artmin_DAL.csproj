@@ -98,18 +98,18 @@
     <Compile Include="Location.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ValidateMail.cs" />
     <Compile Include="Note.cs">
       <DependentUpon>ArtminModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Todo.cs">
+      <DependentUpon>ArtminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ValidateMail.cs" />
     <Compile Include="Partials\Artist.cs" />
     <Compile Include="Partials\Event.cs" />
     <Compile Include="Partials\EventType.cs" />
     <Compile Include="Partials\Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Todo.cs">
-      <DependentUpon>ArtminModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

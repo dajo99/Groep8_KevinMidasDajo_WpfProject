@@ -1,6 +1,7 @@
 ﻿using Artmin_DAL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,17 +23,17 @@ namespace Artmin_WPF.Pages
     public partial class EventDetailsPage : Page
     {
         public Event Event { get; private set; }
-        public int NotesCount { get; set; }
-        public int ArtistsCount { get; set; }
         public EventDetailsPage(Event e)
         {
             Event = e;
-
-            NotesCount = DatabaseOperations.CountNotes(Event);
-            ArtistsCount = DatabaseOperations.CountArtists(Event);
-
             DataContext = this;
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            runNotesCount.Text = DatabaseOperations.CountNotes(Event).ToString();
+            runArtistsCount.Text = DatabaseOperations.CountArtists(Event).ToString();
         }
 
         private void NotesButton_Click(object sender, RoutedEventArgs e)

@@ -10,7 +10,7 @@ namespace Artmin_WPF.Dialogs
         public ErrorDialog(string messageText = "")
         {
             InitializeComponent();
-            MessageText = messageText;
+            if (messageText != "") MessageText = messageText;
         }
         public string MessageText
         {

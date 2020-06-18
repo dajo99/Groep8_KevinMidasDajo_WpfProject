@@ -17,6 +17,8 @@ namespace Artmin_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Event()
         {
+            this.EventTypeID = -1;
+            this.Date = new DateTime(0, DateTimeKind.Unspecified);
             this.Artists = new HashSet<Artist>();
             this.Notes = new HashSet<Note>();
             this.Todos = new HashSet<Todo>();

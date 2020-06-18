@@ -35,7 +35,7 @@ namespace Artmin_WPF.Converters
             { "BlueGrey",   new SolidColorBrush { Color = BlueGreySwatch.BlueGrey500 } }
         };
 
-        private SolidColorBrush GetBrush(string name)
+        public static SolidColorBrush GetBrush(string name)
         {
             return Brushes.TryGetValue(name, out SolidColorBrush brush) ? brush : Brushes["Grey"];
         }

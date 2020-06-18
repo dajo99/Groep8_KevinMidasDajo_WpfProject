@@ -45,6 +45,40 @@ namespace Artmin_DAL
             }
         }
 
+        public static int AddEvent(Event e)
+        {
+            try
+            {
+                using (var entities = new ArtminEntities())
+                {
+                    entities.Events.Add(e);
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
+        public static int UpdateEvent(Event e)
+        {
+            try
+            {
+                using (var entities = new ArtminEntities())
+                {
+                    entities.Entry(e).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
         public static int DeleteEvent(Event e)
         {
             try
@@ -52,6 +86,10 @@ namespace Artmin_DAL
                 using (var entities = new ArtminEntities())
                 {
                     entities.Entry(e).State = EntityState.Deleted;
+
+                    entities.Notes.RemoveRange(entities.Notes.Where(n => n.EventID == e.EventID));
+                    entities.Artists.RemoveRange(entities.Artists.Where(a => a.EventID == e.EventID));
+
                     return entities.SaveChanges();
                 }
             }
