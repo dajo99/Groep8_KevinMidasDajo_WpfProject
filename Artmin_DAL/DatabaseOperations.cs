@@ -110,6 +110,7 @@ namespace Artmin_DAL
             {
                 return entities.Artists
                     .Where(x => x.EventID == e.EventID)
+                    .OrderBy(x => x.Name)
                     .ToList();
             }
         }
