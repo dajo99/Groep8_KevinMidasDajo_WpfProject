@@ -38,7 +38,7 @@
             <StackPanel HorizontalAlignment="Right">
                 <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                             x:Name="btnSave"
-                            Click="btnSave_Click"
+                            Click="SaveButton_Click"
                             Margin="0 5 0 0"
                             Width="80px"
                             Content="Save" />

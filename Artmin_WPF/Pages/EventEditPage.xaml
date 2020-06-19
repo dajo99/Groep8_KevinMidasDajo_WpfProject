@@ -40,7 +40,7 @@
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
 
                 <DatePicker x:Name="dpDate"
-                            SelectedDateChanged="dpDate_SelectedDateChanged"
+                            SelectedDateChanged="DatePicker_SelectedDateChanged"
                             Margin="0 0 0 10"
                             materialDesign:HintAssist.Hint="Date"
                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />

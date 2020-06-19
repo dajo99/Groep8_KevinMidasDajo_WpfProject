@@ -97,7 +97,7 @@ namespace Artmin_WPF.Pages
 
             FillingArtist(artist);
 
-            if (artist.IsGeldig())
+            if (artist.IsValid())
             {
                 //Zorgen dat Nummer overzichtelijk in database komt en het zo teruggehaald kan worden
                 for (int i = 4; i < artist.BankAccountNo.Length; i += 5)
@@ -124,7 +124,7 @@ namespace Artmin_WPF.Pages
         {
             FillingArtist(ViewModel);
 
-            if (ViewModel.IsGeldig())
+            if (ViewModel.IsValid())
             {
                 //Zorgen dat Nummer overzichtelijk in database komt en het zo teruggehaald kan worden
                 for (int i = 4; i < ViewModel.BankAccountNo.Length; i+=5)

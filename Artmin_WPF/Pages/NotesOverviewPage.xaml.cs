@@ -27,7 +27,7 @@ namespace Artmin_WPF.Pages
     //AUTHOR Dajo Vandoninck
     public partial class NotesOverview : Page, INotifyPropertyChanged
     {
-        Event ev;
+        readonly Event ev;
 
         //Om telkens de laatste wijzegingen te kunnen zien die in een andere pagina uitgevoerd werden, had ik propertychanged nodig.
         public event PropertyChangedEventHandler PropertyChanged;
@@ -74,7 +74,7 @@ namespace Artmin_WPF.Pages
             
         }
 
-        private async void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             var note = (Note)((FrameworkElement)sender).DataContext;
 
@@ -96,11 +96,11 @@ namespace Artmin_WPF.Pages
             }
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var note = (Note)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new NotesEditPage(note, ev, Header.Subtitle));
+            NavigationService.Navigate(new NotesEditPage(note, Header.Subtitle));
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

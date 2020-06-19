@@ -29,14 +29,14 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                         <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
                             x:Name="btnDelete"
-                            Click="btnDelete_Click"
+                            Click="DeleteButton_Click"
                             HorizontalAlignment="Left"
                             Margin="0 5 5 0"
                             Width="80px"
                             Content="Delete" />
                         <Button Style="{StaticResource MaterialDesignRaisedButton}"
                             x:Name="btnEdit"
-                            Click="btnEdit_Click"
+                            Click="EditButton_Click"
                             HorizontalAlignment="Right"
                             Margin="5 5 0 0"
                             Width="80px"

@@ -46,15 +46,13 @@
                             </TextBlock>
                         </StackPanel>
                         <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
-                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" >
-                            <Button Style="{StaticResource MaterialDesignIconButton}"
-                                    
-                                    x:Name="BtnClose"
+                        <Button Style="{StaticResource MaterialDesignIconButton}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
                                 ToolTip="Close"
-                                Click ="BtnClose_Click">
-                                <materialDesign:PackIcon Kind="WindowClose" />
-                            </Button>
-                        </StackPanel>
+                                Click ="CloseButton_Click">
+                            <materialDesign:PackIcon Kind="WindowClose" />
+                        </Button>
                     </Grid>
                 </materialDesign:ColorZone>
                 <materialDesign:ColorZone Mode="PrimaryLight" MinHeight="30">

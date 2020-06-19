@@ -26,15 +26,12 @@ namespace Artmin_WPF.Pages
     public partial class NotesEditPage : Page
     {
         bool newNote = false;
-        Note note;
-        Note NewNote = new Note();
-        Event eve;
-        List<Note> notes = new List<Note>();
+        readonly Note note;
+        readonly Note NewNote = new Note();
 
         //constructor voor het opslaan een notitie 
-        public NotesEditPage(Note n, Event evt, string subtitle)
+        public NotesEditPage(Note n, string subtitle)
         {
-            eve = evt;
             note = n;
             InitializeComponent();
             Header.Title = this.Title;
@@ -45,8 +42,10 @@ namespace Artmin_WPF.Pages
         public NotesEditPage(Event evt)
         {
             InitializeComponent();
-            NewNote = new Note();
-            NewNote.EventID = evt.EventID;
+            NewNote = new Note
+            {
+                EventID = evt.EventID
+            };
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -78,7 +77,7 @@ namespace Artmin_WPF.Pages
             return "";
         }
 
-        private async void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             string foutmelding = Valideer("Title");
             foutmelding += Valideer("Description");
@@ -92,7 +91,7 @@ namespace Artmin_WPF.Pages
                     note.Description = DescriptionNote.Text;
                     note.creationdate = DateTime.Now;
 
-                    if (note.IsGeldig())
+                    if (note.IsValid())
                     {
 
 
@@ -123,7 +122,7 @@ namespace Artmin_WPF.Pages
                     NewNote.Title = TitleNote.Text;
                     NewNote.Description = DescriptionNote.Text;
                     NewNote.creationdate = DateTime.Now;
-                    if (NewNote.IsGeldig())
+                    if (NewNote.IsValid())
                     {
 
                         int ok = DatabaseOperations.AddNote(NewNote);

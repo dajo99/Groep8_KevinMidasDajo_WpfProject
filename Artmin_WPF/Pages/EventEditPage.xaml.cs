@@ -14,7 +14,7 @@ namespace Artmin_WPF.Pages
     /// </summary>
     public partial class EventEditPage : Page
     {
-        private Event Event;
+        private readonly Event Event;
         public Event ViewModel { get; private set; }
         public EventEditPage(Event e = null)
         {
@@ -39,7 +39,7 @@ namespace Artmin_WPF.Pages
 
         private async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.IsGeldig())
+            if (ViewModel.IsValid())
             {
                 if (Event != null)
                 {
@@ -66,7 +66,7 @@ namespace Artmin_WPF.Pages
             }
         }
 
-        private void dpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             ViewModel.Date = dpDate.SelectedDate is DateTime date ? date : DateTime.MinValue;
         }

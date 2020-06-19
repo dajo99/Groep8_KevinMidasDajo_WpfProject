@@ -20,6 +20,7 @@ namespace Artmin_WPF.Controls
             get => GetValue(TitleProperty) as string;
             set => SetValue(TitleProperty, value);
         }
+
         public string Subtitle
         {
             get => GetValue(SubtitleProperty) as string;
@@ -50,6 +51,11 @@ namespace Artmin_WPF.Controls
             InitializeComponent();
         }
 
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             if (Utilities.FindParent<Frame>(this) is Frame frame && frame.CanGoBack)
@@ -67,12 +73,6 @@ namespace Artmin_WPF.Controls
             {
                 BackButtonText = journalEntry.Name;
             }
-        }
-
-
-        private void BtnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
         }
     }
 }

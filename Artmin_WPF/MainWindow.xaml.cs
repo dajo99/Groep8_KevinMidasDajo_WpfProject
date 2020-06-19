@@ -26,7 +26,7 @@ namespace Artmin_WPF
             InitializeComponent();
         }
 
-        private void mouse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             //Zorgen dat window verplaatst kan worden
             OnMouseLeftButtonDown(e);
