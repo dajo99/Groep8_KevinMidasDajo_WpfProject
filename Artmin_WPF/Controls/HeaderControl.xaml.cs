@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Artmin_WPF.Dialogs;
+using MaterialDesignThemes.Wpf;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -70,9 +72,15 @@ namespace Artmin_WPF.Controls
         }
 
 
-        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        private async void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            var afsluiten = (bool)await DialogHost.Show(new ConfirmDialog("Are you sure you want to exit?"));
+
+            if (afsluiten == true)
+            {
+                Application.Current.Shutdown();
+            }
+            
         }
     }
 }
