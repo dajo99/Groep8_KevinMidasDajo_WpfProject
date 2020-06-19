@@ -85,6 +85,17 @@
                                 <Run Text="{Binding EventDetails.ArtistsCount, FallbackValue=0}" /> Artists
                             </TextBlock>
                         </StackPanel>
+                        <materialDesign:PackIcon Kind="CheckBold" Foreground="{StaticResource GreenPrimaryHueMidBrush}" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                            <materialDesign:PackIcon.Style>
+                                <Style TargetType="materialDesign:PackIcon">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding EventDetails.ArtistsCount}" Value="0">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </materialDesign:PackIcon.Style>
+                        </materialDesign:PackIcon>
                     </DockPanel>
                 </Button>
             </StackPanel>

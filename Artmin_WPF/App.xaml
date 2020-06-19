@@ -11,9 +11,11 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Grey.Named.Primary.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Red.Named.Primary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <SolidColorBrush x:Key="RedPrimaryHueMidBrush" Color="{StaticResource RedPrimary500}" />
+            <SolidColorBrush x:Key="GreenPrimaryHueMidBrush" Color="{StaticResource GreenPrimary500}" />
             <SolidColorBrush x:Key="GreyPrimaryHueLightBrush" Color="{StaticResource GreyPrimary200}" />
             <SolidColorBrush x:Key="GreyPrimaryHueMidBrush" Color="{StaticResource GreyPrimary500}" />
             <SolidColorBrush x:Key="GreyPrimaryHueDarkBrush" Color="{StaticResource GreyPrimary700}" />
