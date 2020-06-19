@@ -66,6 +66,7 @@
                HorizontalContentAlignment="Center"
                ScrollViewer.CanContentScroll="False"/>
 
-        <Label x:Name="lblNoArtist" Content="There are no artists to display" HorizontalContentAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Visibility="Hidden"></Label>
+        <Label x:Name="lblNoArtist" Content="NO RESULTS FOUND" FontSize="25" Foreground="{StaticResource GreyPrimaryHueMidBrush}" HorizontalContentAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Visibility="Hidden"></Label>
+       
     </Grid>
 </Page>
