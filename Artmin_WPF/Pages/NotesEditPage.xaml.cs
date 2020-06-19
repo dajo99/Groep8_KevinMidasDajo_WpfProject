@@ -90,7 +90,7 @@ namespace Artmin_WPF.Pages
                 {
                     note.Title = TitleNote.Text;
                     note.Description = DescriptionNote.Text;
-                    note.creationdate = DateTime.Today;
+                    note.creationdate = DateTime.Now;
 
                     if (note.IsGeldig())
                     {
@@ -122,7 +122,7 @@ namespace Artmin_WPF.Pages
 
                     NewNote.Title = TitleNote.Text;
                     NewNote.Description = DescriptionNote.Text;
-                    NewNote.creationdate = DateTime.Today;
+                    NewNote.creationdate = DateTime.Now;
                     if (NewNote.IsGeldig())
                     {
 

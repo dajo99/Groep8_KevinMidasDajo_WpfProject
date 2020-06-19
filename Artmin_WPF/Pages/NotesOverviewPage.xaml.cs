@@ -63,6 +63,15 @@ namespace Artmin_WPF.Pages
         {
             Notes = DatabaseOperations.GetNotes(ev.EventID);
             ListNotes.Items.Refresh();
+            if (Notes.Count == 0)
+            {
+                lol.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                lol.Visibility = Visibility.Hidden;
+            }
+            
         }
 
         private async void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -75,6 +84,10 @@ namespace Artmin_WPF.Pages
                 Notes.Remove(note);
                 ListNotes.Items.Refresh();
                 await DialogHost.Show(new ErrorDialog("The note has been deleted!"));
+                if (Notes.Count == 0)
+                {
+                    lol.Visibility = Visibility.Visible;
+                }
             }
             else
             {

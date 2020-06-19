@@ -180,7 +180,7 @@ namespace Artmin_DAL
             using (var entities = new ArtminEntities())
             {
                 return entities.Notes
-                            .OrderBy(e => e.NoteID)
+                            .OrderByDescending(e => e.creationdate)
                             .Include(e => e.Event)
                             .Where(e => e.Event.EventID == id)
                             .ToList();

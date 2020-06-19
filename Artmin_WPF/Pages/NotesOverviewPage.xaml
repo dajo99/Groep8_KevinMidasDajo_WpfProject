@@ -22,7 +22,7 @@
                 <StackPanel Orientation="Vertical" Width="200">
                     <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="18"/>
                     <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}" Text="Last saved: ">
-                        <Run Text="{Binding creationdate, StringFormat={}{0:dd/MM/yyyy}}" />
+                        <Run Text="{Binding creationdate, StringFormat={}{0:dd/MM/yyyy HH:mm}}" />
                     </TextBlock>
                     <Separator/>
                     <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
@@ -59,6 +59,8 @@
                 <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
             </Button>
         </controls:HeaderControl>
+
+        <TextBlock x:Name="lol" Text="No notes available..." Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <ListBox x:Name="ListNotes" Grid.Row="1"
                  ScrollViewer.CanContentScroll="False"
