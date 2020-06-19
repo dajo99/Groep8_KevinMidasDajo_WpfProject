@@ -49,8 +49,6 @@ namespace Artmin_WPF.Pages
             Evt = e;
         }
 
-
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //Combobox linken aan dictionary (2 waardes in 1 listitem)
@@ -113,7 +111,7 @@ namespace Artmin_WPF.Pages
                 }
                 else
                 {
-                    await DialogHost.Show(new ErrorDialog("Artiest is niet toegevoegd!"));
+                    await DialogHost.Show(new ErrorDialog("Artist has not been added!"));
                 }
             }
             else
@@ -143,7 +141,7 @@ namespace Artmin_WPF.Pages
                 }
                 else
                 {
-                    await DialogHost.Show(new ErrorDialog("Artiest is niet gewijzigd!"));
+                    await DialogHost.Show(new ErrorDialog("Artist has not been edited!"));
                 }
             }
             else

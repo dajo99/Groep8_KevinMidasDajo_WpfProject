@@ -14,12 +14,12 @@ namespace Artmin_WPF.Dialogs
         }
         public string MessageText
         {
-            get { return textMessage.Text; }
-            set { textMessage.Text = value; }
+            get => textMessage.Text;
+            set => textMessage.Text = value.Trim();
         }
         public TextBlock TextBlock
         {
-            get { return textMessage; }
+            get => textMessage;
         }
     }
 }

@@ -36,17 +36,17 @@ namespace Artmin_DAL
             {
                 if (columnName == "Name" && string.IsNullOrWhiteSpace(Name))
                 {
-                    return "Gelieve de artiestennaam in te geven!";
+                    return "Artist name is required!";
                 }
                 if (columnName == "Phone" && (Phone.Length < 8 || !new PhoneAttribute().IsValid(Phone)))
                 {
-                    return "Telefoonnummer is niet correct ingevuld!";
+                    return "the specified phone number is incorrect!";
                 }
                 if (columnName == "Email")
                 {
                     if (string.IsNullOrWhiteSpace(Email))
                     {
-                        return "Gelieve uw e-mailadres in te geven!";
+                        return "Email is a required field!";
                     }
                     else
                     {
@@ -54,7 +54,7 @@ namespace Artmin_DAL
                         task.Wait();
                         if (!task.Result)
                         {
-                            return "Email is niet correct ingevuld!";
+                            return "the specified Email is incorrect!";
                         }
                     }
                 }
@@ -65,11 +65,11 @@ namespace Artmin_DAL
 
                     if (string.IsNullOrWhiteSpace(BankAccountNo))
                     {
-                        return "Gelieve het Iban-nummer in te geven!";
+                        return "IBAN is a required field!";
                     }
                     else if (!validationResult.IsValid)
                     {
-                        return "De opgegeven IBAN-nummer bestaat niet!";
+                        return "the specified IBAN is incorrect!";
                     }           
                 }
                 return "";

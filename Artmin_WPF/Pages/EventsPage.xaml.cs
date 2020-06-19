@@ -14,7 +14,7 @@ namespace Artmin_WPF.Pages
     /// </summary>
     public partial class EventsPage : Page
     {
-        public ObservableCollection<Event> Events { get; set; }
+        public ObservableCollection<Event> Events { get; private set; }
         public EventsPage()
         {
             DataContext = this;

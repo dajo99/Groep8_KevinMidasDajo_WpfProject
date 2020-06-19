@@ -19,7 +19,7 @@ namespace Artmin_WPF.Pages
         public EventEditPage(Event e = null)
         {
             Event = e;
-            ViewModel = (e == null) ? new Event() : new Event(e);
+            ViewModel = e == null ? new Event() : new Event(e);
 
             DataContext = this;
             InitializeComponent();

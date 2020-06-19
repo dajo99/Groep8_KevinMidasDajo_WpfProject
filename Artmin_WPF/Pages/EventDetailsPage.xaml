@@ -43,7 +43,7 @@
                         <StackPanel VerticalAlignment="Center" Margin="15 0">
                             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">NOTES</TextBlock>
                             <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}">
-                                <Run x:Name="runNotesCount" Text="0" /> Notes
+                                <Run Text="{Binding EventDetails.NotesCount, FallbackValue=0}" /> Notes
                             </TextBlock>
                         </StackPanel>
                     </DockPanel>
@@ -82,12 +82,11 @@
                         <StackPanel VerticalAlignment="Center" Margin="15 0">
                             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">ARTISTS</TextBlock>
                             <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}">
-                                <Run x:Name="runArtistsCount" Text="0" /> Artists
+                                <Run Text="{Binding EventDetails.ArtistsCount, FallbackValue=0}" /> Artists
                             </TextBlock>
                         </StackPanel>
                     </DockPanel>
                 </Button>
-                <Separator Style="{StaticResource SeparatorStyle}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

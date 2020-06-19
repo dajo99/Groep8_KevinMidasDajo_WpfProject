@@ -15,44 +15,24 @@ namespace Artmin_WPF.Controls
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public string Title
         {
-            get
-            {
-                return (string)GetValue(TitleProperty);
-            }
-            set
-            {
-                SetValue(TitleProperty, value);
-            }
+            get => GetValue(TitleProperty) as string;
+            set => SetValue(TitleProperty, value);
         }
         public string Subtitle
         {
-            get
-            {
-                return (string)GetValue(SubtitleProperty);
-            }
-            set
-            {
-                SetValue(SubtitleProperty, value);
-            }
+            get => GetValue(SubtitleProperty) as string;
+            set => SetValue(SubtitleProperty, value);
         }
 
         public string BackButtonText
         {
-            get
-            {
-                return (string)GetValue(BackButtonTextProperty);
-            }
+            get => GetValue(BackButtonTextProperty) as string;
             set
             {
                 SetValue(BackButtonTextProperty, value);
-                NotifyPropertyChanged();
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BackButtonText"));
             }
         }
 
@@ -65,7 +45,6 @@ namespace Artmin_WPF.Controls
         private static readonly DependencyProperty BackButtonTextProperty =
             DependencyProperty.Register("BackButtonText", typeof(string), typeof(HeaderControl), new PropertyMetadata(string.Empty));
 
-
         public HeaderControl()
         {
             InitializeComponent();
@@ -73,8 +52,7 @@ namespace Artmin_WPF.Controls
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Utilities.FindParent<Frame>(this) is Frame frame
-                && frame.CanGoBack)
+            if (Utilities.FindParent<Frame>(this) is Frame frame && frame.CanGoBack)
             {
                 frame.GoBack();
             }
