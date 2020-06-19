@@ -8,6 +8,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+/*----------------------------
+ * AUTHOR: Kevin Beliën
+ * --------------------------*/
+
 namespace Artmin_DAL
 {
     public static class ValidateMail
@@ -16,16 +20,9 @@ namespace Artmin_DAL
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(email))
-                {
-                    var mailAddress = new MailAddress(email);
-                    var host = mailAddress.Host;
-                    return CheckDnsEntriesAsync(host);
-                }
-                else 
-                {
-                    return Task.FromResult(false);
-                }
+                var mailAddress = new MailAddress(email);
+                var host = mailAddress.Host;
+                return CheckDnsEntriesAsync(host);
             }
             catch (FormatException)
             {

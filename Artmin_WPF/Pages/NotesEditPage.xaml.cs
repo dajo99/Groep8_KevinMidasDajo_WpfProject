@@ -1,4 +1,6 @@
 ﻿using Artmin_DAL;
+using Artmin_WPF.Dialogs;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,20 +21,17 @@ namespace Artmin_WPF.Pages
     /// <summary>
     /// Interaction logic for NotesEditPage.xaml
     /// </summary>
-    
+
     //AUTHOR Dajo Vandoninck
     public partial class NotesEditPage : Page
     {
         bool newNote = false;
-        Note note;
-        Note NewNote = new Note();
-        Event eve;
-        List<Note> notes = new List<Note>();
+        readonly Note note;
+        readonly Note NewNote = new Note();
 
         //constructor voor het opslaan een notitie 
-        public NotesEditPage(Note n, Event evt, string subtitle)
+        public NotesEditPage(Note n, string subtitle)
         {
-            eve = evt;
             note = n;
             InitializeComponent();
             Header.Title = this.Title;
@@ -43,8 +42,10 @@ namespace Artmin_WPF.Pages
         public NotesEditPage(Event evt)
         {
             InitializeComponent();
-            NewNote = new Note();
-            NewNote.EventID = evt.EventID;
+            NewNote = new Note
+            {
+                EventID = evt.EventID
+            };
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -72,11 +73,11 @@ namespace Artmin_WPF.Pages
                 return "Er is geen omschrijving!" + Environment.NewLine;
             }
 
-            
+
             return "";
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             string foutmelding = Valideer("Title");
             foutmelding += Valideer("Description");
@@ -88,70 +89,71 @@ namespace Artmin_WPF.Pages
                 {
                     note.Title = TitleNote.Text;
                     note.Description = DescriptionNote.Text;
+                    note.creationdate = DateTime.Now;
 
-                    if (note.IsGeldig())
+                    if (note.IsValid())
                     {
-                        
-                        
-                            int ok = DatabaseOperations.AanpassenNote(note);
-                            if (ok > 0)
-                            {
-
-                                MessageBox.Show("Note has been saved!", "Successful!", MessageBoxButton.OK, MessageBoxImage.None);
 
 
-                                NavigationService.GoBack();
+                        int ok = DatabaseOperations.AanpassenNote(note);
+                        if (ok > 0)
+                        {
+                            await DialogHost.Show(new ErrorDialog("Note has been saved!"));
 
-                            }
-                            else
-                            {
-                                MessageBox.Show("Note has not been saved!", "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
-                            }
+                            NavigationService.GoBack();
 
-                        
+                        }
+                        else
+                        {
+                            await DialogHost.Show(new ErrorDialog("Note has not been saved!"));
+                        }
+
+
                     }
                     else
                     {
-                        MessageBox.Show(note.Error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        await DialogHost.Show(new ErrorDialog(note.Error));
+                        
                     }
                 }
                 else
                 {
-                    
+
                     NewNote.Title = TitleNote.Text;
                     NewNote.Description = DescriptionNote.Text;
-                    if (NewNote.IsGeldig())
+                    NewNote.creationdate = DateTime.Now;
+                    if (NewNote.IsValid())
                     {
-                      
-                            int ok = DatabaseOperations.AddNote(NewNote);
-                            if (ok > 0)
-                            {
-                            MessageBox.Show("Note has been saved!", "Successful!", MessageBoxButton.OK, MessageBoxImage.None);
+
+                        int ok = DatabaseOperations.AddNote(NewNote);
+                        if (ok > 0)
+                        {
+                            await DialogHost.Show(new ErrorDialog("Note has been saved!"));
                             NavigationService.GoBack();
-                            
 
-                            }
-                            else
-                            {
 
-                                MessageBox.Show("Note has not been saved!", "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
-                            }
-                        
+                        }
+                        else
+                        {
+
+                            await DialogHost.Show(new ErrorDialog("Note has not been saved!"));
+                        }
+
 
                     }
                     else
                     {
-                        MessageBox.Show(note.Error, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        await DialogHost.Show(new ErrorDialog(NewNote.Error));
                     }
                 }
-                
 
-                
+
+
 
             }
             else
             {
-                MessageBox.Show(foutmelding, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                await DialogHost.Show(new ErrorDialog(foutmelding));
             }
         }
 

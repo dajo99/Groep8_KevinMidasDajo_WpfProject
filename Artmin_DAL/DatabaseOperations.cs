@@ -9,21 +9,20 @@ namespace Artmin_DAL
 {
     public static class DatabaseOperations
     {
-        public static int CountNotes(Event e)
+        //AUTHOR Midas
+        public static EventDetailsVM GetEventDetails(Event e)
         {
             using (var entities = new ArtminEntities())
             {
-                return entities.Notes.Where(n => n.EventID == e.EventID).Count();
-            }
-        }
-        public static int CountArtists(Event e)
-        {
-            using (var entities = new ArtminEntities())
-            {
-                return entities.Artists.Where(a => a.EventID == e.EventID).Count();
+                return new EventDetailsVM
+                {
+                    NotesCount   = entities.Notes  .Where(n => n.EventID == e.EventID).Count(),
+                    ArtistsCount = entities.Artists.Where(a => a.EventID == e.EventID).Count()
+                };
             }
         }
 
+        //AUTHOR Midas
         public static List<EventType> GetEventTypes()
         {
             using (var entities = new ArtminEntities())
@@ -34,6 +33,7 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Midas
         public static List<Event> GetEvents()
         {
             using (var entities = new ArtminEntities())
@@ -45,6 +45,43 @@ namespace Artmin_DAL
             }
         }
 
+        //AUTHOR Midas
+        public static int AddEvent(Event e)
+        {
+            try
+            {
+                using (var entities = new ArtminEntities())
+                {
+                    entities.Events.Add(e);
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
+        //AUTHOR Midas
+        public static int UpdateEvent(Event e)
+        {
+            try
+            {
+                using (var entities = new ArtminEntities())
+                {
+                    entities.Entry(e).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
+        //AUTHOR Midas
         public static int DeleteEvent(Event e)
         {
             try
@@ -52,6 +89,10 @@ namespace Artmin_DAL
                 using (var entities = new ArtminEntities())
                 {
                     entities.Entry(e).State = EntityState.Deleted;
+
+                    entities.Notes.RemoveRange(entities.Notes.Where(n => n.EventID == e.EventID));
+                    entities.Artists.RemoveRange(entities.Artists.Where(a => a.EventID == e.EventID));
+
                     return entities.SaveChanges();
                 }
             }
@@ -69,6 +110,7 @@ namespace Artmin_DAL
             {
                 return entities.Artists
                     .Where(x => x.EventID == e.EventID)
+                    .OrderBy(x => x.Name)
                     .ToList();
             }
         }
@@ -134,7 +176,7 @@ namespace Artmin_DAL
             using (var entities = new ArtminEntities())
             {
                 return entities.Notes
-                            .OrderBy(e => e.NoteID)
+                            .OrderByDescending(e => e.creationdate)
                             .Include(e => e.Event)
                             .Where(e => e.Event.EventID == id)
                             .ToList();

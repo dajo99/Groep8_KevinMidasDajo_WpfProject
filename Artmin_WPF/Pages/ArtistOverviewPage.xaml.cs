@@ -19,33 +19,45 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+/*----------------------------
+ * AUTHOR: Kevin Beliën
+ * --------------------------*/
 namespace Artmin_WPF.Pages
 {
     /// <summary>
     /// Interaction logic for ArtistOverviewPage.xaml
     /// </summary>
-    public partial class ArtistOverviewPage : Page
+    public partial class ArtistOverviewPage : Page, INotifyPropertyChanged
     {
-        //Property voor artiestenlijst
-        public ObservableCollection<Artist> Artists { get; set; }
-        public Event evt { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        //Property voor artiestenlijst die automatisch update
+        private ObservableCollection<Artist> artists;
+        public ObservableCollection<Artist> Artists
+        {
+            get
+            {
+                return artists;
+            }
+            set
+            {
+                artists = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Event Evt { get; private set; }
 
         public ArtistOverviewPage(Event e)
         {
             InitializeComponent();
 
-            //lijst van artiesten opvullen
-            List<Artist> lijst = DatabaseOperations.GetArtists(e);
-
-            //lijst maken die met binding update
-            Artists = new ObservableCollection<Artist>(lijst);
-
-            //Subtitle updaten met eventnaam
-            evt = e;
-
-            lbArtists.Items.Refresh();
-
+            Evt = e;
         }
 
         private async void BtnDelete_Click(object sender, RoutedEventArgs e)
@@ -59,10 +71,11 @@ namespace Artmin_WPF.Pages
                 if (DatabaseOperations.DeleteArtist(artist) > 0)
                 {
                     Artists.Remove(artist);
+                    ToggleVisibility();
                 }
                 else
                 {
-                    await DialogHost.Show(new ErrorDialog("De artiest is niet verwijderd!"));
+                    await DialogHost.Show(new ErrorDialog("The artist has not been removed!"));
                 }
             }
 
@@ -71,8 +84,15 @@ namespace Artmin_WPF.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = this;
-            cntrlHeader.Subtitle = evt.Name;
-            lbArtists.Items.Refresh();
+            cntrlHeader.Subtitle = Evt.Name;
+
+            //lijst van artiesten opvullen
+            List<Artist> lijst = DatabaseOperations.GetArtists(Evt);
+
+            //lijst maken die met binding update
+            Artists = new ObservableCollection<Artist>(lijst);
+
+            ToggleVisibility();
 
         }
 
@@ -80,12 +100,29 @@ namespace Artmin_WPF.Pages
         {
             var artist = (Artist)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new ManageArtistPage(artist,evt));
+            NavigationService.Navigate(new ArtistEditPage(artist, Evt));
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ManageArtistPage(evt));
+            NavigationService.Navigate(new ArtistEditPage(Evt));
+
+
         }
+
+        private void ToggleVisibility()
+        {
+            if (Artists.Count == 0)
+            {
+                lbArtists.Visibility = Visibility.Hidden;
+                lblNoArtist.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                lbArtists.Visibility = Visibility.Visible;
+                lblNoArtist.Visibility = Visibility.Hidden;
+            }
+        }
+
     }
 }

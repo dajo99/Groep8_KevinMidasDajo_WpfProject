@@ -11,12 +11,92 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Grey.Named.Primary.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Red.Named.Primary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <SolidColorBrush x:Key="RedPrimaryHueMidBrush" Color="{StaticResource RedPrimary500}" />
+            <SolidColorBrush x:Key="GreenPrimaryHueMidBrush" Color="{StaticResource GreenPrimary500}" />
             <SolidColorBrush x:Key="GreyPrimaryHueLightBrush" Color="{StaticResource GreyPrimary200}" />
             <SolidColorBrush x:Key="GreyPrimaryHueMidBrush" Color="{StaticResource GreyPrimary500}" />
             <SolidColorBrush x:Key="GreyPrimaryHueDarkBrush" Color="{StaticResource GreyPrimary700}" />
+
+            <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MaterialDesignScrollBar}">
+                <Setter Property="materialDesign:ScrollBarAssist.ThumbCornerRadius" Value="0"/>
+                <Setter Property="materialDesign:ScrollBarAssist.ButtonsVisibility" Value="Collapsed"/>
+                <Setter Property="materialDesign:ScrollBarAssist.ThumbWidth" Value="10"/>
+                <Setter Property="Margin" Value="0 3" />
+            </Style>
+
+            <Style x:Key="MaterialDesignOutlinedButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="2" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ButtonBase}">
+                            <Grid>
+                                <Border Background="{TemplateBinding Background}"
+                                x:Name="border" 
+                                CornerRadius="{Binding Path=(materialDesign:ButtonAssist.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Border.Resources>
+                                        <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{DynamicResource PrimaryHueMidBrushColor}" Opacity="0.06"/>
+                                    </Border.Resources>
+                                    <materialDesign:Ripple Content="{TemplateBinding Content}" 
+                                        ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                        Focusable="False"
+                                        ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Padding="{TemplateBinding Padding}" 
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                        <materialDesign:Ripple.Clip>
+                                            <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                                <Binding ElementName="border" Path="ActualWidth" />
+                                                <Binding ElementName="border" Path="ActualHeight" />
+                                                <Binding ElementName="border" Path="CornerRadius" />
+                                                <Binding ElementName="border" Path="BorderThickness" />
+                                            </MultiBinding>
+                                        </materialDesign:Ripple.Clip>
+                                    </materialDesign:Ripple>
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" TargetName="border" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Opacity" Value="0.23"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ListBoxItemContainerStyle" TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BorderBrush" Value="{StaticResource MaterialDesignDivider}" />
+                <Setter Property="BorderThickness" Value="0 0 0 1" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="{StaticResource GreyPrimaryHueLightBrush}" />
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="{StaticResource GreyPrimaryHueLightBrush}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

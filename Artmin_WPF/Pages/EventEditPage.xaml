@@ -21,42 +21,49 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:HeaderControl />
+        <controls:HeaderControl Subtitle="{Binding ViewModel.Name}" />
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical" Margin="20" MaxWidth="200" VerticalAlignment="Center">
+                
                 <TextBox x:Name="txtName"
-                         Text="{Binding Path=Model.Name, Mode=TwoWay}"
+                         Text="{Binding Path=ViewModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Margin="0 0 0 10"
                          materialDesign:HintAssist.Hint="Event Name"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 
                 <ComboBox x:Name="cbType"
-                          SelectedItem="{Binding Path=Model.EventType}"
-                      Margin="0 0 0 10"
-                          IsEditable="True"
-                      materialDesign:HintAssist.Hint="Type"
-                      Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                          SelectedValue="{Binding Path=ViewModel.EventTypeID, Mode=TwoWay}"
+                          SelectedValuePath="EventTypeID"
+                          Margin="0 0 0 10"
+                          materialDesign:HintAssist.Hint="Type"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
 
                 <DatePicker x:Name="dpDate"
-                        Margin="0 0 0 10"
-                        materialDesign:HintAssist.Hint="Date"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                            SelectedDateChanged="DatePicker_SelectedDateChanged"
+                            Margin="0 0 0 10"
+                            materialDesign:HintAssist.Hint="Date"
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
 
                 <materialDesign:TimePicker x:Name="tpStartTime"
-                                       Margin="0 0 0 10"
-                                       materialDesign:HintAssist.Hint="Start Time"
-                                       Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
+                                           Text="{Binding Path=ViewModel.BeginTime, Mode=TwoWay}"
+                                           Is24Hours="True"
+                                           Margin="0 0 0 10"
+                                           materialDesign:HintAssist.Hint="Start Time"
+                                           Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
 
                 <materialDesign:TimePicker x:Name="tpEndTime"
-                                       Margin="0 0 0 40"
-                                       materialDesign:HintAssist.Hint="End Time"
-                                       Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
+                                           Text="{Binding Path=ViewModel.EndTime, Mode=TwoWay}"
+                                           Is24Hours="True"
+                                           Margin="0 0 0 40"
+                                           materialDesign:HintAssist.Hint="End Time"
+                                           Style="{StaticResource MaterialDesignFloatingHintTimePicker}" />
 
                 <Button Content="Save"
-                    IsDefault="True"
-                    Click="SaveButton_Click"
-                    Style="{StaticResource MaterialDesignRaisedButton}" />
+                        IsDefault="True"
+                        Click="SaveButton_Click"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+                
             </StackPanel>
         </ScrollViewer>
     </Grid>

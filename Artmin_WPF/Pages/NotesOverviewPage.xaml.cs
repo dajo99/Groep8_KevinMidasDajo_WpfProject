@@ -1,4 +1,6 @@
 ﻿using Artmin_DAL;
+using Artmin_WPF.Dialogs;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +27,7 @@ namespace Artmin_WPF.Pages
     //AUTHOR Dajo Vandoninck
     public partial class NotesOverview : Page, INotifyPropertyChanged
     {
-        Event ev;
+        readonly Event ev;
 
         //Om telkens de laatste wijzegingen te kunnen zien die in een andere pagina uitgevoerd werden, had ik propertychanged nodig.
         public event PropertyChangedEventHandler PropertyChanged;
@@ -61,9 +63,18 @@ namespace Artmin_WPF.Pages
         {
             Notes = DatabaseOperations.GetNotes(ev.EventID);
             ListNotes.Items.Refresh();
+            if (Notes.Count == 0)
+            {
+                lol.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                lol.Visibility = Visibility.Hidden;
+            }
+            
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             var note = (Note)((FrameworkElement)sender).DataContext;
 
@@ -72,19 +83,24 @@ namespace Artmin_WPF.Pages
             {
                 Notes.Remove(note);
                 ListNotes.Items.Refresh();
-
+                await DialogHost.Show(new ErrorDialog("The note has been deleted!"));
+                if (Notes.Count == 0)
+                {
+                    lol.Visibility = Visibility.Visible;
+                }
             }
             else
             {
-                MessageBox.Show("The note has not been deleted!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                await DialogHost.Show(new ErrorDialog("The note has not been deleted!"));
+                
             }
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             var note = (Note)((FrameworkElement)sender).DataContext;
 
-            NavigationService.Navigate(new NotesEditPage(note, ev, Header.Subtitle));
+            NavigationService.Navigate(new NotesEditPage(note, Header.Subtitle));
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

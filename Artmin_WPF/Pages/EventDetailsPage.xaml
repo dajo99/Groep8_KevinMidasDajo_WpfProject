@@ -6,13 +6,14 @@
       xmlns:local="clr-namespace:Artmin_WPF.Pages"
       xmlns:controls="clr-namespace:Artmin_WPF.Controls"
       mc:Ignorable="d" 
-            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       TextElement.FontWeight="Regular"
       TextElement.FontSize="13"
       TextOptions.TextFormattingMode="Ideal" 
       TextOptions.TextRenderingMode="Auto"  
       d:DesignHeight="568" d:DesignWidth="320"
+      Loaded="Page_Loaded"
       Title="Event Details">
     <Page.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
@@ -42,7 +43,7 @@
                         <StackPanel VerticalAlignment="Center" Margin="15 0">
                             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">NOTES</TextBlock>
                             <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}">
-                                <Run Text="{Binding NotesCount, FallbackValue=0}" /> Notes
+                                <Run Text="{Binding EventDetails.NotesCount, FallbackValue=0}" /> Notes
                             </TextBlock>
                         </StackPanel>
                     </DockPanel>
@@ -81,12 +82,22 @@
                         <StackPanel VerticalAlignment="Center" Margin="15 0">
                             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">ARTISTS</TextBlock>
                             <TextBlock Style="{StaticResource MaterialDesignOverlineTextBlock}">
-                                <Run Text="{Binding ArtistsCount, FallbackValue=0}" /> Artists
+                                <Run Text="{Binding EventDetails.ArtistsCount, FallbackValue=0}" /> Artists
                             </TextBlock>
                         </StackPanel>
+                        <materialDesign:PackIcon Kind="CheckBold" Foreground="{StaticResource GreenPrimaryHueMidBrush}" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right">
+                            <materialDesign:PackIcon.Style>
+                                <Style TargetType="materialDesign:PackIcon">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding EventDetails.ArtistsCount}" Value="0">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </materialDesign:PackIcon.Style>
+                        </materialDesign:PackIcon>
                     </DockPanel>
                 </Button>
-                <Separator Style="{StaticResource SeparatorStyle}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -6,13 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Artmin_DAL
-{
-    //AUTHOR Kevin en Dajo 
+{ 
     public abstract class BaseClass : IDataErrorInfo
     {
         public abstract string this[string columnName] { get; }
 
-        public bool IsGeldig()
+        public bool IsValid()
         {
             return string.IsNullOrWhiteSpace(Error);
         }
@@ -20,17 +19,18 @@ namespace Artmin_DAL
         {
             get
             {
-                string foutmeldingen = "";
+                string errors = "";
 
-                foreach (var item in this.GetType().GetProperties())
+                foreach (var item in GetType().GetProperties())
                 {
-                    string fout = this[item.Name];
-                    if (!string.IsNullOrWhiteSpace(fout))
+                    string error = this[item.Name];
+                    if (!string.IsNullOrWhiteSpace(error))
                     {
-                        foutmeldingen += fout + Environment.NewLine;
+                        errors += error + Environment.NewLine;
                     }
                 }
-                return foutmeldingen;
+
+                return errors;
             }
         }
     }

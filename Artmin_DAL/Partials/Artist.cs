@@ -7,6 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using IbanNet;
 
+/*----------------------------
+ * AUTHOR: Kevin Beliën
+ * --------------------------*/
+
 namespace Artmin_DAL
 {
     public partial class Artist : BaseClass
@@ -32,33 +36,40 @@ namespace Artmin_DAL
             {
                 if (columnName == "Name" && string.IsNullOrWhiteSpace(Name))
                 {
-                    return "Gelieve de artiestennaam in te vullen!";
+                    return "Artist name is required!";
                 }
-                if (columnName == "Phone" && !new PhoneAttribute().IsValid(Phone))
+                if (columnName == "Phone" && (Phone.Length < 8 || !new PhoneAttribute().IsValid(Phone)))
                 {
-                    return "Telefoonnumer is niet correct ingevuld!";
+                    return "the specified phone number is incorrect!";
                 }
-                /*if (columnName == "Email" && !new EmailAddressAttribute().IsValid(Email))
-                {
-                    return "Email is niet correct!";
-                }*/
                 if (columnName == "Email")
                 {
-                    var task = ValidateMail.MailIsValidAsync(Email);
-                    task.Wait();
-
-                    if (!task.Result)
+                    if (string.IsNullOrWhiteSpace(Email))
                     {
-                        return "Email is niet correct ingevuld!";
-                    }          
+                        return "Email is a required field!";
+                    }
+                    else
+                    {
+                        var task = ValidateMail.MailIsValidAsync(Email);
+                        task.Wait();
+                        if (!task.Result)
+                        {
+                            return "the specified Email is incorrect!";
+                        }
+                    }
                 }
                 if (columnName == "BankAccountNo")
                 {
                     IIbanValidator validator = new IbanValidator();
                     IbanNet.ValidationResult validationResult = validator.Validate(BankAccountNo);
-                    if (!validationResult.IsValid)
+
+                    if (string.IsNullOrWhiteSpace(BankAccountNo))
                     {
-                        return "De opgegeven IBAN-nummer bestaat niet!";
+                        return "IBAN is a required field!";
+                    }
+                    else if (!validationResult.IsValid)
+                    {
+                        return "the specified IBAN is incorrect!";
                     }           
                 }
                 return "";
@@ -66,12 +77,12 @@ namespace Artmin_DAL
         }
         public override string ToString()
         {           
-            return this.Name.ToUpper() + Environment.NewLine +
+            return 
                 this.Email + Environment.NewLine +
                 this.Phone.Insert(3," ").Insert(6," ");
         }
 
-        public void copyFrom(Artist a)
+        public void CopyFrom(Artist a)
         {
             this.Name = a.Name;
             this.Phone = a.Phone;

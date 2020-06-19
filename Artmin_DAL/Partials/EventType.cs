@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Artmin_DAL
 {
+    /// <summary>
+    /// Author: Midas
+    /// </summary>
     public partial class EventType
     {
         private static readonly Dictionary<string, string> EventColors = new Dictionary<string, string>
         {
             { "Fuif",       "Green" },
-            { "Trouwfeest", "Yellow" },
-            { "VAT",        "Red" },
+            { "Trouwfeest", "Pink" },
+            { "VAT",        "Yellow" },
             { "DJ SET",     "Blue" }
         };
 
@@ -41,8 +40,7 @@ namespace Artmin_DAL
 
         public override bool Equals(object obj)
         {
-            return obj is EventType type &&
-                   EventTypeID == type.EventTypeID;
+            return obj is EventType type && EventTypeID == type.EventTypeID;
         }
 
         public override int GetHashCode()

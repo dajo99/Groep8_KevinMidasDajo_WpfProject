@@ -10,10 +10,11 @@ namespace Artmin_WPF.Pages
 {
     /// <summary>
     /// Interaction logic for EventsPage.xaml
+    /// Author: Midas
     /// </summary>
     public partial class EventsPage : Page
     {
-        public ObservableCollection<Event> Events { get; set; }
+        public ObservableCollection<Event> Events { get; private set; }
         public EventsPage()
         {
             DataContext = this;

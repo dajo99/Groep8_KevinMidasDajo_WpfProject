@@ -8,8 +8,8 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              d:DesignHeight="100"
-             d:DesignWidth="400">
-    <StackPanel MinWidth="300"
+             d:DesignWidth="350">
+    <StackPanel MinWidth="200"
           Margin="16">
 
         <TextBlock x:Name="textMessage"

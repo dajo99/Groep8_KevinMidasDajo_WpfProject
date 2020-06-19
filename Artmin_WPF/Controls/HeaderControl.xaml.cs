@@ -1,67 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Artmin_WPF.Dialogs;
+using MaterialDesignThemes.Wpf;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Artmin_WPF.Controls
 {
     /// <summary>
     /// Interaction logic for HeaderControl.xaml
+    /// Author: Midas
     /// </summary>
     public partial class HeaderControl : UserControl, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public string Title
         {
-            get
-            {
-                return (string)GetValue(TitleProperty);
-            }
-            set
-            {
-                SetValue(TitleProperty, value);
-            }
+            get => GetValue(TitleProperty) as string;
+            set => SetValue(TitleProperty, value);
         }
+
         public string Subtitle
         {
-            get
-            {
-                return (string)GetValue(SubtitleProperty);
-            }
-            set
-            {
-                SetValue(SubtitleProperty, value);
-            }
+            get => GetValue(SubtitleProperty) as string;
+            set => SetValue(SubtitleProperty, value);
         }
 
         public string BackButtonText
         {
-            get
-            {
-                return (string)GetValue(BackButtonTextProperty);
-            }
+            get => GetValue(BackButtonTextProperty) as string;
             set
             {
                 SetValue(BackButtonTextProperty, value);
-                NotifyPropertyChanged();
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BackButtonText"));
             }
         }
 
@@ -74,16 +48,24 @@ namespace Artmin_WPF.Controls
         private static readonly DependencyProperty BackButtonTextProperty =
             DependencyProperty.Register("BackButtonText", typeof(string), typeof(HeaderControl), new PropertyMetadata(string.Empty));
 
-
         public HeaderControl()
         {
             InitializeComponent();
         }
 
+        private async void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ret = (bool)await DialogHost.Show(new ConfirmDialog("Are you sure you want to exit?"));
+
+            if (ret == true)
+            {
+                Application.Current.Shutdown();
+            }
+        }
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Utilities.FindParent<Frame>(this) is Frame frame
-                && frame.CanGoBack)
+            if (Utilities.FindParent<Frame>(this) is Frame frame && frame.CanGoBack)
             {
                 frame.GoBack();
             }
