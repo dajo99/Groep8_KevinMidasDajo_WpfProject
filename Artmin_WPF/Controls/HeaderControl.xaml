@@ -22,20 +22,20 @@
                             <Border HorizontalAlignment="Center" BorderBrush="{StaticResource PrimaryHueMidBrush}" BorderThickness="0 0 0 3">
                                 <TextBlock>
                                     <TextBlock.Style>
-                                        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}">
+                                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}">
                                             <Setter Property="Text" Value="{Binding Title, ElementName=root}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Title, ElementName=root}" Value="">
-                                                    <Setter Property="Text" Value="{Binding Path=Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}" />
+                                                    <Setter Property="Text" Value="{Binding Title, RelativeSource={RelativeSource AncestorType={x:Type Page}, Mode=FindAncestor}}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </TextBlock.Style>
                                 </TextBlock>
                             </Border>
-                            <TextBlock Text="{Binding Subtitle, ElementName=root, TargetNullValue='', FallbackValue=''}" Margin="0 5 0 0" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding Subtitle, ElementName=root, FallbackValue='', TargetNullValue=''}" Margin="0 5 0 0" HorizontalAlignment="Center">
                                 <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
+                                    <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding Subtitle, ElementName=root}" Value="">
                                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -46,6 +46,15 @@
                             </TextBlock>
                         </StackPanel>
                         <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <Button Style="{StaticResource MaterialDesignIconButton}"
+                                    
+                                    x:Name="BtnClose"
+                                ToolTip="Close"
+                                Click ="BtnClose_Click">
+                                <materialDesign:PackIcon Kind="WindowClose" />
+                            </Button>
+                        </StackPanel>
                     </Grid>
                 </materialDesign:ColorZone>
                 <materialDesign:ColorZone Mode="PrimaryLight" MinHeight="30">

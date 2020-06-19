@@ -20,9 +20,17 @@ namespace Artmin_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        //AUTHOR Dajo Vandoninck
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void mouse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //Zorgen dat window verplaatst kan worden
+            OnMouseLeftButtonDown(e);
+            this.DragMove();
         }
     }
 }

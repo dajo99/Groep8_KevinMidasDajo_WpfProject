@@ -68,5 +68,11 @@ namespace Artmin_WPF.Controls
                 BackButtonText = journalEntry.Name;
             }
         }
+
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

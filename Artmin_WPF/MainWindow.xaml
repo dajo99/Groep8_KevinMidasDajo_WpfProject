@@ -14,7 +14,7 @@
         Background="{StaticResource MaterialDesignPaper}"
         FontFamily="{StaticResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
-        Title="Artmin" Height="568" Width="320">
+        Title="Artmin" Height="568" Width="320" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize" MouseLeftButtonDown="mouse_MouseLeftButtonDown">
     <materialDesign:DialogHost Focusable="False">
         <Frame x:Name="frameMain" Source="Pages\EventsPage.xaml" NavigationUIVisibility="Hidden" Focusable="False" />
     </materialDesign:DialogHost>
