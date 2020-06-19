@@ -1,6 +1,8 @@
 # Groep8_KevinMidasDajo_WpfProject
 
-![Capture-1](https://user-images.githubusercontent.com/58330002/85153723-d1804f00-b256-11ea-828f-868286afc4b2.PNG)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/58330002/85153723-d1804f00-b256-11ea-828f-868286afc4b2.PNG" />
+</p>
 
 ![Capture-2](https://user-images.githubusercontent.com/58330002/85153725-d218e580-b256-11ea-90e2-73f723ca1306.PNG)
 
